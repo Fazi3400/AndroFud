@@ -29,6 +29,11 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    // Log sections for debugging
+    const sections = [...new Set((data || []).map((p: any) => p.section))];
+    console.log("Available sections in DB:", sections);
+    console.log("Total products:", data?.length || 0);
+
     return NextResponse.json({ products: data || [] });
   } catch (error) {
     console.error("Error fetching products:", error);
@@ -167,7 +172,7 @@ export async function POST(request: NextRequest) {
       process.env.DATABASE_SERVICE_ROLE!,
       {
         auth: { persistSession: false },
-      }
+      },
     );
 
     const { data, error: insertError } = await supabase
