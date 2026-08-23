@@ -15,6 +15,13 @@ export const getURL = () => {
 
   url = url.includes("http") ? url : `https://${url}`;
   url = url.charAt(url.length - 1) === "/" ? url : `${url}/`;
+
+  console.log("🔍 getURL DEBUG:", {
+    NEXT_PUBLIC_SITE_URL: env.NEXT_PUBLIC_SITE_URL,
+    NEXT_PUBLIC_VERCEL_URL: process?.env?.NEXT_PUBLIC_VERCEL_URL,
+    finalURL: url,
+  });
+
   return url;
 };
 
