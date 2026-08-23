@@ -1,15 +1,41 @@
 ﻿import { NextRequest, NextResponse } from "next/server";
-import { products, InsertProducts } from "@/lib/supabase/schema";
-import db from "@/lib/supabase/db";
 import { createClient } from "@supabase/supabase-js";
 
 export async function GET(request: NextRequest) {
   try {
-    const allProducts = await db.select().from(products);
-    return NextResponse.json({ products: allProducts });
+    // Use Supabase REST API with service role key
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const serviceRoleKey = process.env.DATABASE_SERVICE_ROLE;
+
+    if (!supabaseUrl || !serviceRoleKey) {
+      return NextResponse.json(
+        { error: "Missing Supabase configuration" },
+        { status: 500 }
+      );
+    }
+
+    const supabase = createClient(supabaseUrl, serviceRoleKey, {
+      auth: { persistSession: false },
+    });
+
+    // Fetch products from the products table
+    const { data, error } = await supabase.from("products").select("*");
+
+    if (error) {
+      console.error("Supabase error:", error);
+      return NextResponse.json(
+        { error: "Failed to fetch products", details: error.message },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({ products: data || [] });
   } catch (error) {
-    console.error("Error:", error);
-    return NextResponse.json({ error: "Failed to fetch products" }, { status: 500 });
+    console.error("Error fetching products:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch products", details: error instanceof Error ? error.message : "Unknown error" },
+      { status: 500 }
+    );
   }
 }
 
