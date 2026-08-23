@@ -1,7 +1,6 @@
 ﻿import Header from "@/components/layouts/Header";
 import { Shell } from "@/components/layouts/Shell";
 import { Skeleton } from "@/components/ui/skeleton";
-import { listCollectionsAction } from "@/features/collections";
 import { SearchProductsGridSkeleton } from "@/features/products";
 import {
   FilterSelections,
