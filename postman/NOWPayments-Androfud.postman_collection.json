@@ -1,0 +1,326 @@
+{
+  "info": {
+    "_postman_id": "nowpayments-androfud-collection",
+    "name": "NOWPayments Crypto Integration - Androfud",
+    "description": "Complete test suite for NOWPayments crypto payment integration including checkout, payment status polling, and webhook signature verification.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "0"
+  },
+  "item": [
+    {
+      "name": "1. Create Crypto Checkout",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 200) {",
+              "    var responseData = pm.response.json();",
+              "    pm.environment.set('paymentId', responseData.paymentId);",
+              "    pm.environment.set('payAddress', responseData.payAddress);",
+              "    pm.environment.set('payAmount', responseData.payAmount);",
+              "    pm.environment.set('payCurrency', responseData.payCurrency);",
+              "    pm.environment.set('priceAmount', responseData.priceAmount);",
+              "    pm.environment.set('priceCurrency', responseData.priceCurrency);",
+              "    pm.environment.set('orderId', pm.globals.get('lastOrderId'));",
+              "    console.log('✅ Crypto payment created. Payment ID:', responseData.paymentId);",
+              "    console.log('📍 Pay Address:', responseData.payAddress);",
+              "    console.log('💰 Amount:', responseData.payAmount, responseData.payCurrency);",
+              "} else {",
+              "    console.log('❌ Checkout failed:', pm.response.text());",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"orderProducts\": {\n    \"clv8hq7pr0000hozp4oz4z5ej\": {\n      \"quantity\": 1\n    }\n  },\n  \"guest\": true,\n  \"paymentMethod\": \"crypto\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/checkout",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "checkout"]
+        }
+      }
+    },
+    {
+      "name": "2. Get Payment Status",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 200) {",
+              "    var responseData = pm.response.json();",
+              "    pm.environment.set('currentPaymentStatus', responseData.payment_status);",
+              "    console.log('✅ Payment Status:', responseData.payment_status);",
+              "    console.log('📊 Full Response:', JSON.stringify(responseData, null, 2));",
+              "} else {",
+              "    console.log('❌ Failed to get payment status:', pm.response.text());",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/payment-status?paymentId={{paymentId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "payment-status"],
+          "query": [
+            {
+              "key": "paymentId",
+              "value": "{{paymentId}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "3. Send Webhook (Payment Confirmed)",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Generate HMAC-SHA512 signature for NOWPayments webhook",
+              "const crypto = require('crypto-js');",
+              "",
+              "// Create the payload - same as what NOWPayments would send",
+              "const payload = {",
+              "    payment_id: parseInt(pm.environment.get('paymentId')),",
+              "    order_id: pm.environment.get('orderId'),",
+              "    payment_status: 'finished',",
+              "    pay_address: pm.environment.get('payAddress'),",
+              "    pay_amount: pm.environment.get('payAmount'),",
+              "    pay_currency: pm.environment.get('payCurrency'),",
+              "    actually_paid: pm.environment.get('payAmount'),",
+              "    price_amount: pm.environment.get('priceAmount'),",
+              "    price_currency: pm.environment.get('priceCurrency'),",
+              "    created_at: new Date().toISOString()",
+              "};",
+              "",
+              "// Recursively sort object keys (matching NOWPayments algorithm)",
+              "function sortObjectKeys(obj) {",
+              "    if (Array.isArray(obj)) return obj.map(sortObjectKeys);",
+              "    if (obj !== null && typeof obj === 'object') {",
+              "        return Object.keys(obj).sort().reduce((result, key) => {",
+              "            result[key] = sortObjectKeys(obj[key]);",
+              "            return result;",
+              "        }, {});",
+              "    }",
+              "    return obj;",
+              "}",
+              "",
+              "const sortedPayload = sortObjectKeys(payload);",
+              "const payloadString = JSON.stringify(sortedPayload);",
+              "",
+              "console.log('📝 Webhook Payload:', payloadString);",
+              "",
+              "// Create HMAC-SHA512 signature using IPN Secret Key",
+              "const ipnSecret = pm.environment.get('ipnSecret');",
+              "const signature = CryptoJS.HmacSHA512(payloadString, ipnSecret).toString();",
+              "",
+              "console.log('🔐 Signature:', signature);",
+              "console.log('🔑 IPN Secret Key: ' + ipnSecret.substring(0, 10) + '...');",
+              "",
+              "// Set the request body and signature header",
+              "pm.request.body.raw = payloadString;",
+              "pm.request.headers.add({",
+              "    key: 'x-nowpayments-sig',",
+              "    value: signature",
+              "});",
+              "pm.request.headers.add({",
+              "    key: 'Content-Type',",
+              "    value: 'application/json'",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 200) {",
+              "    console.log('✅ Webhook accepted! Signature verified.');",
+              "    console.log('📊 Response:', pm.response.json());",
+              "} else {",
+              "    console.log('❌ Webhook rejected. Status:', pm.response.code);",
+              "    console.log('Response:', pm.response.text());",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/webhooks/nowpayments",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "webhooks", "nowpayments"]
+        }
+      }
+    },
+    {
+      "name": "4. Send Webhook (Invalid Signature - Should Reject)",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Send webhook with TAMPERED signature to test verification",
+              "const crypto = require('crypto-js');",
+              "",
+              "const payload = {",
+              "    payment_id: parseInt(pm.environment.get('paymentId')),",
+              "    order_id: pm.environment.get('orderId'),",
+              "    payment_status: 'finished',",
+              "    pay_address: pm.environment.get('payAddress'),",
+              "    pay_amount: pm.environment.get('payAmount'),",
+              "    pay_currency: pm.environment.get('payCurrency')",
+              "};",
+              "",
+              "const payloadString = JSON.stringify(payload);",
+              "",
+              "// Use a WRONG signature to verify rejection",
+              "const fakeSignature = 'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';",
+              "",
+              "console.log('⚠️  Sending webhook with INVALID signature to test rejection...');",
+              "",
+              "pm.request.body.raw = payloadString;",
+              "pm.request.headers.add({",
+              "    key: 'x-nowpayments-sig',",
+              "    value: fakeSignature",
+              "});",
+              "pm.request.headers.add({",
+              "    key: 'Content-Type',",
+              "    value: 'application/json'",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 401) {",
+              "    console.log('✅ Correctly rejected invalid signature!');",
+              "} else {",
+              "    console.log('❌ FAILED: Should reject invalid signature but got status:', pm.response.code);",
+              "    console.log('Response:', pm.response.text());",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/webhooks/nowpayments",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "webhooks", "nowpayments"]
+        }
+      }
+    },
+    {
+      "name": "5. Create Card Checkout (Optional)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"orderProducts\": {\n    \"clv8hq7pr0000hozp4oz4z5ej\": {\n      \"quantity\": 1\n    }\n  },\n  \"guest\": true,\n  \"paymentMethod\": \"card\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/checkout",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "checkout"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3001",
+      "type": "string"
+    },
+    {
+      "key": "ipnSecret",
+      "value": "lBiGLTvrMF6L36B0aBb/SmtNpdeh96hD",
+      "type": "string"
+    },
+    {
+      "key": "paymentId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "orderId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "payAddress",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "payAmount",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "payCurrency",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "priceAmount",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "priceCurrency",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "currentPaymentStatus",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

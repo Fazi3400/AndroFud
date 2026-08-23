@@ -1,0 +1,20 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#00ff00" stroke-width="4"/>
+
+  <!-- Windows logo style -->
+  <g fill="#00ff00">
+    <!-- Top left -->
+    <rect x="40" y="40" width="35" height="35" fill="#00ff00"/>
+    <!-- Top right -->
+    <rect x="125" y="40" width="35" height="35" fill="#00ff00"/>
+    <!-- Bottom left -->
+    <rect x="40" y="125" width="35" height="35" fill="#00ff00"/>
+    <!-- Bottom right -->
+    <rect x="125" y="125" width="35" height="35" fill="#00ff00"/>
+  </g>
+
+  <!-- Center hex icon for hacker theme -->
+  <circle cx="100" cy="100" r="20" fill="none" stroke="#00ff00" stroke-width="2"/>
+  <text x="100" y="110" font-size="24" font-weight="bold" fill="#00ff00" text-anchor="middle" font-family="monospace">></text>
+</svg>
