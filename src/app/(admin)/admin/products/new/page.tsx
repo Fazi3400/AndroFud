@@ -4,6 +4,8 @@ import AdminShell from "@/components/admin/AdminShell";
 import { ProductForm } from "@/features/products";
 import db from "@/lib/supabase/db";
 
+export const dynamic = "force-dynamic";
+
 async function NewProjectPage() {
   const products = await db.query.products.findMany();
   if (!products) return notFound();
@@ -21,4 +23,3 @@ async function NewProjectPage() {
 }
 
 export default NewProjectPage;
-

@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { cookies } from "next/headers";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: NextRequest) {
   try {
     const cookieStore = await cookies();
@@ -15,7 +17,10 @@ export async function GET(request: NextRequest) {
 
     if (error) {
       console.error("Database error:", error);
-      return NextResponse.json({ error: "Failed to fetch products" }, { status: 500 });
+      return NextResponse.json(
+        { error: "Failed to fetch products" },
+        { status: 500 },
+      );
     }
 
     return NextResponse.json({
@@ -26,7 +31,7 @@ export async function GET(request: NextRequest) {
     console.error("Error:", error);
     return NextResponse.json(
       { error: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
