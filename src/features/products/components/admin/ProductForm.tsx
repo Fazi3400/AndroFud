@@ -41,21 +41,6 @@ import { gql } from "urql";
 type ProductsFormProps = {
   product?: SelectProducts;
 };
-export const ProductFormQuery = gql(/* GraphQL */ `
-  query ProductFormQuery {
-    collectionsCollection(
-      orderBy: [{ label: AscNullsLast }]
-    ) {
-      __typename
-      edges {
-        node {
-          id
-          label
-        }
-      }
-    }
-  }
-`);
 
 function ProductFrom({ product }: ProductsFormProps) {
   const [isPending, startTransition] = useTransition();
