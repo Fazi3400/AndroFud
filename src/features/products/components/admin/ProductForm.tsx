@@ -36,7 +36,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Suspense, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { gql } from "urql";
 
 type ProductsFormProps = {
   product?: SelectProducts;
@@ -46,10 +45,6 @@ function ProductFrom({ product }: ProductsFormProps) {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const { toast } = useToast();
-
-  const [{ data }] = useQuery({
-    query: ProductFormQuery,
-  });
 
   const form = useForm<InsertProducts>({
     resolver: zodResolver(createInsertSchema(products)),
@@ -112,7 +107,6 @@ function ProductFrom({ product }: ProductsFormProps) {
     });
   });
 
-  console.log("!!data", data);
   return (
     <Form {...form}>
       <form
