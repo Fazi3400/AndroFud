@@ -235,19 +235,22 @@ export default async function Home({
         // Filter products by section
         brandedProducts = (apiData.products || [])
           .filter((product: any) => {
+            const productSection = product.section
+              ? String(product.section).toLowerCase().trim()
+              : null;
+            const matches = productSection === requiredSection.toLowerCase();
             console.log(
-              `Comparing product "${product.name}" section="${product.section}" to required="${requiredSection}"`,
-              product.section?.toLowerCase() === requiredSection.toLowerCase(),
+              `Product: "${product.name}" | section: "${productSection}" | required: "${requiredSection}" | match: ${matches}`,
             );
-            return (
-              product.section &&
-              product.section.toLowerCase() === requiredSection.toLowerCase()
-            );
+            return matches;
           })
           .map((product: any) => ({
             node: product,
           }));
 
+        console.log(
+          `Brand: ${brand} | Required section: ${requiredSection} | Filtered count: ${brandedProducts.length}`,
+        );
         console.log("Filtered Products:", brandedProducts);
       }
     } catch (error) {
