@@ -226,7 +226,7 @@ function FilterSelections({ collectionsSection, shopLayout = true }: Props) {
         query={query}
         collections={collectionsSection?.map((col) => ({
           id: col.id,
-          label: col.label || col.name || "",
+          label: col.label || "",
         }))}
         onDeleteHandler={removeQueryString}
       />
