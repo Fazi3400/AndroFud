@@ -12,11 +12,13 @@ export default function AuthRedirectPage() {
     const handleRedirect = async () => {
       try {
         // Check if admin password auth was used (stored in localStorage)
-        const adminAuth = localStorage.getItem("admin_auth");
+        const adminAuth = localStorage.getItem("adminToken");
         console.log("AuthRedirect - checking adminAuth:", adminAuth);
 
-        if (adminAuth === "true") {
-          console.log("AuthRedirect - admin password auth detected, redirecting to /admin");
+        if (adminAuth) {
+          console.log(
+            "AuthRedirect - admin password auth detected, redirecting to /admin",
+          );
           // Use window.location for a hard redirect
           window.location.href = "/admin";
           return;
