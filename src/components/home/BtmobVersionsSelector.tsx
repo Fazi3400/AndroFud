@@ -239,7 +239,9 @@ const btmob363FeatureCategories = [
 
 export function BtmobVersionsSelector() {
   const searchParams = useSearchParams();
-  const [selectedVersion, setSelectedVersion] = useState<"3.6.3" | "4.6.1">("4.6.1");
+  const [selectedVersion, setSelectedVersion] = useState<"3.6.3" | "4.6.1">(
+    "4.6.1",
+  );
   const [products, setProducts] = useState<any[]>([]);
   const [checkoutProduct, setCheckoutProduct] = useState<any>(null);
   const { getDiscount } = useProductDiscount();
@@ -265,15 +267,18 @@ export function BtmobVersionsSelector() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+        const baseUrl =
+          process.env.NEXT_PUBLIC_API_URL || "https://androfud.com";
         const response = await fetch(`${baseUrl}/api/admin/products`);
         const apiData = await response.json();
 
         if (apiData.products) {
           const btmobProducts = apiData.products
-            .filter((product: any) => product.section?.toLowerCase() === "btmob")
+            .filter(
+              (product: any) => product.section?.toLowerCase() === "btmob",
+            )
             .map((product: any) => ({
-              node: product
+              node: product,
             }));
           setProducts(btmobProducts);
         }
@@ -285,8 +290,8 @@ export function BtmobVersionsSelector() {
     fetchProducts();
   }, []);
 
-  const versionProducts = products.filter(
-    (edge: any) => edge.node.name.toLowerCase().includes(selectedVersion)
+  const versionProducts = products.filter((edge: any) =>
+    edge.node.name.toLowerCase().includes(selectedVersion),
   );
 
   const phoneStyle = {
@@ -349,7 +354,9 @@ export function BtmobVersionsSelector() {
 
               {/* Features List */}
               <div className="space-y-4">
-                <h4 className="text-xl font-bold text-[#06b6d4] mb-6">Key Features:</h4>
+                <h4 className="text-xl font-bold text-[#06b6d4] mb-6">
+                  Key Features:
+                </h4>
                 <div className="space-y-3">
                   {version.features.map((feature, idx) => (
                     <div key={idx} className="flex items-start gap-4">
@@ -412,12 +419,12 @@ export function BtmobVersionsSelector() {
                       <div className="p-2 bg-gradient-to-br from-[#0099ff]/20 to-[#000000]/10 rounded-lg">
                         {Icons[category.icon as keyof typeof Icons] &&
                           (() => {
-                            const IconComponent = Icons[category.icon as keyof typeof Icons];
-                            return typeof IconComponent === 'function' ? (
+                            const IconComponent =
+                              Icons[category.icon as keyof typeof Icons];
+                            return typeof IconComponent === "function" ? (
                               <IconComponent className="w-6 h-6 text-[#06b6d4]" />
                             ) : null;
-                          })()
-                        }
+                          })()}
                       </div>
                       <h3 className="text-xl font-bold text-[#67e8f9]-300 pt-1">
                         {category.title}
@@ -427,7 +434,10 @@ export function BtmobVersionsSelector() {
                     {/* Features List */}
                     <div className="space-y-2 pt-2">
                       {category.features.map((feature, featureIdx) => (
-                        <div key={featureIdx} className="flex items-start gap-3">
+                        <div
+                          key={featureIdx}
+                          className="flex items-start gap-3"
+                        >
                           <div className="flex-shrink-0 mt-1">
                             <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[#0099ff] to-[#000000]"></div>
                           </div>
@@ -480,11 +490,21 @@ export function BtmobVersionsSelector() {
                       const discountInfo = getDiscount(edge.node.name);
                       return (
                         discountInfo.discount > 0 && (
-                          <div className="mb-3 bg-gradient-to-r from-[#ff4500] via-[#ff6b00] to-[#ff4500] text-white py-2 px-3 text-center font-black text-sm shadow-lg shadow-orange-500/50" style={{ animation: 'pulse 2s ease-in-out infinite' }}>
+                          <div
+                            className="mb-3 bg-gradient-to-r from-[#ff4500] via-[#ff6b00] to-[#ff4500] text-white py-2 px-3 text-center font-black text-sm shadow-lg shadow-orange-500/50"
+                            style={{
+                              animation: "pulse 2s ease-in-out infinite",
+                            }}
+                          >
                             <div className="flex items-center justify-center gap-2">
                               <span className="animate-bounce">🔥</span>
                               <span>{discountInfo.discount}% OFF</span>
-                              <span className="animate-bounce" style={{ animationDelay: '0.2s' }}>🔥</span>
+                              <span
+                                className="animate-bounce"
+                                style={{ animationDelay: "0.2s" }}
+                              >
+                                🔥
+                              </span>
                             </div>
                           </div>
                         )
@@ -495,7 +515,7 @@ export function BtmobVersionsSelector() {
                         const discountInfo = getDiscount(edge.node.name);
                         const originalPrice = edge.node.price;
                         const discountedPrice = Math.round(
-                          originalPrice * (1 - discountInfo.discount / 100)
+                          originalPrice * (1 - discountInfo.discount / 100),
                         );
 
                         return (
@@ -507,10 +527,15 @@ export function BtmobVersionsSelector() {
                             )}
                             <div
                               className={`text-4xl font-bold mb-1 ${
-                                discountInfo.discount > 0 ? "text-green-400" : "text-[#00f5ff]"
+                                discountInfo.discount > 0
+                                  ? "text-green-400"
+                                  : "text-[#00f5ff]"
                               }`}
                             >
-                              ${discountInfo.discount > 0 ? discountedPrice : originalPrice}
+                              $
+                              {discountInfo.discount > 0
+                                ? discountedPrice
+                                : originalPrice}
                             </div>
                           </>
                         );
@@ -519,13 +544,16 @@ export function BtmobVersionsSelector() {
 
                     <div className="space-y-3 mb-8">
                       <p className="flex items-center gap-3 text-[#00f5ff]">
-                        <span className="text-lg text-[#00f5ff]">✓</span> Full Access
+                        <span className="text-lg text-[#00f5ff]">✓</span> Full
+                        Access
                       </p>
                       <p className="flex items-center gap-3 text-[#00f5ff]">
-                        <span className="text-lg text-[#00f5ff]">✓</span> Priority Support
+                        <span className="text-lg text-[#00f5ff]">✓</span>{" "}
+                        Priority Support
                       </p>
                       <p className="flex items-center gap-3 text-[#00f5ff]">
-                        <span className="text-lg text-[#00f5ff]">✓</span> All Updates
+                        <span className="text-lg text-[#00f5ff]">✓</span> All
+                        Updates
                       </p>
                     </div>
                   </div>
@@ -539,7 +567,9 @@ export function BtmobVersionsSelector() {
                         animationDelay: `${idx * 0.2}s`,
                       }}
                     >
-                      <span className="relative z-10 flex items-center justify-center gap-2">✦ SUBSCRIBE NOW</span>
+                      <span className="relative z-10 flex items-center justify-center gap-2">
+                        ✦ SUBSCRIBE NOW
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -548,7 +578,8 @@ export function BtmobVersionsSelector() {
           ) : (
             <div className="text-center py-12 space-y-4">
               <p className="text-lg text-[#67e8f9]">
-                Add BTMOB {selectedVersion} products through admin panel to display them here
+                Add BTMOB {selectedVersion} products through admin panel to
+                display them here
               </p>
             </div>
           )}
