@@ -106,14 +106,6 @@ function FilterSelections({ collectionsSection, shopLayout = true }: Props) {
       <section className="justify-between items-center hidden md:flex">
         <div className="flex gap-x-5 items-center">
           <span>Filter:</span>
-          {shopLayout && (
-              className="flex items-center"
-              value={query.collections}
-              onCheckedChange={collectionChangeHandler}
-              selections={collectionsSection}
-            />
-          )}
-
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center">
               Price Range
@@ -176,18 +168,6 @@ function FilterSelections({ collectionsSection, shopLayout = true }: Props) {
           <SheetHeader>
             <SheetTitle>All Filters</SheetTitle>
             <SheetDescription className="flex flex-col items-start">
-              {shopLayout && (
-                <div className="grid">
-                  <label className="text-primary font-semibold text-left">
-                    Collections
-                  </label>
-                    className="flex items-center"
-                    value={query.collections}
-                    onCheckedChange={collectionChangeHandler}
-                    selections={collectionsSection}
-                  />
-                </div>
-              )}
               <div className="grid">
                 <label className="text-primary font-semibold text-left">
                   Price Range
