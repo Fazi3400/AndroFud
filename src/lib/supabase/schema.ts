@@ -14,6 +14,15 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 
+// Type definitions for Supabase tables
+export type SelectCollection = {
+  id: string;
+  name: string;
+  slug?: string;
+  description?: string;
+  created_at?: string;
+};
+
 // User Trigger
 // https://supabase.com/docs/guides/auth/managing-user-data
 //
