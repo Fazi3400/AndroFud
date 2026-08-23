@@ -72,7 +72,6 @@ function ProductFrom({ product }: ProductsFormProps) {
       name: product?.name || "",
       slug: product?.slug || "",
       description: product?.description || "",
-      collectionId: product?.collectionId || undefined,
       badge: product?.badge || undefined,
       rating: product?.rating || "4",
       price: product?.price || "0.00",
