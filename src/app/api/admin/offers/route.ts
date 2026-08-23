@@ -54,16 +54,8 @@ async function checkAdminAuth(request: NextRequest) {
   }
 }
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
-    const user = await checkAdminAuth(request);
-    if (!user) {
-      return NextResponse.json(
-        { error: "Unauthorized - Admin access required" },
-        { status: 401 },
-      );
-    }
-
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const serviceRoleKey = process.env.DATABASE_SERVICE_ROLE;
 
