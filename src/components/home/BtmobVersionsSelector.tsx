@@ -267,9 +267,7 @@ export function BtmobVersionsSelector() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const baseUrl =
-          process.env.NEXT_PUBLIC_API_URL || "https://androfud.com";
-        const response = await fetch(`${baseUrl}/api/admin/products`);
+        const response = await fetch(`/api/admin/products`);
         const apiData = await response.json();
 
         if (apiData.products) {

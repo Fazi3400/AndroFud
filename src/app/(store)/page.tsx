@@ -214,9 +214,7 @@ export default async function Home({
     let brandedProducts: any[] = [];
 
     try {
-      const baseUrl =
-        process.env.NEXT_PUBLIC_API_URL || "https://androfud.com";
-      const response = await fetch(`${baseUrl}/api/admin/products`, {
+      const response = await fetch(`/api/admin/products`, {
         cache: "no-store",
       });
 
