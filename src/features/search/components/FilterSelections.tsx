@@ -39,8 +39,7 @@ function FilterSelections({ collectionsSection, shopLayout = true }: Props) {
   const pathname = usePathname();
   const [isPending, startTransition] = React.useTransition();
 
-  const [query, setQuery] = useState<SearchQuery>({
-  });
+  const [query, setQuery] = useState<SearchQuery>({});
 
   const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -99,7 +98,6 @@ function FilterSelections({ collectionsSection, shopLayout = true }: Props) {
         );
       });
   }, [debouncedPrice]);
-
 
   return (
     <>
@@ -226,7 +224,10 @@ function FilterSelections({ collectionsSection, shopLayout = true }: Props) {
 
       <FilterBadges
         query={query}
-        collections={collectionsSection}
+        collections={collectionsSection?.map((col) => ({
+          id: col.id,
+          label: col.label || col.name || "",
+        }))}
         onDeleteHandler={removeQueryString}
       />
     </>
@@ -234,4 +235,3 @@ function FilterSelections({ collectionsSection, shopLayout = true }: Props) {
 }
 
 export default FilterSelections;
-
