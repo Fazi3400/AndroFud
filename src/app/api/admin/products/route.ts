@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     if (!supabaseUrl || !serviceRoleKey) {
       return NextResponse.json(
         { error: "Missing Supabase configuration" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
       console.error("Supabase error:", error);
       return NextResponse.json(
         { error: "Failed to fetch products", details: error.message },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -33,8 +33,11 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error("Error fetching products:", error);
     return NextResponse.json(
-      { error: "Failed to fetch products", details: error instanceof Error ? error.message : "Unknown error" },
-      { status: 500 }
+      {
+        error: "Failed to fetch products",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 },
     );
   }
 }
@@ -48,8 +51,9 @@ async function checkAdminAuth(request: NextRequest) {
     }
 
     // Get auth cookie from request
-    const authCookie = request.cookies.get("sb-auth-token")?.value ||
-                       request.cookies.get("sb-prwidbcixjusoqyajtav-auth-token")?.value;
+    const authCookie =
+      request.cookies.get("sb-auth-token")?.value ||
+      request.cookies.get("sb-prwidbcixjusoqyajtav-auth-token")?.value;
 
     if (!authCookie) {
       return null;
@@ -63,12 +67,14 @@ async function checkAdminAuth(request: NextRequest) {
         auth: {
           persistSession: false,
         },
-      }
+      },
     );
 
     // Parse the auth cookie to get user ID
     try {
-      const { data: { session } } = JSON.parse(authCookie);
+      const {
+        data: { session },
+      } = JSON.parse(authCookie);
       if (!session?.user?.id) {
         return null;
       }
@@ -93,7 +99,10 @@ export async function POST(request: NextRequest) {
   try {
     const user = await checkAdminAuth(request);
     if (!user) {
-      return NextResponse.json({ error: "Unauthorized - Admin access required" }, { status: 401 });
+      return NextResponse.json(
+        { error: "Unauthorized - Admin access required" },
+        { status: 401 },
+      );
     }
 
     const body = await request.json();
@@ -101,25 +110,40 @@ export async function POST(request: NextRequest) {
 
     // Validation
     if (!name || !price || !section || !subsection) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 },
+      );
     }
 
     if (typeof name !== "string" || name.trim().length === 0) {
-      return NextResponse.json({ error: "Invalid product name" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Invalid product name" },
+        { status: 400 },
+      );
     }
 
     const parsedPrice = parseFloat(price);
     if (isNaN(parsedPrice) || parsedPrice <= 0) {
-      return NextResponse.json({ error: "Price must be a positive number" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Price must be a positive number" },
+        { status: 400 },
+      );
     }
 
     const validSections = ["androfud", "btmob", "windows"];
     if (!validSections.includes(section.toLowerCase())) {
-      return NextResponse.json({ error: "Invalid section. Must be: androfud, btmob, or windows" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Invalid section. Must be: androfud, btmob, or windows" },
+        { status: 400 },
+      );
     }
 
     if (typeof subsection !== "string" || subsection.trim().length === 0) {
-      return NextResponse.json({ error: "Invalid subsection" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Invalid subsection" },
+        { status: 400 },
+      );
     }
 
     const slug = name.toLowerCase().replace(/\s+/g, "-");
@@ -136,10 +160,28 @@ export async function POST(request: NextRequest) {
     };
 
     console.log("Inserting product:", newProduct);
-    const result = await db.insert(products).values(newProduct).returning();
-    console.log("Product inserted:", result);
 
-    return NextResponse.json(result[0], { status: 201 });
+    // Use Supabase to insert product
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.DATABASE_SERVICE_ROLE!,
+      {
+        auth: { persistSession: false },
+      }
+    );
+
+    const { data, error: insertError } = await supabase
+      .from("products")
+      .insert([newProduct])
+      .select();
+
+    if (insertError) {
+      console.error("Error inserting product:", insertError);
+      return NextResponse.json({ error: insertError.message }, { status: 500 });
+    }
+
+    console.log("Product inserted:", data);
+    return NextResponse.json(data?.[0], { status: 201 });
   } catch (error) {
     console.error("Error creating product:", error);
     const errorMsg = error instanceof Error ? error.message : "Unknown error";
