@@ -5,20 +5,18 @@ import { useEffect, useState } from "react";
 import SearchResultPage from "./SearchResultPage";
 
 interface SearchProductsInifiteScrollProps {
-  collectionId?: string;
 }
 
 function SearchProductsInifiteScroll({
-  collectionId,
 }: SearchProductsInifiteScrollProps) {
   const searchParmas = useSearchParams();
-  const varaibles = searchParamsVariablesFactory(searchParmas, collectionId);
+  const varaibles = searchParamsVariablesFactory(searchParmas);
 
   const [pageVariables, setPageVariables] = useState([varaibles]);
 
   useEffect(() => {
     setPageVariables([
-      searchParamsVariablesFactory(searchParmas, collectionId),
+      searchParamsVariablesFactory(searchParmas),
     ]);
   }, [searchParmas]);
 
@@ -44,7 +42,6 @@ export default SearchProductsInifiteScroll;
 
 const searchParamsVariablesFactory = (
   searchParams: ReadonlyURLSearchParams,
-  collectionId?: string,
 ) => {
   const priceRange = searchParams.get("price_range");
   const range = priceRange ? priceRange.split("-") : undefined;
@@ -84,9 +81,7 @@ const searchParamsVariablesFactory = (
     search: search ? `%${search.trim()}%` : "%%",
     lower: range && range[0] ? `${range[0]}` : undefined,
     upper: range && range[1] ? `${range[1]}` : undefined,
-    collections: collectionId
-      ? [collectionId]
-      : collections && collections.length > 0
+    collections: collections && collections.length > 0
         ? collections
         : undefined,
     orderBy,

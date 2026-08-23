@@ -23,7 +23,6 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Icons } from "@/components/layouts/icons";
 import PriceRange from "@/components/ui/PriceRange";
 import { useDebounce } from "@/features/cms/hooks/use-debounce";
-import CollectionsSelection from "@/features/search/components/CollectionsSelection";
 import { SearchQuery } from "@/features/search/hooks/useSearchStore";
 import { SortEnum } from "@/validations/products";
 import React from "react";
@@ -41,7 +40,6 @@ function FilterSelections({ collectionsSection, shopLayout = true }: Props) {
   const [isPending, startTransition] = React.useTransition();
 
   const [query, setQuery] = useState<SearchQuery>({
-    collections: [],
   });
 
   const searchParams = useSearchParams();
@@ -102,30 +100,6 @@ function FilterSelections({ collectionsSection, shopLayout = true }: Props) {
       });
   }, [debouncedPrice]);
 
-  const collectionChangeHandler = (collectionId: string) => {
-    const oldValue = query.collections ?? [];
-
-    if (oldValue.includes(collectionId)) {
-      const collections = oldValue.filter((item) => item !== collectionId);
-      setQuery({ ...query, collections });
-      router.push(
-        pathname +
-          "?" +
-          createQueryString("collections", JSON.stringify(collections)),
-      );
-    } else {
-      const collections = [...oldValue, collectionId];
-      setQuery({ ...query, collections });
-      router.push(
-        pathname +
-          "?" +
-          removeQueryString(
-            "collections",
-            collections.length > 0 ? JSON.stringify(collections) : undefined,
-          ),
-      );
-    }
-  };
 
   return (
     <>
@@ -133,7 +107,6 @@ function FilterSelections({ collectionsSection, shopLayout = true }: Props) {
         <div className="flex gap-x-5 items-center">
           <span>Filter:</span>
           {shopLayout && (
-            <CollectionsSelection
               className="flex items-center"
               value={query.collections}
               onCheckedChange={collectionChangeHandler}
@@ -208,7 +181,6 @@ function FilterSelections({ collectionsSection, shopLayout = true }: Props) {
                   <label className="text-primary font-semibold text-left">
                     Collections
                   </label>
-                  <CollectionsSelection
                     className="flex items-center"
                     value={query.collections}
                     onCheckedChange={collectionChangeHandler}

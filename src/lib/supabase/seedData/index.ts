@@ -1,4 +1,3 @@
-import collections from "./collections";
 import medias from "./medias";
 import products from "./products";
 import shopOrders from "./shopOrders";
