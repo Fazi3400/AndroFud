@@ -179,47 +179,6 @@ function ProductFrom({ product }: ProductsFormProps) {
             </FormItem>
           </div>
 
-          <Suspense>
-            {data && data.collectionsCollection && (
-              <FormField
-                control={control}
-                name={"collectionId"}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-[#a855f7] text-sm font-medium">Collections</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value || undefined}
-                    >
-                      <FormControl>
-                        <SelectTrigger className="rounded-full bg-[#0d2818] border-[#0099ff] text-white">
-                          <SelectValue placeholder="Select a collection" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent className="bg-[#0d2818] border-[#0099ff]">
-                        {data.collectionsCollection.edges.map(
-                          ({ node: collection }) => (
-                            <SelectItem
-                              value={collection.id}
-                              key={collection.id}
-                              className="text-white focus:bg-[#1a3a2e]"
-                            >
-                              {collection.label}
-                            </SelectItem>
-                          ),
-                        )}
-                      </SelectContent>
-                    </Select>
-                    <FormDescription className="text-[#67e8f9]">
-                      {"Select a Collection for the products."}
-                    </FormDescription>
-                    <FormMessage className="text-red-400" />
-                  </FormItem>
-                )}
-              />
-            )}
-          </Suspense>
-
           <BadgeSelectField name="badge" label={""} />
 
           <FormItem>
