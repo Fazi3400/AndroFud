@@ -100,14 +100,6 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const user = await checkAdminAuth(request);
-    if (!user) {
-      return NextResponse.json(
-        { error: "Unauthorized - Admin access required" },
-        { status: 401 },
-      );
-    }
-
     const body = await request.json();
     const { productName, baseDiscount, validForDays } = body;
 
@@ -162,14 +154,6 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
-    const user = await checkAdminAuth(request);
-    if (!user) {
-      return NextResponse.json(
-        { error: "Unauthorized - Admin access required" },
-        { status: 401 },
-      );
-    }
-
     const body = await request.json();
     const { type, productName, day, baseDiscount, boost } = body;
 
@@ -218,14 +202,6 @@ export async function PUT(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   try {
-    const user = await checkAdminAuth(request);
-    if (!user) {
-      return NextResponse.json(
-        { error: "Unauthorized - Admin access required" },
-        { status: 401 },
-      );
-    }
-
     const body = await request.json();
     const { productName } = body;
 
