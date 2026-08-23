@@ -101,7 +101,7 @@ export async function POST(request: NextRequest) {
     const newProduct: any = {
       name,
       slug,
-      price: parsedPrice,
+      price: parsedPrice.toString(),
       description: description || null,
       section,
       subsection,

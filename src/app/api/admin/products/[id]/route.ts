@@ -75,7 +75,7 @@ export async function PUT(
       .set({
         name,
         slug,
-        price: parseFloat(price),
+        price: price.toString(),
         description,
         section,
         subsection,
