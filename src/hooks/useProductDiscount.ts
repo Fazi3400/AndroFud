@@ -36,7 +36,9 @@ export function useProductDiscount() {
 
     // Exact match only
     const productOffer = offersData.productOffers?.find(
-      (offer: any) => offer.productName.toLowerCase() === nameLower
+      (offer: any) =>
+        offer?.productName &&
+        offer.productName.toLowerCase() === nameLower,
     );
 
     if (!productOffer) {
@@ -46,7 +48,9 @@ export function useProductDiscount() {
     // Check if offer is still valid based on duration
     const createdAt = new Date(productOffer.createdAt);
     const validForDays = productOffer.validForDays || 7;
-    const expiresAt = new Date(createdAt.getTime() + validForDays * 24 * 60 * 60 * 1000);
+    const expiresAt = new Date(
+      createdAt.getTime() + validForDays * 24 * 60 * 60 * 1000,
+    );
     const today = new Date();
 
     if (today > expiresAt) {
