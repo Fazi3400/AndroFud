@@ -23,7 +23,7 @@ export async function GET() {
     }
 
     // Get windowstools collection (no hyphen - must match brand config)
-    let collection = await db
+    const collection = await db
       .select()
       .from(collections)
       .where(eq(collections.label, "windowstools"))

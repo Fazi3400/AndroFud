@@ -310,7 +310,7 @@ export function ReviewsSection() {
 
       {/* Review Text */}
       <p className="text-slate-100/90 text-sm leading-relaxed mb-6 italic">
-        "{review.text}"
+        &quot;{review.text}&quot;
       </p>
 
       {/* User Info */}

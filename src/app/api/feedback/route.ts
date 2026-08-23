@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 // Store feedback in memory (in production, use a database)
-let allFeedback: any[] = [];
+const allFeedback: any[] = [];
 
 // Blocked keywords and patterns for spam/scam detection
 // Blocked keywords and patterns for feedback validation

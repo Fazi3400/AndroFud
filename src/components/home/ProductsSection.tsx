@@ -108,7 +108,7 @@ export function ProductsSection({
       const searchTerm = ratProductMap[selectedRatName] || selectedRatName;
 
       // Find all products that match the selected RAT (partial match)
-      let matched = brandedProducts
+      const matched = brandedProducts
         .filter((item: any) => {
           const productName = item.node?.name || item.name;
           return productName?.toLowerCase().includes(searchTerm.toLowerCase());

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 // Store reviews in memory (in production, use a database)
-let allReviews: any[] = [];
+const allReviews: any[] = [];
 
 export async function POST(request: NextRequest) {
   try {
