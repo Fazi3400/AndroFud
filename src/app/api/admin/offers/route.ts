@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import db from "@/lib/supabase/db";
-import { sql } from "drizzle-orm";
 import { createClient } from "@supabase/supabase-js";
 
 async function checkAdminAuth(request: NextRequest) {
@@ -138,9 +136,40 @@ export async function POST(request: NextRequest) {
     }
 
     const label = `${baseDiscount}% OFF`;
-    await db.execute(
-      sql`INSERT INTO product_offers (product_name, base_discount, label, valid_for_days) VALUES (${productName}, ${baseDiscount}, ${label}, ${validDays}) ON CONFLICT (product_name) DO UPDATE SET base_discount=${baseDiscount}, label=${label}, valid_for_days=${validDays}`,
-    );
+
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const serviceRoleKey = process.env.DATABASE_SERVICE_ROLE;
+
+    if (!supabaseUrl || !serviceRoleKey) {
+      return NextResponse.json(
+        { error: "Missing Supabase configuration" },
+        { status: 500 },
+      );
+    }
+
+    const supabase = createClient(supabaseUrl, serviceRoleKey, {
+      auth: { persistSession: false },
+    });
+
+    const { error: upsertError } = await supabase
+      .from("product_offers")
+      .upsert(
+        {
+          product_name: productName,
+          base_discount: baseDiscount,
+          label: label,
+          valid_for_days: validDays,
+        },
+        { onConflict: "product_name" },
+      );
+
+    if (upsertError) {
+      console.error("Supabase error:", upsertError);
+      return NextResponse.json(
+        { error: "Failed to add offer", details: upsertError.message },
+        { status: 500 },
+      );
+    }
 
     return NextResponse.json(
       { productName, baseDiscount, label, validForDays: validDays },
@@ -169,10 +198,30 @@ export async function PUT(request: NextRequest) {
         );
       }
 
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+      const serviceRoleKey = process.env.DATABASE_SERVICE_ROLE;
+
+      if (!supabaseUrl || !serviceRoleKey) {
+        return NextResponse.json(
+          { error: "Missing Supabase configuration" },
+          { status: 500 },
+        );
+      }
+
+      const supabase = createClient(supabaseUrl, serviceRoleKey, {
+        auth: { persistSession: false },
+      });
+
       const label = `${baseDiscount}% OFF`;
-      await db.execute(
-        sql`UPDATE product_offers SET base_discount=${baseDiscount}, label=${label} WHERE product_name=${productName}`,
-      );
+      const { error: updateError } = await supabase
+        .from("product_offers")
+        .update({ base_discount: baseDiscount, label: label })
+        .eq("product_name", productName);
+
+      if (updateError) {
+        return NextResponse.json({ error: updateError.message }, { status: 500 });
+      }
+
       return NextResponse.json({ productName, baseDiscount, label });
     }
 
@@ -184,9 +233,29 @@ export async function PUT(request: NextRequest) {
         );
       }
 
-      await db.execute(
-        sql`UPDATE day_offers SET boost=${boost} WHERE day=${day}`,
-      );
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+      const serviceRoleKey = process.env.DATABASE_SERVICE_ROLE;
+
+      if (!supabaseUrl || !serviceRoleKey) {
+        return NextResponse.json(
+          { error: "Missing Supabase configuration" },
+          { status: 500 },
+        );
+      }
+
+      const supabase = createClient(supabaseUrl, serviceRoleKey, {
+        auth: { persistSession: false },
+      });
+
+      const { error: dayError } = await supabase
+        .from("day_offers")
+        .update({ boost })
+        .eq("day", day);
+
+      if (dayError) {
+        return NextResponse.json({ error: dayError.message }, { status: 500 });
+      }
+
       return NextResponse.json({ day, boost });
     }
 
@@ -212,9 +281,31 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
-    await db.execute(
-      sql`DELETE FROM product_offers WHERE product_name=${productName}`,
-    );
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const serviceRoleKey = process.env.DATABASE_SERVICE_ROLE;
+
+    if (!supabaseUrl || !serviceRoleKey) {
+      return NextResponse.json(
+        { error: "Missing Supabase configuration" },
+        { status: 500 },
+      );
+    }
+
+    const supabase = createClient(supabaseUrl, serviceRoleKey, {
+      auth: { persistSession: false },
+    });
+
+    const { error: deleteError } = await supabase
+      .from("product_offers")
+      .delete()
+      .eq("product_name", productName);
+
+    if (deleteError) {
+      return NextResponse.json(
+        { error: deleteError.message },
+        { status: 500 },
+      );
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {
