@@ -16,7 +16,10 @@ async function checkAdminAuth(request: NextRequest) {
       request.cookies.get("sb-auth-token")?.value ||
       request.cookies.get("sb-prwidbcixjusoqyajtav-auth-token")?.value;
 
+    console.log("Auth cookie found:", !!authCookie);
+
     if (!authCookie) {
+      console.log("No auth cookie found");
       return null;
     }
 
@@ -33,31 +36,48 @@ async function checkAdminAuth(request: NextRequest) {
 
     // Parse the auth cookie to get user ID
     try {
-      const {
-        data: { session },
-      } = JSON.parse(authCookie);
+      const cookieData = JSON.parse(authCookie);
+      const session = cookieData?.data?.session || cookieData?.session;
+
+      console.log("Session found:", !!session);
+      console.log("User ID:", session?.user?.id);
+
       if (!session?.user?.id) {
+        console.log("No user ID in session");
         return null;
       }
 
       // Check if user is admin
-      const { data: profile } = await supabase
+      const { data: profile, error } = await supabase
         .from("profiles")
         .select("is_admin")
         .eq("id", session.user.id)
         .single();
 
+      console.log("Profile query error:", error);
+      console.log("Profile is_admin:", profile?.is_admin);
+
       return profile?.is_admin ? session.user : null;
-    } catch {
+    } catch (e) {
+      console.error("Auth parsing error:", e);
       return null;
     }
-  } catch {
+  } catch (e) {
+    console.error("checkAdminAuth error:", e);
     return null;
   }
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    const user = await checkAdminAuth(request);
+    if (!user) {
+      return NextResponse.json(
+        { error: "Unauthorized - Admin access required" },
+        { status: 401 },
+      );
+    }
+
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const serviceRoleKey = process.env.DATABASE_SERVICE_ROLE;
 
