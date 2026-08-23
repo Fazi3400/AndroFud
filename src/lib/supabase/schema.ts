@@ -17,7 +17,7 @@ import {
 // Type definitions for Supabase tables
 export type SelectCollection = {
   id: string;
-  name: string;
+  label: string;
   slug?: string;
   description?: string;
   created_at?: string;
