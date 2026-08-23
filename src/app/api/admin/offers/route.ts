@@ -5,65 +5,51 @@ import { createClient } from "@supabase/supabase-js";
 
 async function checkAdminAuth(request: NextRequest) {
   try {
-    // Check for admin password in header (additional security)
     const adminPassword = request.headers.get("X-Admin-Password");
     if (adminPassword === process.env.ADMIN_PASSWORD) {
       return { id: "admin", email: "admin" };
     }
 
-    // Get auth cookie from request
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const serviceRoleKey = process.env.DATABASE_SERVICE_ROLE;
+
+    if (!supabaseUrl || !serviceRoleKey) {
+      return null;
+    }
+
+    const supabase = createClient(supabaseUrl, serviceRoleKey, {
+      auth: { persistSession: false },
+    });
+
     const authCookie =
       request.cookies.get("sb-auth-token")?.value ||
       request.cookies.get("sb-prwidbcixjusoqyajtav-auth-token")?.value;
 
-    console.log("Auth cookie found:", !!authCookie);
-
     if (!authCookie) {
-      console.log("No auth cookie found");
       return null;
     }
 
-    // Create admin client to query user
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.DATABASE_SERVICE_ROLE!,
-      {
-        auth: {
-          persistSession: false,
-        },
-      },
-    );
-
-    // Parse the auth cookie to get user ID
+    let session;
     try {
-      const cookieData = JSON.parse(authCookie);
-      const session = cookieData?.data?.session || cookieData?.session;
-
-      console.log("Session found:", !!session);
-      console.log("User ID:", session?.user?.id);
-
-      if (!session?.user?.id) {
-        console.log("No user ID in session");
-        return null;
-      }
-
-      // Check if user is admin
-      const { data: profile, error } = await supabase
-        .from("profiles")
-        .select("is_admin")
-        .eq("id", session.user.id)
-        .single();
-
-      console.log("Profile query error:", error);
-      console.log("Profile is_admin:", profile?.is_admin);
-
-      return profile?.is_admin ? session.user : null;
-    } catch (e) {
-      console.error("Auth parsing error:", e);
+      const parsed = JSON.parse(authCookie);
+      session = parsed?.data?.session || parsed?.session;
+    } catch {
       return null;
     }
-  } catch (e) {
-    console.error("checkAdminAuth error:", e);
+
+    if (!session?.user?.id) {
+      return null;
+    }
+
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("is_admin")
+      .eq("id", session.user.id)
+      .single();
+
+    return profile?.is_admin ? session.user : null;
+  } catch (error) {
+    console.error("Auth check failed:", error);
     return null;
   }
 }
