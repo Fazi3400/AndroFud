@@ -235,13 +235,12 @@ export default async function Home({
         // Filter products by section
         brandedProducts = (apiData.products || [])
           .filter((product: any) => {
-            const productSection = product.section
-              ? String(product.section).toLowerCase().trim()
-              : null;
+            if (!product || !product.section) return false;
+            const productSection = String(product.section).toLowerCase().trim();
             const matches = productSection === requiredSection.toLowerCase();
-            console.log(
-              `Product: "${product.name}" | section: "${productSection}" | required: "${requiredSection}" | match: ${matches}`,
-            );
+            if (matches) {
+              console.log(`✓ Matched: "${product.name}" (section: "${productSection}")`);
+            }
             return matches;
           })
           .map((product: any) => ({
@@ -249,9 +248,8 @@ export default async function Home({
           }));
 
         console.log(
-          `Brand: ${brand} | Required section: ${requiredSection} | Filtered count: ${brandedProducts.length}`,
+          `Brand: ${brand} | Required: "${requiredSection}" | Found: ${brandedProducts.length} products`,
         );
-        console.log("Filtered Products:", brandedProducts);
       }
     } catch (error) {
       console.error("Error fetching products:", error);

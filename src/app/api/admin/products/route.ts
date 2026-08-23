@@ -34,13 +34,7 @@ export async function GET(request: NextRequest) {
     console.log("Available sections in DB:", sections);
     console.log("Total products:", data?.length || 0);
 
-    // Normalize section values to lowercase for consistency
-    const normalizedProducts = (data || []).map((product: any) => ({
-      ...product,
-      section: product.section ? product.section.toLowerCase() : null,
-    }));
-
-    return NextResponse.json({ products: normalizedProducts });
+    return NextResponse.json({ products: data || [] });
   } catch (error) {
     console.error("Error fetching products:", error);
     return NextResponse.json(
