@@ -14,6 +14,7 @@ export const env = createEnv({
     LEMON_SQUEEZY_WEBHOOK_SECRET: z.string().optional(),
     NOWPAYMENTS_API_KEY: z.string(),
     NOWPAYMENTS_IPN_SECRET_KEY: z.string(),
+    ADMIN_PASSWORD: z.string().optional(),
   },
 
   /**
@@ -48,6 +49,7 @@ export const env = createEnv({
     LEMON_SQUEEZY_WEBHOOK_SECRET: process.env.LEMON_SQUEEZY_WEBHOOK_SECRET,
     NOWPAYMENTS_API_KEY: process.env.NOWPAYMENTS_API_KEY,
     NOWPAYMENTS_IPN_SECRET_KEY: process.env.NOWPAYMENTS_IPN_SECRET_KEY,
+    ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
