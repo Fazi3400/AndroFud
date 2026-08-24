@@ -261,19 +261,27 @@ export function ProductsSection({
 
                         <div className="bg-blue-950/40 rounded-3xl p-4 md:p-8 border-2 border-blue-600/30 space-y-3 md:space-y-4">
                           <p className="flex items-center gap-3 md:gap-4 text-blue-200 text-sm md:text-lg">
-                            <span className="text-2xl md:text-3xl text-cyan-400">⚡</span>{" "}
+                            <span className="text-2xl md:text-3xl text-cyan-400">
+                              ⚡
+                            </span>{" "}
                             Full Access
                           </p>
                           <p className="flex items-center gap-3 md:gap-4 text-blue-200 text-sm md:text-lg">
-                            <span className="text-2xl md:text-3xl text-cyan-400">⭐</span>{" "}
+                            <span className="text-2xl md:text-3xl text-cyan-400">
+                              ⭐
+                            </span>{" "}
                             Priority Support
                           </p>
                           <p className="flex items-center gap-3 md:gap-4 text-blue-200 text-sm md:text-lg">
-                            <span className="text-2xl md:text-3xl text-cyan-400">🔄</span>{" "}
+                            <span className="text-2xl md:text-3xl text-cyan-400">
+                              🔄
+                            </span>{" "}
                             All Updates
                           </p>
                           <p className="flex items-center gap-3 md:gap-4 text-blue-200 text-sm md:text-lg">
-                            <span className="text-2xl md:text-3xl text-cyan-400">🔐</span>{" "}
+                            <span className="text-2xl md:text-3xl text-cyan-400">
+                              🔐
+                            </span>{" "}
                             Lifetime License
                           </p>
                         </div>
