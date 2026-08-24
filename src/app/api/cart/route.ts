@@ -77,9 +77,9 @@ export async function POST(request: NextRequest) {
     // If quantity is 0, remove from cart; otherwise add/update
     if (quantity === 0) {
       if (db) {
-        await db.delete(carts).where(
-          eq(carts.userId, user.id) && eq(carts.productId, productId)
-        );
+        await db
+          .delete(carts)
+          .where(eq(carts.userId, user.id) && eq(carts.productId, productId));
       }
     } else {
       if (db) {
