@@ -51,10 +51,10 @@ export default function LiveDemoPage() {
     windowstools: {
       S400: [],
       XWORM: [],
-      WIZORM: [],
-      CRYSOME: [],
-      "VENOM RAT": [],
-      NEPTUNE: [],
+      WIZORM: [{ title: "Wizorm Rat 4.5 Demo", videoId: "vS249DrhnAU" }],
+      CRYSOME: [{ title: "Crysome Rat Demo", videoId: "O1Dj0mvUq2g" }],
+      "VENOM RAT": [{ title: "Venom Rat 6.03 Demo", videoId: "QwtoZfpaiMk" }],
+      NEPTUNE: [{ title: "Neptune Rat 5.4 Demo", videoId: "TUyhg9YF-tM" }],
     },
     dragnoroid: [{ title: "Dragnoroid - Coming Soon", videoId: "5oV5Yp3-f-U" }],
   };
