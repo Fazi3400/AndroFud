@@ -205,17 +205,17 @@ export function ProductsSection({
                     {/* Top glow effect */}
                     <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/15 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center p-12 relative z-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center p-4 md:p-8 lg:p-12 relative z-10">
                       {/* Left Side */}
-                      <div className="space-y-8 slide-in-up">
+                      <div className="space-y-6 md:space-y-8 slide-in-up">
                         <div>
-                          <h3 className="text-6xl md:text-7xl font-black bg-gradient-to-r from-cyan-400 via-blue-300 to-purple-300 bg-clip-text text-transparent mb-4">
+                          <h3 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black bg-gradient-to-r from-cyan-400 via-blue-300 to-purple-300 bg-clip-text text-transparent mb-3 md:mb-4">
                             {selected.name}
                           </h3>
                           <div className="h-1.5 w-20 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"></div>
                         </div>
 
-                        <div className="bg-blue-950/60 rounded-3xl p-8 border-2 border-blue-600/40 space-y-3">
+                        <div className="bg-blue-950/60 rounded-3xl p-4 md:p-8 border-2 border-blue-600/40 space-y-3">
                           {(() => {
                             const discountInfo = getProductDiscount(
                               selected.name,
@@ -230,17 +230,17 @@ export function ProductsSection({
                               <>
                                 {discountPercent > 0 && (
                                   <div className="space-y-2">
-                                    <div className="inline-block px-4 py-2 bg-red-600/30 border border-red-500/50 rounded-lg text-red-300 font-bold text-sm">
+                                    <div className="inline-block px-3 py-1 md:px-4 md:py-2 bg-red-600/30 border border-red-500/50 rounded-lg text-red-300 font-bold text-xs md:text-sm">
                                       🔥 {discountPercent}% OFF
                                     </div>
                                     {discountInfo.countdown && (
-                                      <p className="text-xs text-green-400 font-semibold">
+                                      <p className="text-xs md:text-sm text-green-400 font-semibold">
                                         ⏱️ {discountInfo.countdown}
                                       </p>
                                     )}
                                   </div>
                                 )}
-                                <div className="text-7xl font-black bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
+                                <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
                                   $
                                   {discountPercent > 0
                                     ? discountedPrice
@@ -259,21 +259,21 @@ export function ProductsSection({
                           </p>
                         </div>
 
-                        <div className="bg-blue-950/40 rounded-3xl p-8 border-2 border-blue-600/30 space-y-4">
-                          <p className="flex items-center gap-4 text-blue-200 text-lg">
-                            <span className="text-3xl text-cyan-400">⚡</span>{" "}
+                        <div className="bg-blue-950/40 rounded-3xl p-4 md:p-8 border-2 border-blue-600/30 space-y-3 md:space-y-4">
+                          <p className="flex items-center gap-3 md:gap-4 text-blue-200 text-sm md:text-lg">
+                            <span className="text-2xl md:text-3xl text-cyan-400">⚡</span>{" "}
                             Full Access
                           </p>
-                          <p className="flex items-center gap-4 text-blue-200 text-lg">
-                            <span className="text-3xl text-cyan-400">⭐</span>{" "}
+                          <p className="flex items-center gap-3 md:gap-4 text-blue-200 text-sm md:text-lg">
+                            <span className="text-2xl md:text-3xl text-cyan-400">⭐</span>{" "}
                             Priority Support
                           </p>
-                          <p className="flex items-center gap-4 text-blue-200 text-lg">
-                            <span className="text-3xl text-cyan-400">🔄</span>{" "}
+                          <p className="flex items-center gap-3 md:gap-4 text-blue-200 text-sm md:text-lg">
+                            <span className="text-2xl md:text-3xl text-cyan-400">🔄</span>{" "}
                             All Updates
                           </p>
-                          <p className="flex items-center gap-4 text-blue-200 text-lg">
-                            <span className="text-3xl text-cyan-400">🔐</span>{" "}
+                          <p className="flex items-center gap-3 md:gap-4 text-blue-200 text-sm md:text-lg">
+                            <span className="text-2xl md:text-3xl text-cyan-400">🔐</span>{" "}
                             Lifetime License
                           </p>
                         </div>
@@ -295,7 +295,7 @@ export function ProductsSection({
                           return (
                             <button
                               onClick={() => setCheckoutProduct(selected)}
-                              className="w-full px-8 py-5 font-bold rounded-2xl text-xl text-white uppercase tracking-wider bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 hover:shadow-2xl hover:shadow-cyan-500/60 transition-all duration-300 hover:scale-105 relative overflow-hidden group/btn border-2 border-cyan-400/50"
+                              className="w-full px-4 md:px-8 py-3 md:py-5 font-bold rounded-xl md:rounded-2xl text-sm md:text-xl text-white uppercase tracking-wider bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 hover:shadow-2xl hover:shadow-cyan-500/60 transition-all duration-300 hover:scale-105 relative overflow-hidden group/btn border-2 border-cyan-400/50"
                             >
                               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-500 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
                               <span className="relative z-10 flex items-center justify-center gap-2">

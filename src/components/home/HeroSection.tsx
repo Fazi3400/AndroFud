@@ -11,7 +11,7 @@ interface HeroSectionProps {
 export function HeroSection({ brand, content }: HeroSectionProps) {
   return (
     <section
-      className={`relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-32 sm:pt-40 bg-gradient-to-br ${content.bgFrom} ${content.bgTo}`}
+      className={`relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-32 lg:pt-40 bg-gradient-to-br ${content.bgFrom} ${content.bgTo}`}
     >
       {/* Brand Background Videos */}
       {brand === "androfud" && (
@@ -94,14 +94,16 @@ export function HeroSection({ brand, content }: HeroSectionProps) {
       </div>
 
       {/* Content */}
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-20 h-full flex items-center justify-center">
-        <div className="text-center space-y-8 sm:space-y-12 slide-in-up w-full">
+      <div className="relative max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 w-full z-20 h-full flex items-center justify-center">
+        <div className="text-center space-y-6 sm:space-y-12 slide-in-up w-full">
           {/* Welcome Text - Responsive */}
           <div
-            className={`text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-widest uppercase ${content.textColor} leading-tight max-w-full mx-auto`}
+            className={`text-2xl xs:text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-widest uppercase ${content.textColor} leading-tight max-w-full mx-auto word-break`}
             style={{
               animation:
                 "glitch-text 3s ease-in-out infinite, neonGlow 2s ease-in-out infinite",
+              wordBreak: "break-word",
+              overflowWrap: "break-word",
             }}
           >
             <div>Welcome</div>
