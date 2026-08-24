@@ -36,7 +36,7 @@ export function BrandSelector({ brand }: BrandSelectorProps) {
   return (
     <section className="w-full bg-gradient-to-r from-[#000000] via-[#0a0a0a] to-[#000000]">
       {/* Main Brand Buttons */}
-      <div className="mt-0 pt-8 sm:pt-10 md:pt-12 pb-6 md:pb-8 px-3 sm:px-4 lg:px-8 border-b border-[#0099ff]/20 bg-gradient-to-r from-[#000000] via-[#0a0a0a] to-[#000000]">
+      <div className="mt-0 pt-12 sm:pt-10 md:pt-12 pb-6 md:pb-8 px-3 sm:px-4 lg:px-8 border-b border-[#0099ff]/20 bg-gradient-to-r from-[#000000] via-[#0a0a0a] to-[#000000]">
         <div className="max-w-7xl mx-auto">
           <div
             className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-center"
