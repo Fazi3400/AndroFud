@@ -37,10 +37,11 @@ yarn-error.log*
 next-env.d.ts
 
 # large asset folders
-public/assets/
-public/assets/**
-*.mp4
-*.webp
+# NOTE: Commented out to allow assets to deploy to Vercel
+# public/assets/
+# public/assets/**
+# *.mp4
+# *.webp
 01_Frontend/
 02_Backend/
 
