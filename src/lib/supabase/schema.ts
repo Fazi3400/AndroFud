@@ -414,6 +414,10 @@ export const productOffers = pgTable("product_offers", {
   })
     .defaultNow()
     .notNull(),
+  expiresAt: timestamp("expires_at", {
+    withTimezone: true,
+    mode: "string",
+  }),
   updatedAt: timestamp("updated_at", {
     withTimezone: true,
     mode: "string",

@@ -151,6 +151,10 @@ export async function POST(request: NextRequest) {
 
     const label = `${baseDiscount}% OFF`;
 
+    // Calculate expiration date
+    const now = new Date();
+    const expiresAt = new Date(now.getTime() + validDays * 24 * 60 * 60 * 1000);
+
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const serviceRoleKey = process.env.DATABASE_SERVICE_ROLE;
 
@@ -171,6 +175,8 @@ export async function POST(request: NextRequest) {
         base_discount: baseDiscount,
         label: label,
         valid_for_days: validDays,
+        created_at: now.toISOString(),
+        expires_at: expiresAt.toISOString(),
       },
       { onConflict: "product_name" },
     );

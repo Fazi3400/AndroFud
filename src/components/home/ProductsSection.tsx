@@ -46,9 +46,9 @@ export function ProductsSection({
   // Function to get discount for a product
   const getProductDiscount = (
     productName: string,
-  ): { discount: number; label: string; timeBoost: string } => {
+  ): { discount: number; label: string; countdown: string; isExpired: boolean } => {
     if (!productName) {
-      return { discount: 0, label: "", timeBoost: "" };
+      return { discount: 0, label: "", countdown: "", isExpired: false };
     }
 
     const nameLower = productName.toLowerCase();
@@ -72,36 +72,35 @@ export function ProductsSection({
     }
 
     if (!productOffer) {
-      return { discount: 0, label: "", timeBoost: "" };
+      return { discount: 0, label: "", countdown: "", isExpired: false };
     }
 
-    // Get current day of week
-    const days = [
-      "SUNDAY",
-      "MONDAY",
-      "TUESDAY",
-      "WEDNESDAY",
-      "THURSDAY",
-      "FRIDAY",
-      "SATURDAY",
-    ];
-    const today = new Date();
-    const dayOfWeek = days[today.getDay()];
+    // Check if offer is expired
+    const now = new Date();
+    const expiresAt = productOffer.expiresAt
+      ? new Date(productOffer.expiresAt)
+      : null;
 
-    const dayOffer = offersData.dayOffers?.find(
-      (offer: any) => offer.day === dayOfWeek,
-    ) || { boost: 0, label: "" };
+    if (expiresAt && expiresAt <= now) {
+      return { discount: 0, label: "", countdown: "EXPIRED", isExpired: true };
+    }
 
-    // Calculate total discount (max 70%)
-    const totalDiscount = Math.min(
-      productOffer.baseDiscount + (dayOffer.boost || 0),
-      70,
-    );
+    // Calculate countdown
+    let countdown = "";
+    if (expiresAt) {
+      const diff = expiresAt.getTime() - now.getTime();
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+      );
+      countdown = `${days}d ${hours}h left`;
+    }
 
     return {
-      discount: totalDiscount,
+      discount: Math.min(productOffer.baseDiscount, 70),
       label: productOffer.label,
-      timeBoost: dayOffer.label || "",
+      countdown,
+      isExpired: false,
     };
   };
 
@@ -222,12 +221,14 @@ export function ProductsSection({
                             return (
                               <>
                                 {discountPercent > 0 && (
-                                  <div className="inline-block px-4 py-2 bg-red-600/30 border border-red-500/50 rounded-lg text-red-300 font-bold text-sm">
-                                    🔥 {discountPercent}% OFF
-                                    {discountInfo.timeBoost && (
-                                      <span className="ml-1 text-xs">
-                                        ({discountInfo.timeBoost})
-                                      </span>
+                                  <div className="space-y-2">
+                                    <div className="inline-block px-4 py-2 bg-red-600/30 border border-red-500/50 rounded-lg text-red-300 font-bold text-sm">
+                                      🔥 {discountPercent}% OFF
+                                    </div>
+                                    {discountInfo.countdown && (
+                                      <p className="text-xs text-green-400 font-semibold">
+                                        ⏱️ {discountInfo.countdown}
+                                      </p>
                                     )}
                                   </div>
                                 )}
@@ -542,12 +543,14 @@ export function ProductsSection({
                         <>
                           {/* Discount Badge - Only show if discount > 0 */}
                           {discountPercent > 0 && (
-                            <div className="absolute -top-3 -right-3 bg-gradient-to-r from-red-600 to-orange-600 text-white px-3 py-1 rounded-full text-sm font-bold">
-                              🔥 {discountPercent}% OFF
-                              {discountInfo.timeBoost && (
-                                <span className="ml-1 text-xs">
-                                  ({discountInfo.timeBoost})
-                                </span>
+                            <div className="absolute -top-3 -right-3 space-y-1">
+                              <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                                🔥 {discountPercent}% OFF
+                              </div>
+                              {discountInfo.countdown && (
+                                <p className="text-xs text-green-300 font-semibold text-center">
+                                  {discountInfo.countdown}
+                                </p>
                               )}
                             </div>
                           )}
