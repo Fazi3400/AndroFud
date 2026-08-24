@@ -28,12 +28,16 @@ export function ProductsSection({
     // Fetch offers from API
     const fetchOffers = async () => {
       try {
-        const response = await fetch("/api/admin/offers");
+        const response = await fetch("/api/admin/offers", {
+          cache: "no-store",
+        });
+        if (!response.ok) throw new Error("Failed to fetch offers");
         const data = await response.json();
         setOffersData(data);
         console.log("Fetched offers:", data);
       } catch (error) {
         console.error("Error fetching offers:", error);
+        setOffersData({ productOffers: [], dayOffers: [] });
       }
     };
     fetchOffers();
