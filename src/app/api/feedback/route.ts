@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-
-// Store feedback in memory (in production, use a database)
-const allFeedback: any[] = [];
+import { createClient } from "@supabase/supabase-js";
 
 // Blocked keywords and patterns for spam/scam detection
 // Blocked keywords and patterns for feedback validation
@@ -196,24 +194,47 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create new feedback entry
-    const newFeedback = {
-      id: allFeedback.length + 1000,
-      name,
-      email,
-      rating,
-      feedback,
-      avatar: name
-        .split(" ")
-        .map((n: string) => n[0])
-        .join("")
-        .toUpperCase(),
-      createdAt: new Date(),
-      status: "published", // All feedback that passes validation is published
-    };
+    // Use Supabase REST API to store feedback
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const serviceRoleKey = process.env.DATABASE_SERVICE_ROLE;
 
-    // Add to feedback list
-    allFeedback.unshift(newFeedback);
+    if (!supabaseUrl || !serviceRoleKey) {
+      return NextResponse.json(
+        { error: "Missing Supabase configuration" },
+        { status: 500 },
+      );
+    }
+
+    const supabase = createClient(supabaseUrl, serviceRoleKey, {
+      auth: { persistSession: false },
+    });
+
+    const avatar = name
+      .split(" ")
+      .map((n: string) => n[0])
+      .join("")
+      .toUpperCase();
+
+    const { data: newFeedback, error } = await supabase
+      .from("feedback")
+      .insert({
+        name,
+        email,
+        message: feedback,
+        brand: null,
+        type: null,
+        is_blocked: false,
+      })
+      .select()
+      .single();
+
+    if (error) {
+      console.error("Error storing feedback:", error);
+      return NextResponse.json(
+        { error: "Failed to submit feedback" },
+        { status: 500 },
+      );
+    }
 
     return NextResponse.json(
       {
@@ -234,9 +255,37 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const serviceRoleKey = process.env.DATABASE_SERVICE_ROLE;
+
+    if (!supabaseUrl || !serviceRoleKey) {
+      return NextResponse.json(
+        { error: "Missing Supabase configuration" },
+        { status: 500 },
+      );
+    }
+
+    const supabase = createClient(supabaseUrl, serviceRoleKey, {
+      auth: { persistSession: false },
+    });
+
+    const { data: allFeedback, error } = await supabase
+      .from("feedback")
+      .select("*")
+      .eq("is_blocked", false)
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("Error fetching feedback:", error);
+      return NextResponse.json(
+        { error: "Failed to fetch feedback" },
+        { status: 500 },
+      );
+    }
+
     return NextResponse.json({
-      feedback: allFeedback,
-      total: allFeedback.length,
+      feedback: allFeedback || [],
+      total: allFeedback?.length || 0,
     });
   } catch (error) {
     console.error("Error fetching feedback:", error);

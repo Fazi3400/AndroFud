@@ -450,6 +450,53 @@ export const dayOffers = pgTable("day_offers", {
 export type SelectDayOffers = InferSelectModel<typeof dayOffers>;
 export type InsertDayOffers = InferInsertModel<typeof dayOffers>;
 
+// Reviews Table
+export const reviews = pgTable("reviews", {
+  id: text("id")
+    .notNull()
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  name: text("name").notNull(),
+  rating: integer("rating").notNull(),
+  text: text("text").notNull(),
+  brand: text("brand").notNull(),
+  productName: text("product_name"),
+  avatar: text("avatar"),
+  createdAt: timestamp("created_at", {
+    withTimezone: true,
+    mode: "string",
+  })
+    .defaultNow()
+    .notNull(),
+});
+
+export type SelectReviews = InferSelectModel<typeof reviews>;
+export type InsertReviews = InferInsertModel<typeof reviews>;
+
+// Feedback Table
+export const feedback = pgTable("feedback", {
+  id: text("id")
+    .notNull()
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  name: text("name").notNull(),
+  email: text("email"),
+  message: text("message").notNull(),
+  brand: text("brand"),
+  type: text("type"),
+  isBlocked: boolean("is_blocked").notNull().default(false),
+  blockedReason: text("blocked_reason"),
+  createdAt: timestamp("created_at", {
+    withTimezone: true,
+    mode: "string",
+  })
+    .defaultNow()
+    .notNull(),
+});
+
+export type SelectFeedback = InferSelectModel<typeof feedback>;
+export type InsertFeedback = InferInsertModel<typeof feedback>;
+
 // https://stackoverflow.com/questions/24923469/modeling-product-variants
 
 // export const skuValues = pgTable(

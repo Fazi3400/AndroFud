@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-
-// Store reviews in memory (in production, use a database)
-const allReviews: any[] = [];
+import { createClient } from "@supabase/supabase-js";
 
 export async function POST(request: NextRequest) {
   try {
@@ -30,31 +28,52 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create new review
-    const newReview = {
-      id: allReviews.length + 1000,
-      name,
-      rating,
-      text,
-      brand,
-      productName,
-      avatar: name
-        .split(" ")
-        .map((n) => n[0])
-        .join(""),
-      createdAt: new Date(),
-    };
+    // Use Supabase REST API to store review
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const serviceRoleKey = process.env.DATABASE_SERVICE_ROLE;
 
-    // Add to reviews list
-    allReviews.unshift(newReview);
+    if (!supabaseUrl || !serviceRoleKey) {
+      return NextResponse.json(
+        { error: "Missing Supabase configuration" },
+        { status: 500 },
+      );
+    }
 
-    // Store in localStorage-like storage (in production, save to database)
-    // For now, we'll just return success
+    const supabase = createClient(supabaseUrl, serviceRoleKey, {
+      auth: { persistSession: false },
+    });
+
+    const avatar = name
+      .split(" ")
+      .map((n) => n[0])
+      .join("");
+
+    const { data, error } = await supabase
+      .from("reviews")
+      .insert({
+        name,
+        rating,
+        text,
+        brand,
+        product_name: productName,
+        avatar,
+      })
+      .select()
+      .single();
+
+    if (error) {
+      console.error("Error storing review:", error);
+      return NextResponse.json(
+        { error: "Failed to submit review" },
+        { status: 500 },
+      );
+    }
+
     return NextResponse.json(
       {
         success: true,
         message: "Review submitted successfully",
-        review: newReview,
+        review: data,
       },
       { status: 201 },
     );
@@ -69,9 +88,36 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const serviceRoleKey = process.env.DATABASE_SERVICE_ROLE;
+
+    if (!supabaseUrl || !serviceRoleKey) {
+      return NextResponse.json(
+        { error: "Missing Supabase configuration" },
+        { status: 500 },
+      );
+    }
+
+    const supabase = createClient(supabaseUrl, serviceRoleKey, {
+      auth: { persistSession: false },
+    });
+
+    const { data: reviews, error } = await supabase
+      .from("reviews")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("Error fetching reviews:", error);
+      return NextResponse.json(
+        { error: "Failed to fetch reviews" },
+        { status: 500 },
+      );
+    }
+
     return NextResponse.json({
-      reviews: allReviews,
-      total: allReviews.length,
+      reviews: reviews || [],
+      total: reviews?.length || 0,
     });
   } catch (error) {
     console.error("Error fetching reviews:", error);
