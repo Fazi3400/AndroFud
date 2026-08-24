@@ -10,12 +10,15 @@ interface VideoItem {
 }
 
 export default function LiveDemoPage() {
-  const [selectedBrand, setSelectedBrand] = useState<"androfud" | "btmob">(
-    "androfud",
-  );
+  const [selectedBrand, setSelectedBrand] = useState<
+    "androfud" | "btmob" | "windowstools" | "dragnoroid"
+  >("androfud");
   const [selectedBtmobVersion, setSelectedBtmobVersion] = useState<
     "4.6.1" | "3.6.3"
   >("4.6.1");
+  const [selectedWindowsRat, setSelectedWindowsRat] = useState<string>("S400");
+
+  const windowsRats = ["S400", "XWORM", "WIZORM", "CRYSOME", "VENOM RAT", "NEPTUNE"];
 
   const allVideos = {
     androfud: [{ title: "Androfud v 4.0", videoId: "5oV5Yp3-f-U" }],
@@ -38,13 +41,26 @@ export default function LiveDemoPage() {
         },
       ],
     },
+    windowstools: {
+      "S400": [{ title: "S400 Rat Demo", videoId: "uNS0Gu9MzOM" }],
+      "XWORM": [{ title: "XWORM Rat Demo", videoId: "B1VBnA4N6Ms" }],
+      "WIZORM": [{ title: "WIZORM Rat Demo", videoId: "L7XdREoTiMU" }],
+      "CRYSOME": [{ title: "CRYSOME Rat Demo", videoId: "PwMcEDl_s2Q" }],
+      "VENOM RAT": [{ title: "VENOM RAT Demo", videoId: "gnyzShP5j8o" }],
+      "NEPTUNE": [{ title: "NEPTUNE Rat Demo", videoId: "Dpn9EwlCvog" }],
+    },
+    dragnoroid: [{ title: "Dragnoroid - Coming Soon", videoId: "5oV5Yp3-f-U" }],
   };
 
   const currentVideos = useMemo(() => {
-    return selectedBrand === "androfud"
-      ? allVideos.androfud
-      : allVideos.btmob[selectedBtmobVersion];
-  }, [selectedBrand, selectedBtmobVersion]);
+    if (selectedBrand === "androfud") return allVideos.androfud;
+    if (selectedBrand === "btmob")
+      return allVideos.btmob[selectedBtmobVersion];
+    if (selectedBrand === "windowstools")
+      return allVideos.windowstools[selectedWindowsRat];
+    if (selectedBrand === "dragnoroid") return allVideos.dragnoroid;
+    return [];
+  }, [selectedBrand, selectedBtmobVersion, selectedWindowsRat]);
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#000000] to-[#000000] pt-32">
@@ -81,6 +97,26 @@ export default function LiveDemoPage() {
           >
             BT Mob Demo
           </button>
+          <button
+            onClick={() => setSelectedBrand("windowstools")}
+            className={`px-12 py-4 rounded-full font-bold text-lg uppercase tracking-widest transition-all duration-300 border-3 ${
+              selectedBrand === "windowstools"
+                ? "bg-gradient-to-r from-green-600 to-emerald-600 border-[#0099ff] text-white shadow-lg shadow-green-500/50"
+                : "border-[#0099ff]/50 text-[#00ff00] hover:border-[#0099ff] hover:bg-green-500/10"
+            }`}
+          >
+            Windows Tools Demo
+          </button>
+          <button
+            onClick={() => setSelectedBrand("dragnoroid")}
+            className={`px-12 py-4 rounded-full font-bold text-lg uppercase tracking-widest transition-all duration-300 border-3 ${
+              selectedBrand === "dragnoroid"
+                ? "bg-gradient-to-r from-orange-600 to-red-600 border-[#0099ff] text-white shadow-lg shadow-orange-500/50"
+                : "border-[#0099ff]/50 text-[#ff8c00] hover:border-[#0099ff] hover:bg-orange-500/10"
+            }`}
+          >
+            Dragnoroid Demo
+          </button>
         </div>
 
         {/* BTMOB Version Selector - Only show when BTMOB is selected */}
@@ -108,29 +144,64 @@ export default function LiveDemoPage() {
             </button>
           </div>
         )}
+
+        {/* Windows Tools RAT Selector - Only show when Windows Tools is selected */}
+        {selectedBrand === "windowstools" && (
+          <div className="flex gap-4 justify-center mb-12 flex-wrap">
+            {windowsRats.map((rat) => (
+              <button
+                key={rat}
+                onClick={() => setSelectedWindowsRat(rat)}
+                className={`px-6 py-2 rounded-full font-bold text-sm uppercase tracking-widest transition-all duration-300 border-2 ${
+                  selectedWindowsRat === rat
+                    ? "bg-gradient-to-r from-green-600 to-emerald-600 border-green-400 text-white shadow-lg shadow-green-500/50"
+                    : "border-green-500/50 text-green-300 hover:border-green-400 hover:bg-green-500/10"
+                }`}
+              >
+                {rat}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
-      {/* Video Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-        <div className="space-y-12">
-          {currentVideos.map((video, idx) => (
-            <div
-              key={idx}
-              className={`group relative overflow-hidden rounded-3xl backdrop-blur-md border-2 transition-all duration-500 hover:shadow-2xl slide-in-up ${
-                selectedBrand === "androfud"
-                  ? "bg-gradient-to-br from-purple-900/30 via-slate-900/20 to-black/30 border-purple-500/60 hover:border-purple-300 hover:shadow-purple-500/40"
-                  : "bg-gradient-to-br from-cyan-900/30 via-slate-900/20 to-black/30 border-cyan-500/60 hover:border-cyan-300 hover:shadow-cyan-500/40"
-              }`}
-              style={{ animationDelay: `${idx * 0.1}s` }}
-            >
-              {/* Top Border */}
+      {/* Video Grid or Coming Soon */}
+      {selectedBrand === "dragnoroid" ? (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+          <div className="py-40 text-center">
+            <h2 className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#ff6b00] via-[#ff8c00] to-[#000000] mb-4">
+              Dragnoroid - Coming Soon
+            </h2>
+            <p className="text-xl text-[#ff8c00]">
+              Stay tuned for exciting new features and demos
+            </p>
+          </div>
+        </div>
+      ) : (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+          <div className="space-y-12">
+            {currentVideos.map((video, idx) => (
               <div
-                className={`absolute top-0 left-0 right-0 h-2 ${
+                key={idx}
+                className={`group relative overflow-hidden rounded-3xl backdrop-blur-md border-2 transition-all duration-500 hover:shadow-2xl slide-in-up ${
                   selectedBrand === "androfud"
-                    ? "bg-gradient-to-r from-purple-500 via-pink-500 to-transparent"
-                    : "bg-gradient-to-r from-cyan-500 via-blue-500 to-transparent"
+                    ? "bg-gradient-to-br from-purple-900/30 via-slate-900/20 to-black/30 border-purple-500/60 hover:border-purple-300 hover:shadow-purple-500/40"
+                    : selectedBrand === "btmob"
+                      ? "bg-gradient-to-br from-cyan-900/30 via-slate-900/20 to-black/30 border-cyan-500/60 hover:border-cyan-300 hover:shadow-cyan-500/40"
+                      : "bg-gradient-to-br from-green-900/30 via-slate-900/20 to-black/30 border-green-500/60 hover:border-green-300 hover:shadow-green-500/40"
                 }`}
-              ></div>
+                style={{ animationDelay: `${idx * 0.1}s` }}
+              >
+                {/* Top Border */}
+                <div
+                  className={`absolute top-0 left-0 right-0 h-2 ${
+                    selectedBrand === "androfud"
+                      ? "bg-gradient-to-r from-purple-500 via-pink-500 to-transparent"
+                      : selectedBrand === "btmob"
+                        ? "bg-gradient-to-r from-cyan-500 via-blue-500 to-transparent"
+                        : "bg-gradient-to-r from-green-500 via-emerald-500 to-transparent"
+                  }`}
+                ></div>
 
               {/* Video Container - YouTube Embed */}
               <YouTubeEmbed
@@ -145,7 +216,9 @@ export default function LiveDemoPage() {
                   className={`text-2xl md:text-3xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r ${
                     selectedBrand === "androfud"
                       ? "group-hover:from-purple-200 group-hover:to-pink-200"
-                      : "group-hover:from-cyan-200 group-hover:to-blue-200"
+                      : selectedBrand === "btmob"
+                        ? "group-hover:from-cyan-200 group-hover:to-blue-200"
+                        : "group-hover:from-green-200 group-hover:to-emerald-200"
                   } transition-all duration-300`}
                 >
                   {video.title}
@@ -160,14 +233,17 @@ export default function LiveDemoPage() {
                   className={`absolute bottom-0 right-0 w-16 h-16 border-b-3 border-r-3 ${
                     selectedBrand === "androfud"
                       ? "border-purple-400"
-                      : "border-cyan-400"
+                      : selectedBrand === "btmob"
+                        ? "border-cyan-400"
+                        : "border-green-400"
                   }`}
                 ></div>
               </div>
             </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Back Button */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 text-center">
