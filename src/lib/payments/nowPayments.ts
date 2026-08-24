@@ -63,6 +63,7 @@ export const createNOWPayment = async (
         success_url: params.success_url,
         cancel_url: params.cancel_url,
       }),
+      signal: AbortSignal.timeout(30000),
     });
 
     const responseText = await response.text();
@@ -97,6 +98,7 @@ export const getPaymentStatus = async (payment_id: number) => {
     headers: {
       "x-api-key": env.NOWPAYMENTS_API_KEY,
     },
+    signal: AbortSignal.timeout(30000),
   });
 
   if (!response.ok) {
@@ -111,6 +113,7 @@ export const getAvailableCurrencies = async () => {
     headers: {
       "x-api-key": env.NOWPAYMENTS_API_KEY,
     },
+    signal: AbortSignal.timeout(30000),
   });
 
   if (!response.ok) {
@@ -130,6 +133,7 @@ export const getMinimumPaymentAmount = async (
       headers: {
         "x-api-key": env.NOWPAYMENTS_API_KEY,
       },
+      signal: AbortSignal.timeout(30000),
     },
   );
 
