@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   title: "ANDROFUD | BTMOB",
   description: "Premium e-commerce platform for premium products",
   icons: {
-    icon: "/newlogo.png",
-    shortcut: "/newlogo.png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
     apple: "/newlogo.png",
   },
 };
