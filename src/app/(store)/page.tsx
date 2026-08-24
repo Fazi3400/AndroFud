@@ -207,6 +207,7 @@ const brandContent = {
     ],
     heading: "Dragnoroid Rat - Coming Soon",
     features: [],
+    rats: [],
     gradient: "from-[#ff6b00] via-[#ff8c00] to-[#000000]",
     textColor: "text-[#ff8c00]",
     bgFrom: "from-[#1a0a00]",
@@ -649,7 +650,9 @@ export default async function Home({
                 Coming Soon
               </p>
               <p className="text-lg md:text-xl text-orange-200/70 mb-12 max-w-2xl mx-auto leading-relaxed">
-                We&rsquo;re working on something powerful. The Dragon is being awakened. Stay tuned for an extraordinary experience coming your way.
+                We&rsquo;re working on something powerful. The Dragon is being
+                awakened. Stay tuned for an extraordinary experience coming your
+                way.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
@@ -664,13 +667,15 @@ export default async function Home({
         )}
 
         {/* Products Section - Only show for Androfud & Others (BTMOB & Dragnoroid excluded) */}
-        {brand !== "btmob" && brand !== "windowstools" && brand !== "dragnoroid" && (
-          <ProductsSection
-            brand={brand}
-            content={content}
-            brandedProducts={brandedProducts}
-          />
-        )}
+        {brand !== "btmob" &&
+          brand !== "windowstools" &&
+          brand !== "dragnoroid" && (
+            <ProductsSection
+              brand={brand}
+              content={content}
+              brandedProducts={brandedProducts}
+            />
+          )}
 
         {/* Join Community Section - Only for Androfud */}
         {brand === "androfud" && (
