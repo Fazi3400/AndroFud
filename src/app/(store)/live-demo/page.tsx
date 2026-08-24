@@ -18,7 +18,14 @@ export default function LiveDemoPage() {
   >("4.6.1");
   const [selectedWindowsRat, setSelectedWindowsRat] = useState<string>("S400");
 
-  const windowsRats = ["S400", "XWORM", "WIZORM", "CRYSOME", "VENOM RAT", "NEPTUNE"];
+  const windowsRats = [
+    "S400",
+    "XWORM",
+    "WIZORM",
+    "CRYSOME",
+    "VENOM RAT",
+    "NEPTUNE",
+  ];
 
   const allVideos = {
     androfud: [{ title: "Androfud v 4.0", videoId: "5oV5Yp3-f-U" }],
@@ -42,20 +49,19 @@ export default function LiveDemoPage() {
       ],
     },
     windowstools: {
-      "S400": [{ title: "S400 Rat Demo", videoId: "uNS0Gu9MzOM" }],
-      "XWORM": [{ title: "XWORM Rat Demo", videoId: "B1VBnA4N6Ms" }],
-      "WIZORM": [{ title: "WIZORM Rat Demo", videoId: "L7XdREoTiMU" }],
-      "CRYSOME": [{ title: "CRYSOME Rat Demo", videoId: "PwMcEDl_s2Q" }],
-      "VENOM RAT": [{ title: "VENOM RAT Demo", videoId: "gnyzShP5j8o" }],
-      "NEPTUNE": [{ title: "NEPTUNE Rat Demo", videoId: "Dpn9EwlCvog" }],
+      S400: [],
+      XWORM: [],
+      WIZORM: [],
+      CRYSOME: [],
+      "VENOM RAT": [],
+      NEPTUNE: [],
     },
     dragnoroid: [{ title: "Dragnoroid - Coming Soon", videoId: "5oV5Yp3-f-U" }],
   };
 
   const currentVideos = useMemo(() => {
     if (selectedBrand === "androfud") return allVideos.androfud;
-    if (selectedBrand === "btmob")
-      return allVideos.btmob[selectedBtmobVersion];
+    if (selectedBrand === "btmob") return allVideos.btmob[selectedBtmobVersion];
     if (selectedBrand === "windowstools")
       return allVideos.windowstools[selectedWindowsRat];
     if (selectedBrand === "dragnoroid") return allVideos.dragnoroid;
@@ -166,14 +172,16 @@ export default function LiveDemoPage() {
       </div>
 
       {/* Video Grid or Coming Soon */}
-      {selectedBrand === "dragnoroid" ? (
+      {selectedBrand === "dragnoroid" || currentVideos.length === 0 ? (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
           <div className="py-40 text-center">
             <h2 className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#ff6b00] via-[#ff8c00] to-[#000000] mb-4">
-              Dragnoroid - Coming Soon
+              Coming Soon
             </h2>
             <p className="text-xl text-[#ff8c00]">
-              Stay tuned for exciting new features and demos
+              {selectedBrand === "dragnoroid"
+                ? "Dragnoroid demos coming soon. Stay tuned for exciting new features!"
+                : `${selectedWindowsRat} demo videos coming soon. Check back later!`}
             </p>
           </div>
         </div>
@@ -203,43 +211,43 @@ export default function LiveDemoPage() {
                   }`}
                 ></div>
 
-              {/* Video Container - YouTube Embed */}
-              <YouTubeEmbed
-                videoId={video.videoId}
-                title={video.title}
-                className="rounded-lg"
-              />
+                {/* Video Container - YouTube Embed */}
+                <YouTubeEmbed
+                  videoId={video.videoId}
+                  title={video.title}
+                  className="rounded-lg"
+                />
 
-              {/* Content */}
-              <div className="relative z-10 p-8 space-y-3">
-                <h3
-                  className={`text-2xl md:text-3xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r ${
-                    selectedBrand === "androfud"
-                      ? "group-hover:from-purple-200 group-hover:to-pink-200"
-                      : selectedBrand === "btmob"
-                        ? "group-hover:from-cyan-200 group-hover:to-blue-200"
-                        : "group-hover:from-green-200 group-hover:to-emerald-200"
-                  } transition-all duration-300`}
-                >
-                  {video.title}
-                </h3>
-              </div>
+                {/* Content */}
+                <div className="relative z-10 p-8 space-y-3">
+                  <h3
+                    className={`text-2xl md:text-3xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r ${
+                      selectedBrand === "androfud"
+                        ? "group-hover:from-purple-200 group-hover:to-pink-200"
+                        : selectedBrand === "btmob"
+                          ? "group-hover:from-cyan-200 group-hover:to-blue-200"
+                          : "group-hover:from-green-200 group-hover:to-emerald-200"
+                    } transition-all duration-300`}
+                  >
+                    {video.title}
+                  </h3>
+                </div>
 
-              {/* Corner Accent */}
-              <div
-                className={`absolute -bottom-12 -right-12 w-32 h-32 opacity-0 group-hover:opacity-30 transition-opacity duration-500 pointer-events-none`}
-              >
+                {/* Corner Accent */}
                 <div
-                  className={`absolute bottom-0 right-0 w-16 h-16 border-b-3 border-r-3 ${
-                    selectedBrand === "androfud"
-                      ? "border-purple-400"
-                      : selectedBrand === "btmob"
-                        ? "border-cyan-400"
-                        : "border-green-400"
-                  }`}
-                ></div>
+                  className={`absolute -bottom-12 -right-12 w-32 h-32 opacity-0 group-hover:opacity-30 transition-opacity duration-500 pointer-events-none`}
+                >
+                  <div
+                    className={`absolute bottom-0 right-0 w-16 h-16 border-b-3 border-r-3 ${
+                      selectedBrand === "androfud"
+                        ? "border-purple-400"
+                        : selectedBrand === "btmob"
+                          ? "border-cyan-400"
+                          : "border-green-400"
+                    }`}
+                  ></div>
+                </div>
               </div>
-            </div>
             ))}
           </div>
         </div>
