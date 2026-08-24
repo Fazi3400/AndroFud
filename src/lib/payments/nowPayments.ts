@@ -47,6 +47,9 @@ export const createNOWPayment = async (
   });
 
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 30000);
+
     const response = await fetch(`${BASE_URL}/invoice`, {
       method: "POST",
       headers: {
@@ -63,8 +66,9 @@ export const createNOWPayment = async (
         success_url: params.success_url,
         cancel_url: params.cancel_url,
       }),
-      signal: AbortSignal.timeout(30000),
+      signal: controller.signal,
     });
+    clearTimeout(timeoutId);
 
     const responseText = await response.text();
     console.log("🔷 NOWPayments response status:", response.status);
@@ -91,7 +95,7 @@ export const createNOWPayment = async (
     }
     throw fetchErr;
   }
-};
+}
 
 export const getPaymentStatus = async (payment_id: number) => {
   const response = await fetch(`${BASE_URL}/payment/${payment_id}`, {
