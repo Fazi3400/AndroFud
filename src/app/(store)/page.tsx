@@ -214,7 +214,7 @@ const brandContent = {
     bgTo: "to-[#000000]",
     gradientAccent: "from-[#ff6b00] to-[#000000]",
     collection: "dragnoroid",
-    video: "/assets/videos/androfud.mp4",
+    video: "/assets/videos/dragnoroid.mp4",
   },
 };
 
