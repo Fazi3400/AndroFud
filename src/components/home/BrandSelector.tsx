@@ -36,7 +36,7 @@ export function BrandSelector({ brand }: BrandSelectorProps) {
   return (
     <section className="bg-gradient-to-r from-[#000000] via-[#0a0a0a] to-[#000000]">
       {/* Main Brand Buttons */}
-      <div className="pt-6 md:pt-12 pb-6 md:pb-8 px-3 sm:px-4 lg:px-8 border-b border-[#0099ff]-500/20">
+      <div className="pt-8 sm:pt-6 md:pt-12 pb-6 md:pb-8 px-3 sm:px-4 lg:px-8 border-b border-[#0099ff]-500/20">
         <div className="max-w-7xl mx-auto">
           <div
             className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-center"
@@ -62,7 +62,10 @@ export function BrandSelector({ brand }: BrandSelectorProps) {
             </Link>
 
             {/* BTMOB */}
-            <div onMouseEnter={() => setHoveredBrand("btmob")} className="w-full sm:w-auto">
+            <div
+              onMouseEnter={() => setHoveredBrand("btmob")}
+              className="w-full sm:w-auto"
+            >
               <Link
                 href="/?brand=btmob"
                 className={`flex items-center justify-center gap-2 sm:gap-3 md:gap-4 px-4 sm:px-6 md:px-12 py-2 sm:py-3 md:py-4 rounded-full font-bold text-sm sm:text-base md:text-lg lg:text-xl uppercase tracking-widest transition-all duration-300 border-2 sm:border-4 w-full sm:w-auto ${
@@ -83,7 +86,10 @@ export function BrandSelector({ brand }: BrandSelectorProps) {
             </div>
 
             {/* WINDOWS TOOLS */}
-            <div onMouseEnter={() => setHoveredBrand("windowstools")} className="w-full sm:w-auto">
+            <div
+              onMouseEnter={() => setHoveredBrand("windowstools")}
+              className="w-full sm:w-auto"
+            >
               <Link
                 href="/?brand=windowstools"
                 className={`flex items-center justify-center gap-2 sm:gap-3 md:gap-4 px-4 sm:px-6 md:px-12 py-2 sm:py-3 md:py-4 rounded-full font-bold text-sm sm:text-base md:text-lg lg:text-xl uppercase tracking-widest transition-all duration-300 border-2 sm:border-4 w-full sm:w-auto ${
