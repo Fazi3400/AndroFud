@@ -25,6 +25,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/newlogo.png?v=1" type="image/png" />
+        <link rel="shortcut icon" href="/favicon.ico?v=1" />
+        <link rel="apple-touch-icon" href="/newlogo.png?v=1" />
+      </head>
       <CustomProvider>
         <body className={inter.className}>
           {children}
