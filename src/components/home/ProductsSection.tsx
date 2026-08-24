@@ -46,7 +46,12 @@ export function ProductsSection({
   // Function to get discount for a product
   const getProductDiscount = (
     productName: string,
-  ): { discount: number; label: string; countdown: string; isExpired: boolean } => {
+  ): {
+    discount: number;
+    label: string;
+    countdown: string;
+    isExpired: boolean;
+  } => {
     if (!productName) {
       return { discount: 0, label: "", countdown: "", isExpired: false };
     }
@@ -77,8 +82,9 @@ export function ProductsSection({
 
     // Check if offer is expired
     const now = new Date();
-    const expiresAt = productOffer.expiresAt
-      ? new Date(productOffer.expiresAt)
+    const expiresAtValue = productOffer.expiresAt || productOffer.expires_at;
+    const expiresAt = expiresAtValue
+      ? new Date(expiresAtValue)
       : null;
 
     if (expiresAt && expiresAt <= now) {

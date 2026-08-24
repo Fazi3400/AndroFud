@@ -44,9 +44,10 @@ export default function OffersAdminPage() {
 
   const updateCountdowns = () => {
     const newCountdowns: { [key: string]: string } = {};
-    productOffers.forEach((offer) => {
-      if (offer.expiresAt) {
-        const expiresDate = new Date(offer.expiresAt);
+    productOffers.forEach((offer: any) => {
+      const expiresAt = offer.expiresAt || offer.expires_at;
+      if (expiresAt) {
+        const expiresDate = new Date(expiresAt);
         const now = new Date();
         const diff = expiresDate.getTime() - now.getTime();
 
@@ -350,7 +351,9 @@ export default function OffersAdminPage() {
               <strong>ℹ️ How it works:</strong>
             </p>
             <ul className="space-y-1 text-xs">
-              <li>• Select the specific product subscription you want to discount</li>
+              <li>
+                • Select the specific product subscription you want to discount
+              </li>
               <li>• Set the discount percentage (0-100%)</li>
               <li>• Set how many days the offer is valid</li>
               <li>• Countdown timer shows remaining time</li>
