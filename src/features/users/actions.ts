@@ -29,8 +29,8 @@ export const isAdmin = (currentUser: User | null) =>
 
 export const getUser = async ({ userId }: { userId: string }) => {
   const cookieStore = await cookies();
-  const adminAuthClient = (await createClient({ cookieStore, isAdmin: true })).auth
-    .admin;
+  const adminAuthClient = (await createClient({ cookieStore, isAdmin: true }))
+    .auth.admin;
 
   try {
     const { data } = await adminAuthClient.getUserById(userId);
@@ -48,8 +48,8 @@ export const listUsers = async ({
   perPage?: number;
 }) => {
   const cookieStore = await cookies();
-  const adminAuthClient = (await createClient({ cookieStore, isAdmin: true })).auth
-    .admin;
+  const adminAuthClient = (await createClient({ cookieStore, isAdmin: true }))
+    .auth.admin;
 
   const {
     data: { users },
@@ -66,8 +66,8 @@ export const createUser = async ({
   password,
 }: AdminUserFormData) => {
   const cookieStore = await cookies();
-  const adminAuthClient = (await createClient({ cookieStore, isAdmin: true })).auth
-    .admin;
+  const adminAuthClient = (await createClient({ cookieStore, isAdmin: true }))
+    .auth.admin;
 
   try {
     const existedUser = await db.query.profiles.findFirst({
@@ -98,15 +98,38 @@ export const createUserProfile = async ({
   name: string;
 }) => {
   try {
-    const result = await db.insert(profiles).values({
+    // Use Supabase REST API instead of direct DB connection
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const serviceRoleKey = process.env.DATABASE_SERVICE_ROLE;
+
+    if (!supabaseUrl || !serviceRoleKey) {
+      throw new Error("Missing Supabase configuration");
+    }
+
+    const { createClient: createSupabaseClient } = await import(
+      "@supabase/supabase-js"
+    );
+    const supabase = createSupabaseClient(supabaseUrl, serviceRoleKey, {
+      auth: { persistSession: false },
+    });
+
+    const { error } = await supabase.from("profiles").insert({
       id: userId,
       email,
       name,
       is_admin: false,
     });
-    return result;
+
+    if (error) {
+      console.error("Error creating user profile:", error);
+      throw new Error(error.message || "Failed to create user profile");
+    }
+
+    return { success: true };
   } catch (err) {
     console.error("Error creating user profile:", err);
-    throw new Error("Failed to create user profile");
+    throw new Error(
+      err instanceof Error ? err.message : "Failed to create user profile",
+    );
   }
 };

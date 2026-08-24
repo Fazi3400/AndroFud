@@ -196,7 +196,7 @@ const brandContent = {
     bgTo: "to-[#000000]",
     gradientAccent: "from-[#00ff00] to-[#000000]",
     collection: "windowstools",
-    video: "/assets/videos/windowstools.mp4",
+    video: "/assets/videos/intro.mp4",
   },
 };
 
@@ -239,7 +239,9 @@ export default async function Home({
             const productSection = String(product.section).toLowerCase().trim();
             const matches = productSection === requiredSection.toLowerCase();
             if (matches) {
-              console.log(`✓ Matched: "${product.name}" (section: "${productSection}")`);
+              console.log(
+                `✓ Matched: "${product.name}" (section: "${productSection}")`,
+              );
             }
             return matches;
           })
