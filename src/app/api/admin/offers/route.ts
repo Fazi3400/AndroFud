@@ -68,21 +68,35 @@ export async function GET() {
       auth: { persistSession: false },
     });
 
-    const { data, error } = await supabase
+    const { data: productOffers, error: productsError } = await supabase
       .from("product_offers")
       .select("*")
       .order("product_name");
 
-    if (error) {
-      console.error("Supabase error:", error);
+    const { data: dayOffers, error: daysError } = await supabase
+      .from("day_offers")
+      .select("*")
+      .order("day");
+
+    if (productsError) {
+      console.error("Supabase error:", productsError);
       return NextResponse.json(
-        { error: "Failed to fetch offers", details: error.message },
+        { error: "Failed to fetch offers", details: productsError.message },
+        { status: 500 },
+      );
+    }
+
+    if (daysError) {
+      console.error("Supabase error:", daysError);
+      return NextResponse.json(
+        { error: "Failed to fetch day offers", details: daysError.message },
         { status: 500 },
       );
     }
 
     return NextResponse.json({
-      productOffers: data || [],
+      productOffers: productOffers || [],
+      dayOffers: dayOffers || [],
     });
   } catch (error) {
     console.error("Error fetching offers:", error);
