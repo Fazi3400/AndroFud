@@ -14,4 +14,3 @@ function ShipReturns({}: Props) {
 }
 
 export default ShipReturns;
-

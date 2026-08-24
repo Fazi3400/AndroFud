@@ -40,7 +40,9 @@ export function ProductsSection({
   }, []);
 
   // Function to get discount for a product
-  const getProductDiscount = (productName: string): { discount: number; label: string; timeBoost: string } => {
+  const getProductDiscount = (
+    productName: string,
+  ): { discount: number; label: string; timeBoost: string } => {
     if (!productName) {
       return { discount: 0, label: "", timeBoost: "" };
     }
@@ -49,12 +51,13 @@ export function ProductsSection({
 
     // Try exact match first
     let productOffer = offersData.productOffers?.find(
-      (offer: any) => offer.productName.toLowerCase() === nameLower
+      (offer: any) => offer?.productName && offer.productName.toLowerCase() === nameLower,
     );
 
     // If no exact match, try partial matching
     if (!productOffer) {
       productOffer = offersData.productOffers?.find((offer: any) => {
+        if (!offer?.productName) return false;
         const offerNameLower = offer.productName.toLowerCase();
         return (
           nameLower.includes(offerNameLower) ||
@@ -68,18 +71,26 @@ export function ProductsSection({
     }
 
     // Get current day of week
-    const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+    const days = [
+      "SUNDAY",
+      "MONDAY",
+      "TUESDAY",
+      "WEDNESDAY",
+      "THURSDAY",
+      "FRIDAY",
+      "SATURDAY",
+    ];
     const today = new Date();
     const dayOfWeek = days[today.getDay()];
 
     const dayOffer = offersData.dayOffers?.find(
-      (offer: any) => offer.day === dayOfWeek
+      (offer: any) => offer.day === dayOfWeek,
     ) || { boost: 0, label: "" };
 
     // Calculate total discount (max 70%)
     const totalDiscount = Math.min(
       productOffer.baseDiscount + (dayOffer.boost || 0),
-      70
+      70,
     );
 
     return {
@@ -127,14 +138,18 @@ export function ProductsSection({
       });
 
       // Debug log
-      console.log(`[Windows Tools] Selected RAT: ${selectedRatName}, Found: ${selectedProducts.length} products`);
+      console.log(
+        `[Windows Tools] Selected RAT: ${selectedRatName}, Found: ${selectedProducts.length} products`,
+      );
     }
 
     // Fallback: show first product if no match found
     if (selectedProducts.length === 0 && brandedProducts.length > 0) {
       const firstProduct = brandedProducts[0]?.node || brandedProducts[0];
       selectedProducts = [firstProduct];
-      console.log(`[Windows Tools] No match found, showing first product: ${firstProduct?.name}`);
+      console.log(
+        `[Windows Tools] No match found, showing first product: ${firstProduct?.name}`,
+      );
     }
 
     const selected = selectedProducts[0] || null;
@@ -150,17 +165,24 @@ export function ProductsSection({
 
           <div className="max-w-7xl mx-auto relative z-10">
             <div className="text-center mb-16 slide-in-up">
-              <h2 className={`text-5xl md:text-6xl font-black bg-gradient-to-r from-cyan-400 via-blue-300 to-purple-300 bg-clip-text text-transparent mb-4`}>
+              <h2
+                className={`text-5xl md:text-6xl font-black bg-gradient-to-r from-cyan-400 via-blue-300 to-purple-300 bg-clip-text text-transparent mb-4`}
+              >
                 Subscription Plans
               </h2>
               <div className="h-1 w-32 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 mx-auto mb-6 rounded-full"></div>
               <p className="text-lg text-blue-300/80">
-                {selected ? `${selected.name} Pricing` : brandedProducts.length === 0 ? "No products available" : "Select a RAT tool to see pricing"}
+                {selected
+                  ? `${selected.name} Pricing`
+                  : brandedProducts.length === 0
+                    ? "No products available"
+                    : "Select a RAT tool to see pricing"}
               </p>
             </div>
 
             {/* Selected RAT Pricing - Multiple versions if available */}
-            {selectedProducts.length > 0 && selectedProducts.some((p: any) => p.price) ? (
+            {selectedProducts.length > 0 &&
+            selectedProducts.some((p: any) => p.price) ? (
               <div className="max-w-6xl mx-auto">
                 {selectedProducts.length === 1 ? (
                   // Single Product Layout
@@ -183,10 +205,14 @@ export function ProductsSection({
 
                         <div className="bg-blue-950/60 rounded-3xl p-8 border-2 border-blue-600/40 space-y-3">
                           {(() => {
-                            const discountInfo = getProductDiscount(selected.name);
+                            const discountInfo = getProductDiscount(
+                              selected.name,
+                            );
                             const discountPercent = discountInfo.discount;
                             const originalPrice = selected.price;
-                            const discountedPrice = Math.round(originalPrice * (1 - discountPercent / 100));
+                            const discountedPrice = Math.round(
+                              originalPrice * (1 - discountPercent / 100),
+                            );
 
                             return (
                               <>
@@ -194,12 +220,17 @@ export function ProductsSection({
                                   <div className="inline-block px-4 py-2 bg-red-600/30 border border-red-500/50 rounded-lg text-red-300 font-bold text-sm">
                                     🔥 {discountPercent}% OFF
                                     {discountInfo.timeBoost && (
-                                      <span className="ml-1 text-xs">({discountInfo.timeBoost})</span>
+                                      <span className="ml-1 text-xs">
+                                        ({discountInfo.timeBoost})
+                                      </span>
                                     )}
                                   </div>
                                 )}
                                 <div className="text-7xl font-black bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
-                                  ${discountPercent > 0 ? discountedPrice : originalPrice}
+                                  $
+                                  {discountPercent > 0
+                                    ? discountedPrice
+                                    : originalPrice}
                                 </div>
                                 {discountPercent > 0 && (
                                   <p className="text-sm text-gray-400 line-through">
@@ -216,25 +247,36 @@ export function ProductsSection({
 
                         <div className="bg-blue-950/40 rounded-3xl p-8 border-2 border-blue-600/30 space-y-4">
                           <p className="flex items-center gap-4 text-blue-200 text-lg">
-                            <span className="text-3xl text-cyan-400">⚡</span> Full Access
+                            <span className="text-3xl text-cyan-400">⚡</span>{" "}
+                            Full Access
                           </p>
                           <p className="flex items-center gap-4 text-blue-200 text-lg">
-                            <span className="text-3xl text-cyan-400">⭐</span> Priority Support
+                            <span className="text-3xl text-cyan-400">⭐</span>{" "}
+                            Priority Support
                           </p>
                           <p className="flex items-center gap-4 text-blue-200 text-lg">
-                            <span className="text-3xl text-cyan-400">🔄</span> All Updates
+                            <span className="text-3xl text-cyan-400">🔄</span>{" "}
+                            All Updates
                           </p>
                           <p className="flex items-center gap-4 text-blue-200 text-lg">
-                            <span className="text-3xl text-cyan-400">🔐</span> Lifetime License
+                            <span className="text-3xl text-cyan-400">🔐</span>{" "}
+                            Lifetime License
                           </p>
                         </div>
 
                         {(() => {
-                          const discountInfo = getProductDiscount(selected.name);
+                          const discountInfo = getProductDiscount(
+                            selected.name,
+                          );
                           const discountPercent = discountInfo.discount;
                           const originalPrice = selected.price;
-                          const discountedPrice = Math.round(originalPrice * (1 - discountPercent / 100));
-                          const displayPrice = discountPercent > 0 ? discountedPrice : originalPrice;
+                          const discountedPrice = Math.round(
+                            originalPrice * (1 - discountPercent / 100),
+                          );
+                          const displayPrice =
+                            discountPercent > 0
+                              ? discountedPrice
+                              : originalPrice;
 
                           return (
                             <button
@@ -253,11 +295,17 @@ export function ProductsSection({
                       {/* Right Side - Visual */}
                       <div className="flex items-center justify-center">
                         <div className="text-center space-y-8 bg-gradient-to-br from-blue-950/50 to-purple-950/50 rounded-3xl p-12 border-2 border-blue-600/30 w-full">
-                          <div className="text-9xl filter drop-shadow-lg">💻</div>
+                          <div className="text-9xl filter drop-shadow-lg">
+                            💻
+                          </div>
                           <div>
-                            <p className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent mb-3">{selected.name}</p>
+                            <p className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent mb-3">
+                              {selected.name}
+                            </p>
                             <div className="h-1 w-12 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full mb-4"></div>
-                            <p className="text-blue-200/80 text-lg leading-relaxed">{selected.description}</p>
+                            <p className="text-blue-200/80 text-lg leading-relaxed">
+                              {selected.description}
+                            </p>
                           </div>
                           <div className="pt-6 bg-blue-950/60 rounded-2xl p-4 border border-blue-600/30">
                             <p className="text-blue-300/70 text-sm font-semibold uppercase tracking-wider">
@@ -272,8 +320,12 @@ export function ProductsSection({
                   // Multiple Products Layout (Grid)
                   <div>
                     <div className="mb-12 text-center">
-                      <h3 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent mb-3">Available Versions</h3>
-                      <p className="text-blue-300/80">Choose your preferred version and unlock ultimate power</p>
+                      <h3 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent mb-3">
+                        Available Versions
+                      </h3>
+                      <p className="text-blue-300/80">
+                        Choose your preferred version and unlock ultimate power
+                      </p>
                       <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto mt-4 rounded-full"></div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -307,16 +359,28 @@ export function ProductsSection({
 
                             <div className="space-y-3 bg-blue-950/20 rounded-2xl p-6 border border-blue-600/20">
                               <p className="flex items-center gap-3 text-blue-200">
-                                <span className="text-2xl text-cyan-400">⚡</span> Full Access
+                                <span className="text-2xl text-cyan-400">
+                                  ⚡
+                                </span>{" "}
+                                Full Access
                               </p>
                               <p className="flex items-center gap-3 text-blue-200">
-                                <span className="text-2xl text-cyan-400">⭐</span> Priority Support
+                                <span className="text-2xl text-cyan-400">
+                                  ⭐
+                                </span>{" "}
+                                Priority Support
                               </p>
                               <p className="flex items-center gap-3 text-blue-200">
-                                <span className="text-2xl text-cyan-400">🔄</span> All Updates
+                                <span className="text-2xl text-cyan-400">
+                                  🔄
+                                </span>{" "}
+                                All Updates
                               </p>
                               <p className="flex items-center gap-3 text-blue-200">
-                                <span className="text-2xl text-cyan-400">🔐</span> Lifetime License
+                                <span className="text-2xl text-cyan-400">
+                                  🔐
+                                </span>{" "}
+                                Lifetime License
                               </p>
                             </div>
 
@@ -342,7 +406,9 @@ export function ProductsSection({
             {(!selected || !selected.price) && brandedProducts.length > 0 && (
               <div className="max-w-6xl mx-auto">
                 <div className="mb-8 text-center">
-                  <p className="text-[#67e8f9] text-lg mb-4">Available Plans:</p>
+                  <p className="text-[#67e8f9] text-lg mb-4">
+                    Available Plans:
+                  </p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {brandedProducts.map((edge: any, idx: number) => (
@@ -362,17 +428,22 @@ export function ProductsSection({
                           <div className="text-4xl font-bold text-[#00f5ff] mb-1">
                             ${edge.node.price || "Contact us"}
                           </div>
-                          <p className="text-xs opacity-75 text-[#67e8f9]">lifetime access</p>
+                          <p className="text-xs opacity-75 text-[#67e8f9]">
+                            lifetime access
+                          </p>
                         </div>
                         <div className="space-y-2">
                           <p className="flex items-center gap-2 text-[#67e8f9] text-sm">
-                            <span className="text-[#00f5ff]">✓</span> Full Access
+                            <span className="text-[#00f5ff]">✓</span> Full
+                            Access
                           </p>
                           <p className="flex items-center gap-2 text-[#67e8f9] text-sm">
-                            <span className="text-[#00f5ff]">✓</span> Priority Support
+                            <span className="text-[#00f5ff]">✓</span> Priority
+                            Support
                           </p>
                           <p className="flex items-center gap-2 text-[#67e8f9] text-sm">
-                            <span className="text-[#00f5ff]">✓</span> All Updates
+                            <span className="text-[#00f5ff]">✓</span> All
+                            Updates
                           </p>
                         </div>
                       </div>
@@ -409,18 +480,23 @@ export function ProductsSection({
   // Other brands - Grid layout
   return (
     <>
-      <section className={`py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b ${brand === "androfud" ? "from-[#000000] to-[#000000]" : "from-[#0c2d3d] to-[#1e1b4b]"}`}>
+      <section
+        className={`py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b ${brand === "androfud" ? "from-[#000000] to-[#000000]" : "from-[#0c2d3d] to-[#1e1b4b]"}`}
+      >
         <div className="max-w-7xl mx-auto">
           {brandedProducts.length > 0 && (
             <div className="text-center mb-16 slide-in-up">
-              <h2 className={`text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${content.gradient} mb-4`}>
+              <h2
+                className={`text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${content.gradient} mb-4`}
+              >
                 Choose Your Plan
               </h2>
-              <p className={`text-lg ${brand === "androfud" ? "text-[#0099ff]-300" : "text-[#67e8f9]-300"}`}>
+              <p
+                className={`text-lg ${brand === "androfud" ? "text-[#0099ff]-300" : "text-[#67e8f9]-300"}`}
+              >
                 {brand === "androfud"
                   ? "First week discount on all subscriptions"
-                  : "Premium access to advanced features"
-                }
+                  : "Premium access to advanced features"}
               </p>
             </div>
           )}
@@ -436,8 +512,12 @@ export function ProductsSection({
                 }}
               >
                 <div className="p-6 space-y-4">
-                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${content.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t`}></div>
-                  <h3 className={`text-lg font-bold break-words overflow-hidden ${brand === "androfud" ? "text-[#00f5ff]" : "text-[#67e8f9]"}`}>
+                  <div
+                    className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${content.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t`}
+                  ></div>
+                  <h3
+                    className={`text-lg font-bold break-words overflow-hidden ${brand === "androfud" ? "text-[#00f5ff]" : "text-[#67e8f9]"}`}
+                  >
                     {edge.node.name}
                   </h3>
                   <div className="mb-6 relative">
@@ -446,8 +526,12 @@ export function ProductsSection({
                       const discountInfo = getProductDiscount(productName);
                       const discountPercent = discountInfo.discount;
                       const originalPrice = edge.node.price;
-                      const discountedPrice = Math.round(originalPrice * (1 - discountPercent / 100));
-                      const originalBeforeDiscount = Math.round(originalPrice / (1 - discountPercent / 100));
+                      const discountedPrice = Math.round(
+                        originalPrice * (1 - discountPercent / 100),
+                      );
+                      const originalBeforeDiscount = Math.round(
+                        originalPrice / (1 - discountPercent / 100),
+                      );
 
                       return (
                         <>
@@ -456,24 +540,36 @@ export function ProductsSection({
                             <div className="absolute -top-3 -right-3 bg-gradient-to-r from-red-600 to-orange-600 text-white px-3 py-1 rounded-full text-sm font-bold">
                               🔥 {discountPercent}% OFF
                               {discountInfo.timeBoost && (
-                                <span className="ml-1 text-xs">({discountInfo.timeBoost})</span>
+                                <span className="ml-1 text-xs">
+                                  ({discountInfo.timeBoost})
+                                </span>
                               )}
                             </div>
                           )}
 
                           {/* Original Price - Only show if discount > 0 */}
                           {discountPercent > 0 && (
-                            <div className={`text-sm line-through opacity-60 mb-2 ${brand === "androfud" ? "text-[#00f5ff]" : "text-[#67e8f9]"}`}>
+                            <div
+                              className={`text-sm line-through opacity-60 mb-2 ${brand === "androfud" ? "text-[#00f5ff]" : "text-[#67e8f9]"}`}
+                            >
                               ${originalBeforeDiscount}
                             </div>
                           )}
 
                           {/* Discounted Price */}
-                          <div className={`text-4xl font-bold mb-1 text-green-400`}>
+                          <div
+                            className={`text-4xl font-bold mb-1 text-green-400`}
+                          >
                             ${discountedPrice}
                           </div>
-                          <p className={`text-xs opacity-75 ${brand === "androfud" ? "text-[#00f5ff]" : "text-[#67e8f9]"}`}>
-                            {brand === "androfud" ? "" : (originalPrice == 750 ? "per year" : "per month")}
+                          <p
+                            className={`text-xs opacity-75 ${brand === "androfud" ? "text-[#00f5ff]" : "text-[#67e8f9]"}`}
+                          >
+                            {brand === "androfud"
+                              ? ""
+                              : originalPrice == 750
+                                ? "per year"
+                                : "per month"}
                           </p>
                         </>
                       );
@@ -481,15 +577,37 @@ export function ProductsSection({
                   </div>
 
                   <div className="space-y-3 mb-8">
-                    <p className={`flex items-center gap-3 ${brand === "androfud" ? "text-[#00f5ff]" : "text-[#67e8f9]"}`}>
-                      <span className={`text-lg ${brand === "androfud" ? "text-[#00f5ff]" : "text-[#67e8f9]"}`}>✓</span> Full Access
+                    <p
+                      className={`flex items-center gap-3 ${brand === "androfud" ? "text-[#00f5ff]" : "text-[#67e8f9]"}`}
+                    >
+                      <span
+                        className={`text-lg ${brand === "androfud" ? "text-[#00f5ff]" : "text-[#67e8f9]"}`}
+                      >
+                        ✓
+                      </span>{" "}
+                      Full Access
                     </p>
-                    <p className={`flex items-center gap-3 ${brand === "androfud" ? "text-[#00f5ff]" : "text-[#67e8f9]"}`}>
-                      <span className={`text-lg ${brand === "androfud" ? "text-[#00f5ff]" : "text-[#67e8f9]"}`}>✓</span>
-                      {brand === "androfud" ? "Custom Dropper" : "Priority Support"}
+                    <p
+                      className={`flex items-center gap-3 ${brand === "androfud" ? "text-[#00f5ff]" : "text-[#67e8f9]"}`}
+                    >
+                      <span
+                        className={`text-lg ${brand === "androfud" ? "text-[#00f5ff]" : "text-[#67e8f9]"}`}
+                      >
+                        ✓
+                      </span>
+                      {brand === "androfud"
+                        ? "Custom Dropper"
+                        : "Priority Support"}
                     </p>
-                    <p className={`flex items-center gap-3 ${brand === "androfud" ? "text-[#00f5ff]" : "text-[#67e8f9]"}`}>
-                      <span className={`text-lg ${brand === "androfud" ? "text-[#00f5ff]" : "text-[#67e8f9]"}`}>✓</span> All Updates
+                    <p
+                      className={`flex items-center gap-3 ${brand === "androfud" ? "text-[#00f5ff]" : "text-[#67e8f9]"}`}
+                    >
+                      <span
+                        className={`text-lg ${brand === "androfud" ? "text-[#00f5ff]" : "text-[#67e8f9]"}`}
+                      >
+                        ✓
+                      </span>{" "}
+                      All Updates
                     </p>
                   </div>
                 </div>
@@ -503,7 +621,9 @@ export function ProductsSection({
                       animationDelay: `${idx * 0.2}s`,
                     }}
                   >
-                    <span className="relative z-10 flex items-center justify-center gap-2">✦ SUBSCRIBE NOW</span>
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      ✦ SUBSCRIBE NOW
+                    </span>
                   </button>
                 </div>
               </div>
@@ -533,13 +653,16 @@ export function ProductsSection({
 
                   <div className="space-y-3 mb-8">
                     <p className="flex items-center gap-3 text-purple-300">
-                      <span className="text-lg text-green-400">✓</span> Test on Your APK
+                      <span className="text-lg text-green-400">✓</span> Test on
+                      Your APK
                     </p>
                     <p className="flex items-center gap-3 text-purple-300">
-                      <span className="text-lg text-green-400">✓</span> Custom Dropper
+                      <span className="text-lg text-green-400">✓</span> Custom
+                      Dropper
                     </p>
                     <p className="flex items-center gap-3 text-purple-300">
-                      <span className="text-lg text-green-400">✓</span> In 30 Seconds
+                      <span className="text-lg text-green-400">✓</span> In 30
+                      Seconds
                     </p>
                   </div>
                 </div>
@@ -553,7 +676,9 @@ export function ProductsSection({
                       animationDelay: `${4 * 0.2}s`,
                     }}
                   >
-                    <span className="relative z-10 flex items-center justify-center gap-2">✦ START FREE TRIAL</span>
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      ✦ START FREE TRIAL
+                    </span>
                   </button>
                 </div>
               </div>
@@ -562,8 +687,11 @@ export function ProductsSection({
 
           {brandedProducts.length === 0 && (
             <div className="text-center py-12 space-y-4">
-              <p className={`text-lg ${brand === "androfud" ? "text-[#0099ff]-300" : "text-[#67e8f9]-300"}`}>
-                Add {brand === "androfud" ? "Androfud" : "BT Mob"} products through admin panel to display them here
+              <p
+                className={`text-lg ${brand === "androfud" ? "text-[#0099ff]-300" : "text-[#67e8f9]-300"}`}
+              >
+                Add {brand === "androfud" ? "Androfud" : "BT Mob"} products
+                through admin panel to display them here
               </p>
             </div>
           )}
@@ -582,7 +710,10 @@ export function ProductsSection({
       )}
 
       {/* Trial Modal */}
-      <TrialModal isOpen={isTrialModalOpen} onClose={() => setIsTrialModalOpen(false)} />
+      <TrialModal
+        isOpen={isTrialModalOpen}
+        onClose={() => setIsTrialModalOpen(false)}
+      />
     </>
   );
 }

@@ -37,4 +37,3 @@ function Spinner({ className, ...props }: SpinnerProps) {
 Spinner.displayName = "Spinner";
 
 export { Spinner };
-

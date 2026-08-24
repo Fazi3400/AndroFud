@@ -105,4 +105,3 @@ function ProductImageShowcase({ data }: ProductImageShowcaseProps) {
 }
 
 export default ProductImageShowcase;
-

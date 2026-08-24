@@ -25,7 +25,7 @@ export function ThreeDLoginBackground() {
       60,
       window.innerWidth / window.innerHeight,
       1,
-      1000
+      1000,
     );
     camera.position.z = 400;
 

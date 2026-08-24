@@ -169,7 +169,9 @@ function UserCartSection({ user }: UserCartSectionProps) {
 
           <Card className="w-full h-full px-3 col-span-12 md:col-span-3 bg-gradient-to-br from-[#1a3a2e] to-[#0d2818] border border-[#0099ff] border-opacity-30 rounded-xl">
             <CardHeader className="px-3 pt-2 pb-0 text-md">
-              <CardTitle className="text-lg mb-0 text-white">Subtotal: </CardTitle>
+              <CardTitle className="text-lg mb-0 text-white">
+                Subtotal:{" "}
+              </CardTitle>
               <CardDescription className="text-gray-400">{`${productCount} Items`}</CardDescription>
             </CardHeader>
             <CardContent className="relative overflow-hidden px-3 py-2">

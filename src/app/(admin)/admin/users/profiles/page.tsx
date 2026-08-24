@@ -7,4 +7,3 @@ function page({}: Props) {
 }
 
 export default page;
-

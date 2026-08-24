@@ -93,19 +93,14 @@ export const createNOWPayment = async (
 };
 
 export const getPaymentStatus = async (payment_id: number) => {
-  const response = await fetch(
-    `${BASE_URL}/payment/${payment_id}`,
-    {
-      headers: {
-        "x-api-key": env.NOWPAYMENTS_API_KEY,
-      },
+  const response = await fetch(`${BASE_URL}/payment/${payment_id}`, {
+    headers: {
+      "x-api-key": env.NOWPAYMENTS_API_KEY,
     },
-  );
+  });
 
   if (!response.ok) {
-    throw new Error(
-      `Failed to get payment status: ${response.status}`,
-    );
+    throw new Error(`Failed to get payment status: ${response.status}`);
   }
 
   return response.json();

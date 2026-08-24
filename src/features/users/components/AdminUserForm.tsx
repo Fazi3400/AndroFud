@@ -35,10 +35,7 @@ function AdminUserForm({ user }: AdminUserFormProps) {
     resolver: zodResolver(adminUserShcema),
   });
 
-  const {
-    register,
-    handleSubmit,
-  } = form;
+  const { register, handleSubmit } = form;
 
   const onSubmit = handleSubmit(
     async ({ name, email, password }: AdminUserFormData) => {
@@ -70,7 +67,9 @@ function AdminUserForm({ user }: AdminUserFormProps) {
       >
         <div className="flex flex-col gap-y-6 max-w-[600px]">
           <FormItem>
-            <FormLabel className="text-[#a855f7] text-sm font-medium">Name*</FormLabel>
+            <FormLabel className="text-[#a855f7] text-sm font-medium">
+              Name*
+            </FormLabel>
             <FormControl>
               <Input
                 defaultValue={user?.name || ""}
@@ -87,7 +86,9 @@ function AdminUserForm({ user }: AdminUserFormProps) {
           </FormItem>
 
           <FormItem>
-            <FormLabel className="text-[#a855f7] text-sm font-medium">Email*</FormLabel>
+            <FormLabel className="text-[#a855f7] text-sm font-medium">
+              Email*
+            </FormLabel>
             <FormControl>
               <Input
                 defaultValue={user?.email || ""}
@@ -108,7 +109,9 @@ function AdminUserForm({ user }: AdminUserFormProps) {
             name="password"
             render={({ field }) => (
               <FormItem className="">
-                <FormLabel className="text-[#a855f7] text-sm font-medium">Password*</FormLabel>
+                <FormLabel className="text-[#a855f7] text-sm font-medium">
+                  Password*
+                </FormLabel>
                 <FormControl>
                   <PasswordInput
                     aria-invalid={!!form.formState.errors}
@@ -141,7 +144,13 @@ function AdminUserForm({ user }: AdminUserFormProps) {
               />
             )}
           </Button>
-          <Link href="/admin/users" className={buttonVariants({ className: "rounded-full bg-gray-600 hover:bg-gray-700 text-white px-8" })}>
+          <Link
+            href="/admin/users"
+            className={buttonVariants({
+              className:
+                "rounded-full bg-gray-600 hover:bg-gray-700 text-white px-8",
+            })}
+          >
             Cancel
           </Link>
         </div>

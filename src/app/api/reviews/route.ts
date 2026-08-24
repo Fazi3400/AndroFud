@@ -12,21 +12,21 @@ export async function POST(request: NextRequest) {
     if (!name || !rating || !text || !brand) {
       return NextResponse.json(
         { error: "Missing required fields" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (rating < 1 || rating > 5) {
       return NextResponse.json(
         { error: "Rating must be between 1 and 5" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (text.length > 500) {
       return NextResponse.json(
         { error: "Review text must be 500 characters or less" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -38,7 +38,10 @@ export async function POST(request: NextRequest) {
       text,
       brand,
       productName,
-      avatar: name.split(" ").map(n => n[0]).join(""),
+      avatar: name
+        .split(" ")
+        .map((n) => n[0])
+        .join(""),
       createdAt: new Date(),
     };
 
@@ -53,13 +56,13 @@ export async function POST(request: NextRequest) {
         message: "Review submitted successfully",
         review: newReview,
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Error submitting review:", error);
     return NextResponse.json(
       { error: "Failed to submit review" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -74,7 +77,7 @@ export async function GET() {
     console.error("Error fetching reviews:", error);
     return NextResponse.json(
       { error: "Failed to fetch reviews" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

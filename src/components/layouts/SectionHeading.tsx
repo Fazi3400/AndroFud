@@ -28,4 +28,3 @@ function SectionHeading({
 }
 
 export default SectionHeading;
-

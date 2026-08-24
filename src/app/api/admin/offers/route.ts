@@ -151,17 +151,15 @@ export async function POST(request: NextRequest) {
       auth: { persistSession: false },
     });
 
-    const { error: upsertError } = await supabase
-      .from("product_offers")
-      .upsert(
-        {
-          product_name: productName,
-          base_discount: baseDiscount,
-          label: label,
-          valid_for_days: validDays,
-        },
-        { onConflict: "product_name" },
-      );
+    const { error: upsertError } = await supabase.from("product_offers").upsert(
+      {
+        product_name: productName,
+        base_discount: baseDiscount,
+        label: label,
+        valid_for_days: validDays,
+      },
+      { onConflict: "product_name" },
+    );
 
     if (upsertError) {
       console.error("Supabase error:", upsertError);
@@ -219,7 +217,10 @@ export async function PUT(request: NextRequest) {
         .eq("product_name", productName);
 
       if (updateError) {
-        return NextResponse.json({ error: updateError.message }, { status: 500 });
+        return NextResponse.json(
+          { error: updateError.message },
+          { status: 500 },
+        );
       }
 
       return NextResponse.json({ productName, baseDiscount, label });
@@ -301,10 +302,7 @@ export async function DELETE(request: NextRequest) {
       .eq("product_name", productName);
 
     if (deleteError) {
-      return NextResponse.json(
-        { error: deleteError.message },
-        { status: 500 },
-      );
+      return NextResponse.json({ error: deleteError.message }, { status: 500 });
     }
 
     return NextResponse.json({ success: true });

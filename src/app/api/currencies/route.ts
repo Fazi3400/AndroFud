@@ -3,7 +3,7 @@ import { env } from "@/env.mjs";
 
 const BASE_URL = "https://api.nowpayments.io/v1";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
@@ -19,7 +19,7 @@ export async function GET() {
       console.error("Failed to fetch currencies:", error);
       return NextResponse.json(
         { error: "Failed to fetch available currencies" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -33,7 +33,7 @@ export async function GET() {
     console.error("❌ Error fetching currencies:", error);
     return NextResponse.json(
       { error: "Failed to fetch currencies" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

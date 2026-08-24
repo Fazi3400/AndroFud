@@ -44,7 +44,11 @@ function OAuthLoginButtons() {
   };
   return (
     <div className="flex flex-col space-y-3">
-      <Button onClick={signWithGoogle} disabled={isLoading} className="rounded-full bg-[#0d2818] border border-[#0099ff] text-white hover:bg-[#0099ff] hover:bg-opacity-20 w-full">
+      <Button
+        onClick={signWithGoogle}
+        disabled={isLoading}
+        className="rounded-full bg-[#0d2818] border border-[#0099ff] text-white hover:bg-[#0099ff] hover:bg-opacity-20 w-full"
+      >
         {isLoading && (
           <Spinner className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />
         )}
@@ -52,7 +56,11 @@ function OAuthLoginButtons() {
         Google
       </Button>
 
-      <Button onClick={signWithGithub} disabled={isLoading} className="rounded-full bg-[#0d2818] border border-[#0099ff] text-white hover:bg-[#0099ff] hover:bg-opacity-20 w-full">
+      <Button
+        onClick={signWithGithub}
+        disabled={isLoading}
+        className="rounded-full bg-[#0d2818] border border-[#0099ff] text-white hover:bg-[#0099ff] hover:bg-opacity-20 w-full"
+      >
         {isLoading && (
           <Spinner className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />
         )}

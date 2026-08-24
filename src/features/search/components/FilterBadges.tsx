@@ -85,4 +85,3 @@ function FilterBadges({
 }
 
 export default FilterBadges;
-

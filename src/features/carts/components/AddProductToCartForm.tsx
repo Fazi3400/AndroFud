@@ -31,11 +31,12 @@ function AddProductToCartForm({ productId }: AddProductToCartFormProps) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
-        <Button type="submit" variant="primary" className="w-full">Add to Cart</Button>
+        <Button type="submit" variant="primary" className="w-full">
+          Add to Cart
+        </Button>
       </form>
     </Form>
   );
 }
 
 export default AddProductToCartForm;
-

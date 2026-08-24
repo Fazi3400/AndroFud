@@ -5,7 +5,16 @@ import { useAuth } from "@/providers/AuthProvider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { getClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { Lock, LogOut, Trash2, Calendar, CheckCircle2 } from "lucide-react";
@@ -132,9 +141,7 @@ export default function AccountPage() {
     <div className="min-h-screen bg-black space-y-8">
       {/* Header */}
       <div className="space-y-2">
-        <h1 className="text-4xl font-bold text-[#a855f7]">
-          Account Settings
-        </h1>
+        <h1 className="text-4xl font-bold text-[#a855f7]">Account Settings</h1>
         <p className="text-[#67e8f9]">
           Manage your account security and preferences
         </p>
@@ -165,15 +172,22 @@ export default function AccountPage() {
         <div className="bg-gradient-to-r from-[#1a3a2e] to-[#285A48] px-8 py-6 border-b-2 border-[#0099ff] flex items-center gap-3">
           <Lock className="w-5 h-5 text-[#a855f7]" />
           <div>
-            <h3 className="text-lg font-bold text-[#a855f7]">Change Password</h3>
-            <p className="text-sm text-[#67e8f9] mt-1">Update your password regularly</p>
+            <h3 className="text-lg font-bold text-[#a855f7]">
+              Change Password
+            </h3>
+            <p className="text-sm text-[#67e8f9] mt-1">
+              Update your password regularly
+            </p>
           </div>
         </div>
 
         <div className="p-8 space-y-6">
           {/* New Password */}
           <div className="space-y-3">
-            <label htmlFor="newPassword" className="text-sm font-semibold text-[#a855f7] block">
+            <label
+              htmlFor="newPassword"
+              className="text-sm font-semibold text-[#a855f7] block"
+            >
               New Password
             </label>
             <Input
@@ -189,7 +203,10 @@ export default function AccountPage() {
 
           {/* Confirm Password */}
           <div className="space-y-3">
-            <label htmlFor="confirmPassword" className="text-sm font-semibold text-[#a855f7] block">
+            <label
+              htmlFor="confirmPassword"
+              className="text-sm font-semibold text-[#a855f7] block"
+            >
               Confirm Password
             </label>
             <Input
@@ -218,8 +235,12 @@ export default function AccountPage() {
         <div className="bg-gradient-to-r from-[#1a3a2e] to-[#285A48] px-8 py-6 border-b-2 border-[#0099ff] flex items-center gap-3">
           <LogOut className="w-5 h-5 text-[#a855f7]" />
           <div>
-            <h3 className="text-lg font-bold text-[#a855f7]">Active Sessions</h3>
-            <p className="text-sm text-[#67e8f9] mt-1">Manage your logged-in devices</p>
+            <h3 className="text-lg font-bold text-[#a855f7]">
+              Active Sessions
+            </h3>
+            <p className="text-sm text-[#67e8f9] mt-1">
+              Manage your logged-in devices
+            </p>
           </div>
         </div>
 
@@ -234,7 +255,10 @@ export default function AccountPage() {
               Active
             </span>
           </div>
-          <Button variant="outline" className="w-full h-11 rounded-full border-2 border-[#0099ff] text-[#a855f7] hover:bg-[#1a3a2e]">
+          <Button
+            variant="outline"
+            className="w-full h-11 rounded-full border-2 border-[#0099ff] text-[#a855f7] hover:bg-[#1a3a2e]"
+          >
             Sign Out All Other Sessions
           </Button>
         </div>
@@ -245,7 +269,9 @@ export default function AccountPage() {
         <div className="bg-gradient-to-r from-[#1a3a2e] to-[#285A48] px-8 py-6 border-b-2 border-[#0099ff] flex items-center gap-3">
           <Calendar className="w-5 h-5 text-[#a855f7]" />
           <div>
-            <h3 className="text-lg font-bold text-[#a855f7]">Account Information</h3>
+            <h3 className="text-lg font-bold text-[#a855f7]">
+              Account Information
+            </h3>
             <p className="text-sm text-[#67e8f9] mt-1">Important dates</p>
           </div>
         </div>
@@ -253,15 +279,23 @@ export default function AccountPage() {
         <div className="p-8 space-y-4">
           <div className="grid md:grid-cols-2 gap-4">
             <div className="bg-[#1a3a2e] rounded-xl p-4 border-2 border-[#0099ff]">
-              <p className="text-xs text-[#67e8f9] font-medium mb-2">Account Created</p>
+              <p className="text-xs text-[#67e8f9] font-medium mb-2">
+                Account Created
+              </p>
               <p className="text-lg font-bold text-[#a855f7]">
-                {user.created_at ? new Date(user.created_at).toLocaleDateString() : "Unknown"}
+                {user.created_at
+                  ? new Date(user.created_at).toLocaleDateString()
+                  : "Unknown"}
               </p>
             </div>
             <div className="bg-[#1a3a2e] rounded-xl p-4 border-2 border-[#0099ff]">
-              <p className="text-xs text-[#67e8f9] font-medium mb-2">Last Sign In</p>
+              <p className="text-xs text-[#67e8f9] font-medium mb-2">
+                Last Sign In
+              </p>
               <p className="text-lg font-bold text-[#a855f7]">
-                {user.last_sign_in_at ? new Date(user.last_sign_in_at).toLocaleDateString() : "Never"}
+                {user.last_sign_in_at
+                  ? new Date(user.last_sign_in_at).toLocaleDateString()
+                  : "Never"}
               </p>
             </div>
           </div>
@@ -280,7 +314,8 @@ export default function AccountPage() {
 
         <div className="p-8 space-y-4">
           <p className="text-sm text-foreground">
-            Deleting your account is permanent and cannot be undone. All your data will be permanently deleted.
+            Deleting your account is permanent and cannot be undone. All your
+            data will be permanently deleted.
           </p>
           <AlertDialog>
             <AlertDialogTrigger asChild>
@@ -290,13 +325,18 @@ export default function AccountPage() {
             </AlertDialogTrigger>
             <AlertDialogContent className="rounded-2xl">
               <AlertDialogHeader>
-                <AlertDialogTitle className="text-xl">Delete Account?</AlertDialogTitle>
+                <AlertDialogTitle className="text-xl">
+                  Delete Account?
+                </AlertDialogTitle>
                 <AlertDialogDescription className="text-base">
-                  This action cannot be undone. This will permanently delete your account and all associated data.
+                  This action cannot be undone. This will permanently delete
+                  your account and all associated data.
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <div className="flex gap-3 justify-end pt-4">
-                <AlertDialogCancel className="h-10 rounded-full px-6">Cancel</AlertDialogCancel>
+                <AlertDialogCancel className="h-10 rounded-full px-6">
+                  Cancel
+                </AlertDialogCancel>
                 <AlertDialogAction
                   onClick={handleDeleteAccount}
                   disabled={isDeletingAccount}

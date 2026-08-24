@@ -13,4 +13,3 @@ function MediasPageContent() {
 }
 
 export default MediasPageContent;
-

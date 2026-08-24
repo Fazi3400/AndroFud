@@ -15,4 +15,3 @@ function RecommendationProductsSkeleton() {
 }
 
 export default RecommendationProductsSkeleton;
-

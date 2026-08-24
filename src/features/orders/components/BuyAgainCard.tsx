@@ -65,4 +65,3 @@ function BuyAgainCard({ products }: BuyAgainCardProps) {
 }
 
 export default BuyAgainCard;
-

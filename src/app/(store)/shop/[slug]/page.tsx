@@ -8,10 +8,7 @@ import {
 } from "@/components/ui/accordion";
 import { AddProductToCartForm } from "@/features/carts";
 import { ProductCommentsSection } from "@/features/comments";
-import {
-  BuyNowButton,
-  ProductImageShowcase,
-} from "@/features/products";
+import { BuyNowButton, ProductImageShowcase } from "@/features/products";
 import { gql } from "@/gql";
 import { getClient } from "@/lib/urql";
 import Link from "next/link";
@@ -75,8 +72,16 @@ async function ProductDetailPage({ params }: Props) {
   if (!data || !data.productsCollection || !data.productsCollection.edges)
     return notFound();
 
-  const { id, name, description, price, rating, tags, commentsCollection, totalComments } =
-    data.productsCollection.edges[0].node;
+  const {
+    id,
+    name,
+    description,
+    price,
+    rating,
+    tags,
+    commentsCollection,
+    totalComments,
+  } = data.productsCollection.edges[0].node;
 
   return (
     <main className="bg-[#0a0e27]">
@@ -87,7 +92,9 @@ async function ProductDetailPage({ params }: Props) {
           <div className="col-span-12 md:col-span-6">
             <div className="sticky top-20">
               <div className="bg-gradient-to-br from-[#65dcd5] to-[#d8b4fe] rounded-3xl overflow-hidden">
-                <ProductImageShowcase data={data.productsCollection.edges[0].node} />
+                <ProductImageShowcase
+                  data={data.productsCollection.edges[0].node}
+                />
               </div>
             </div>
           </div>
@@ -109,8 +116,8 @@ async function ProductDetailPage({ params }: Props) {
                         {i < Math.floor(Number(rating))
                           ? "★"
                           : i < Number(rating)
-                          ? "⭐"
-                          : "☆"}
+                            ? "⭐"
+                            : "☆"}
                       </span>
                     ))}
                   </div>
@@ -165,7 +172,9 @@ async function ProductDetailPage({ params }: Props) {
 
         {/* Details Accordion */}
         <div className="py-12 border-t border-[#65dcd5] border-opacity-30">
-          <h2 className="text-2xl font-bold text-white mb-6">Product Details</h2>
+          <h2 className="text-2xl font-bold text-white mb-6">
+            Product Details
+          </h2>
           <div className="bg-gradient-to-br from-[#1a3a2e] to-[#0d2818] rounded-2xl border border-[#65dcd5] border-opacity-30 overflow-hidden">
             <Accordion type="single" collapsible className="p-6">
               <AccordionItem value="item-1">
@@ -173,7 +182,9 @@ async function ProductDetailPage({ params }: Props) {
                   Material & Quality
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-300">
-                  Crafted from premium materials with exceptional attention to detail. Each product undergoes rigorous quality control to ensure it meets our high standards.
+                  Crafted from premium materials with exceptional attention to
+                  detail. Each product undergoes rigorous quality control to
+                  ensure it meets our high standards.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
@@ -181,7 +192,9 @@ async function ProductDetailPage({ params }: Props) {
                   Care Instructions
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-300">
-                  Handle with care. Clean with a soft cloth. Store in a cool, dry place. For specific care instructions, refer to the product tag or contact our support team.
+                  Handle with care. Clean with a soft cloth. Store in a cool,
+                  dry place. For specific care instructions, refer to the
+                  product tag or contact our support team.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-4">
@@ -189,7 +202,9 @@ async function ProductDetailPage({ params }: Props) {
                   Warranty
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-300">
-                  All products come with a 1-year warranty covering manufacturing defects. Extended warranty options available upon request.
+                  All products come with a 1-year warranty covering
+                  manufacturing defects. Extended warranty options available
+                  upon request.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>

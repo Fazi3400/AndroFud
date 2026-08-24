@@ -11,7 +11,7 @@ function Branding({ className }: Props) {
       href="/"
       className={cn(
         "flex items-center gap-3 hover:opacity-90 transition-opacity duration-300",
-        className
+        className,
       )}
     >
       {/* Logo without animation */}

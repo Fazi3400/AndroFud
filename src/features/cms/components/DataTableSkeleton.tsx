@@ -25,4 +25,3 @@ function DataTableSkeleton() {
 }
 
 export default DataTableSkeleton;
-

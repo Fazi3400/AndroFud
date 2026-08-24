@@ -19,4 +19,3 @@ function ErrorToaster({}: Props) {
 }
 
 export default ErrorToaster;
-

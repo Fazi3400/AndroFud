@@ -63,10 +63,15 @@ function CheckoutButton({ order, guest, ...props }: CheckoutButtonProps) {
         )}
       </Button>
 
-      <Dialog open={showPaymentMethodDialog} onOpenChange={setShowPaymentMethodDialog}>
+      <Dialog
+        open={showPaymentMethodDialog}
+        onOpenChange={setShowPaymentMethodDialog}
+      >
         <DialogContent className="bg-[#0a0e27] border-[#0099ff] border-opacity-30 w-[50%] max-w-[600px]">
           <DialogHeader>
-            <DialogTitle className="text-white text-center">Choose Payment Method</DialogTitle>
+            <DialogTitle className="text-white text-center">
+              Choose Payment Method
+            </DialogTitle>
             <DialogDescription className="text-gray-400 text-center">
               Select how you would like to pay for your order
             </DialogDescription>

@@ -75,7 +75,11 @@ function DataTable<TData, TValue>({
               <TableRow key={headerGroup.id} className="hover:bg-[#1a3a2e]">
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id} colSpan={header.colSpan} className="text-[#a855f7] bg-[#1a3a2e]">
+                    <TableHead
+                      key={header.id}
+                      colSpan={header.colSpan}
+                      className="text-[#a855f7] bg-[#1a3a2e]"
+                    >
                       {header.isPlaceholder
                         ? null
                         : flexRender(

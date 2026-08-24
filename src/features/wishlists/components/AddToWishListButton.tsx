@@ -84,4 +84,3 @@ function AddToWishListButton({ productId }: Props) {
 }
 
 export default AddToWishListButton;
-

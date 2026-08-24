@@ -30,4 +30,3 @@ function AddToCartButton({ productId, quantity = 1 }: AddToCartButtonProps) {
 }
 
 export default AddToCartButton;
-

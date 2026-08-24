@@ -125,7 +125,10 @@ const ProductsColumns: ColumnDef<{
             >
               Edit Product
             </Link>
-            <DeleteProductDialog productId={product.id} productName={product.name} />
+            <DeleteProductDialog
+              productId={product.id}
+              productName={product.name}
+            />
           </DropdownMenuContent>
         </DropdownMenu>
       );
@@ -133,7 +136,13 @@ const ProductsColumns: ColumnDef<{
   },
 ];
 
-const DeleteProductDialog = ({ productId, productName }: { productId: string; productName: string }) => {
+const DeleteProductDialog = ({
+  productId,
+  productName,
+}: {
+  productId: string;
+  productName: string;
+}) => {
   const router = useRouter();
   const { toast } = useToast();
 
@@ -164,4 +173,3 @@ const DeleteProductDialog = ({ productId, productName }: { productId: string; pr
 };
 
 export default ProductsColumns;
-

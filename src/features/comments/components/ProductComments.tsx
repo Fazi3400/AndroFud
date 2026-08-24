@@ -36,4 +36,3 @@ function ProductCommentsSection({
 }
 
 export default ProductCommentsSection;
-

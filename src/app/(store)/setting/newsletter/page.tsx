@@ -7,4 +7,3 @@ function NewsletterPage({}: Props) {
 }
 
 export default NewsletterPage;
-

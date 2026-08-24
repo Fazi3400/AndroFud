@@ -24,10 +24,13 @@ export default function AdminLoginPage() {
 
       if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
         // Store admin session in localStorage
-        localStorage.setItem("adminToken", JSON.stringify({
-          email,
-          loginTime: new Date().toISOString()
-        }));
+        localStorage.setItem(
+          "adminToken",
+          JSON.stringify({
+            email,
+            loginTime: new Date().toISOString(),
+          }),
+        );
 
         // Redirect to admin dashboard
         router.push("/admin");
@@ -47,7 +50,10 @@ export default function AdminLoginPage() {
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden z-0">
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: "2s" }}></div>
+        <div
+          className="absolute -bottom-40 -left-40 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"
+          style={{ animationDelay: "2s" }}
+        ></div>
       </div>
 
       <div className="relative z-10 w-full max-w-md">
@@ -56,9 +62,7 @@ export default function AdminLoginPage() {
           <h1 className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#0099ff] via-[#a855f7] to-[#000000]">
             ADMIN LOGIN
           </h1>
-          <p className="text-lg text-[#67e8f9]">
-            Access Your Control Panel
-          </p>
+          <p className="text-lg text-[#67e8f9]">Access Your Control Panel</p>
         </div>
 
         {/* Login Card */}
@@ -130,7 +134,10 @@ export default function AdminLoginPage() {
           <div className="text-center space-y-2 text-sm">
             <p className="text-[#67e8f9]/70">
               Back to{" "}
-              <Link href="/" className="text-[#00f5ff] hover:text-white font-bold transition-colors">
+              <Link
+                href="/"
+                className="text-[#00f5ff] hover:text-white font-bold transition-colors"
+              >
                 Website
               </Link>
             </p>

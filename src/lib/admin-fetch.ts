@@ -2,7 +2,7 @@ const ADMIN_PASSWORD = "T@lh@S@ir@@349282500";
 
 export async function adminFetch(
   url: string,
-  options: RequestInit = {}
+  options: RequestInit = {},
 ): Promise<Response> {
   // Check if admin auth is enabled
   if (typeof window !== "undefined") {

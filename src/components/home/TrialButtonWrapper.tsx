@@ -27,7 +27,10 @@ export function TrialButtonWrapper() {
         </span>
       </button>
 
-      <TrialModal isOpen={isTrialModalOpen} onClose={() => setIsTrialModalOpen(false)} />
+      <TrialModal
+        isOpen={isTrialModalOpen}
+        onClose={() => setIsTrialModalOpen(false)}
+      />
     </>
   );
 }

@@ -12,4 +12,3 @@ function ImageGridSkeleton() {
 }
 
 export default ImageGridSkeleton;
-

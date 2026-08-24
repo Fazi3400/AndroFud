@@ -33,7 +33,13 @@ async function OrdersPage() {
       description={"Edit orders from the dashboard. "}
     >
       <section className="flex justify-end items-center pb-5 w-full">
-        <Link href="/admin/collections/new" className={cn(buttonVariants(), "bg-[#d8b4fe] hover:bg-[#0099ff] text-white")}>
+        <Link
+          href="/admin/collections/new"
+          className={cn(
+            buttonVariants(),
+            "bg-[#d8b4fe] hover:bg-[#0099ff] text-white",
+          )}
+        >
           New Order
         </Link>
       </section>

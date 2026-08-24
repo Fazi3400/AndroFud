@@ -46,7 +46,7 @@ export function ReviewsSection() {
       avatar: "AR",
       rating: 5,
       text: "Best tool in the market! The encryption is unbreakable and customer support is responsive 24/7. Worth every penny.",
-      brand: "Androfud"
+      brand: "Androfud",
     },
     {
       id: 2,
@@ -54,7 +54,7 @@ export function ReviewsSection() {
       avatar: "JS",
       rating: 5,
       text: "BTMOB delivered exactly what was promised. Real-time monitoring works flawlessly across all my devices. Highly recommended!",
-      brand: "BT Mob"
+      brand: "BT Mob",
     },
     {
       id: 3,
@@ -62,7 +62,7 @@ export function ReviewsSection() {
       avatar: "MC",
       rating: 5,
       text: "The Windows Tools RATs are incredibly powerful. S400 and Venom Rat are game changers. Best investment I've made.",
-      brand: "Windows Tools"
+      brand: "Windows Tools",
     },
     {
       id: 4,
@@ -70,7 +70,7 @@ export function ReviewsSection() {
       avatar: "DJ",
       rating: 5,
       text: "Androfud's dropper is the fastest I've ever used. Setup takes less than 5 minutes. Absolutely incredible product!",
-      brand: "Androfud"
+      brand: "Androfud",
     },
     {
       id: 5,
@@ -78,7 +78,7 @@ export function ReviewsSection() {
       avatar: "SW",
       rating: 5,
       text: "Been using BTMOB for 6 months now. The stability and reliability are unmatched. This is what I've been looking for!",
-      brand: "BT Mob"
+      brand: "BT Mob",
     },
     {
       id: 6,
@@ -86,7 +86,7 @@ export function ReviewsSection() {
       avatar: "TE",
       rating: 5,
       text: "Windows Tools pricing is very competitive. Got all RATs in one bundle and the quality is professional grade. Love it!",
-      brand: "Windows Tools"
+      brand: "Windows Tools",
     },
     {
       id: 7,
@@ -94,7 +94,7 @@ export function ReviewsSection() {
       avatar: "MT",
       rating: 5,
       text: "Androfud's custom dropper feature is a game-changer. The support team helped me get everything set up perfectly.",
-      brand: "Androfud"
+      brand: "Androfud",
     },
     {
       id: 8,
@@ -102,7 +102,7 @@ export function ReviewsSection() {
       avatar: "EP",
       rating: 5,
       text: "BTMOB's interface is so intuitive. I've tested many tools before, but this one stands out. Exceptional quality!",
-      brand: "BT Mob"
+      brand: "BT Mob",
     },
     {
       id: 9,
@@ -110,7 +110,7 @@ export function ReviewsSection() {
       avatar: "JW",
       rating: 5,
       text: "Windows Tools S400 is phenomenal. Fast, reliable, and the documentation is crystal clear. Couldn't ask for better.",
-      brand: "Windows Tools"
+      brand: "Windows Tools",
     },
     {
       id: 10,
@@ -118,7 +118,7 @@ export function ReviewsSection() {
       avatar: "LA",
       rating: 5,
       text: "The encryption on Androfud is military-grade. I've been recommending it to my entire team. Best purchase ever!",
-      brand: "Androfud"
+      brand: "Androfud",
     },
     {
       id: 11,
@@ -126,7 +126,7 @@ export function ReviewsSection() {
       avatar: "RK",
       rating: 5,
       text: "BTMOB's real-time monitoring is unreal. The performance is smooth and the uptime is guaranteed. Very impressed!",
-      brand: "BT Mob"
+      brand: "BT Mob",
     },
     {
       id: 12,
@@ -134,7 +134,7 @@ export function ReviewsSection() {
       avatar: "CM",
       rating: 5,
       text: "Venom Rat from Windows Tools is incredible. The control panel is user-friendly and everything works as advertised.",
-      brand: "Windows Tools"
+      brand: "Windows Tools",
     },
     {
       id: 13,
@@ -142,7 +142,7 @@ export function ReviewsSection() {
       avatar: "ND",
       rating: 5,
       text: "Androfud's AV bypass is phenomenal. It evades all major antivirus solutions with ease. Absolutely professional!",
-      brand: "Androfud"
+      brand: "Androfud",
     },
     {
       id: 14,
@@ -150,7 +150,7 @@ export function ReviewsSection() {
       avatar: "PO",
       rating: 5,
       text: "BTMOB customer service is fantastic. They respond within minutes. The tool itself is rock solid and never crashes.",
-      brand: "BT Mob"
+      brand: "BT Mob",
     },
     {
       id: 15,
@@ -158,7 +158,7 @@ export function ReviewsSection() {
       avatar: "SG",
       rating: 5,
       text: "Windows Tools bundle gave me everything I needed. The pricing is fair and the quality exceeds expectations.",
-      brand: "Windows Tools"
+      brand: "Windows Tools",
     },
     {
       id: 16,
@@ -166,7 +166,7 @@ export function ReviewsSection() {
       avatar: "HA",
       rating: 5,
       text: "Androfud's AV detection bypass is unlike anything I've seen. The updates are frequent and always improve the tool.",
-      brand: "Androfud"
+      brand: "Androfud",
     },
     {
       id: 17,
@@ -174,7 +174,7 @@ export function ReviewsSection() {
       avatar: "VB",
       rating: 5,
       text: "BTMOB's dashboard is beautiful and functional. The analytics provided are incredibly detailed and useful.",
-      brand: "BT Mob"
+      brand: "BT Mob",
     },
     {
       id: 18,
@@ -182,7 +182,7 @@ export function ReviewsSection() {
       avatar: "YT",
       rating: 5,
       text: "Windows Tools RATs have the best documentation I've ever seen. Setup was smooth and support is always available.",
-      brand: "Windows Tools"
+      brand: "Windows Tools",
     },
     {
       id: 19,
@@ -190,7 +190,7 @@ export function ReviewsSection() {
       avatar: "FM",
       rating: 5,
       text: "Androfud is worth every dollar. The encryption algorithm is solid and the dropper customization is endless.",
-      brand: "Androfud"
+      brand: "Androfud",
     },
     {
       id: 20,
@@ -198,7 +198,7 @@ export function ReviewsSection() {
       avatar: "AC",
       rating: 5,
       text: "BTMOB exceeded my expectations. The real-time features work perfectly and stability is 99.9%. Fantastic product!",
-      brand: "BT Mob"
+      brand: "BT Mob",
     },
     {
       id: 21,
@@ -206,7 +206,7 @@ export function ReviewsSection() {
       avatar: "DK",
       rating: 5,
       text: "Windows Tools S400 performance is outstanding. I've been using it for 4 months with zero issues. Highly recommended!",
-      brand: "Windows Tools"
+      brand: "Windows Tools",
     },
     {
       id: 22,
@@ -214,7 +214,7 @@ export function ReviewsSection() {
       avatar: "RG",
       rating: 5,
       text: "Androfud's support team is incredibly helpful. They answered all my questions and provided detailed guidance.",
-      brand: "Androfud"
+      brand: "Androfud",
     },
     {
       id: 23,
@@ -222,7 +222,7 @@ export function ReviewsSection() {
       avatar: "GS",
       rating: 5,
       text: "BTMOB is the most reliable monitoring tool I've used. The features are comprehensive and well-implemented.",
-      brand: "BT Mob"
+      brand: "BT Mob",
     },
     {
       id: 24,
@@ -230,7 +230,7 @@ export function ReviewsSection() {
       avatar: "NV",
       rating: 5,
       text: "Windows Tools Venom Rat is super stable. Handles heavy workloads without any lag. Excellent investment!",
-      brand: "Windows Tools"
+      brand: "Windows Tools",
     },
     {
       id: 25,
@@ -238,7 +238,7 @@ export function ReviewsSection() {
       avatar: "OW",
       rating: 5,
       text: "Androfud's customization options are unmatched. I can create exactly the payload I need in minutes.",
-      brand: "Androfud"
+      brand: "Androfud",
     },
     {
       id: 26,
@@ -246,7 +246,7 @@ export function ReviewsSection() {
       avatar: "ZH",
       rating: 5,
       text: "BTMOB's multi-device support is seamless. Managing multiple phones from one interface is incredibly efficient.",
-      brand: "BT Mob"
+      brand: "BT Mob",
     },
     {
       id: 27,
@@ -254,7 +254,7 @@ export function ReviewsSection() {
       avatar: "LS",
       rating: 5,
       text: "Windows Tools delivers professional-grade RATs at competitive prices. The quality-to-price ratio is unbeatable.",
-      brand: "Windows Tools"
+      brand: "Windows Tools",
     },
     {
       id: 28,
@@ -262,7 +262,7 @@ export function ReviewsSection() {
       avatar: "ET",
       rating: 5,
       text: "Androfud changed the game for me. The dropper works on all devices and the encryption is bulletproof.",
-      brand: "Androfud"
+      brand: "Androfud",
     },
     {
       id: 29,
@@ -270,7 +270,7 @@ export function ReviewsSection() {
       avatar: "PS",
       rating: 5,
       text: "BTMOB is the gold standard in monitoring tools. I've tried competitors and none come close to this quality.",
-      brand: "BT Mob"
+      brand: "BT Mob",
     },
     {
       id: 30,
@@ -278,7 +278,7 @@ export function ReviewsSection() {
       avatar: "IR",
       rating: 5,
       text: "Windows Tools support is exceptional. Every question gets answered thoroughly and the community is helpful.",
-      brand: "Windows Tools"
+      brand: "Windows Tools",
     },
   ];
 
@@ -286,7 +286,13 @@ export function ReviewsSection() {
   const convertedFeedback = userFeedback.map((fb: any) => ({
     id: fb.id,
     name: fb.name,
-    avatar: fb.avatar || fb.name.split(" ").map((n: string) => n[0]).join("").toUpperCase(),
+    avatar:
+      fb.avatar ||
+      fb.name
+        .split(" ")
+        .map((n: string) => n[0])
+        .join("")
+        .toUpperCase(),
     rating: fb.rating,
     text: fb.feedback,
     brand: "Community Feedback",
@@ -295,16 +301,16 @@ export function ReviewsSection() {
   const allReviews = [...convertedFeedback, ...userReviews, ...staticReviews];
 
   const ReviewCard = ({ review }: { review: Review }) => (
-    <div
-      className="group relative code-flow overflow-hidden rounded-2xl p-8 backdrop-blur-sm border-2 transition-all duration-500 hover:scale-105 bg-gradient-to-br from-slate-800/40 via-slate-900/40 to-black/40 border-cyan-500/40 hover:border-cyan-400/80 hover:shadow-lg hover:shadow-cyan-500/30"
-    >
+    <div className="group relative code-flow overflow-hidden rounded-2xl p-8 backdrop-blur-sm border-2 transition-all duration-500 hover:scale-105 bg-gradient-to-br from-slate-800/40 via-slate-900/40 to-black/40 border-cyan-500/40 hover:border-cyan-400/80 hover:shadow-lg hover:shadow-cyan-500/30">
       {/* Top Border Accent */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500/80 via-blue-500/60 to-transparent"></div>
 
       {/* Rating Stars */}
       <div className="flex gap-1 mb-4">
         {[...Array(review.rating)].map((_, i) => (
-          <span key={i} className="text-yellow-400 text-lg">★</span>
+          <span key={i} className="text-yellow-400 text-lg">
+            ★
+          </span>
         ))}
       </div>
 
@@ -327,21 +333,21 @@ export function ReviewsSection() {
           <p className="text-white font-semibold text-sm truncate">
             {review.name}
           </p>
-          <p className="text-cyan-400/70 text-xs">
-            {review.brand} User
-          </p>
+          <p className="text-cyan-400/70 text-xs">{review.brand} User</p>
         </div>
 
         {/* Brand Badge */}
-        <div className={`px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap ${
-          review.brand === "Androfud"
-            ? "bg-purple-500/30 text-purple-300 border border-purple-500/50"
-            : review.brand === "BT Mob"
-            ? "bg-cyan-500/30 text-cyan-300 border border-cyan-500/50"
-            : review.brand === "Windows Tools"
-            ? "bg-green-500/30 text-green-300 border border-green-500/50"
-            : "bg-orange-500/30 text-orange-300 border border-orange-500/50"
-        }`}>
+        <div
+          className={`px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap ${
+            review.brand === "Androfud"
+              ? "bg-purple-500/30 text-purple-300 border border-purple-500/50"
+              : review.brand === "BT Mob"
+                ? "bg-cyan-500/30 text-cyan-300 border border-cyan-500/50"
+                : review.brand === "Windows Tools"
+                  ? "bg-green-500/30 text-green-300 border border-green-500/50"
+                  : "bg-orange-500/30 text-orange-300 border border-orange-500/50"
+          }`}
+        >
           {review.brand}
         </div>
       </div>
@@ -391,7 +397,10 @@ export function ReviewsSection() {
             const avgRating = 4.95;
 
             return [
-              { label: "Total Reviews", value: `${totalReviews.toLocaleString()}+` },
+              {
+                label: "Total Reviews",
+                value: `${totalReviews.toLocaleString()}+`,
+              },
               { label: "Average Rating", value: `${avgRating}★` },
               { label: "Active Users", value: "350K+" },
             ].map((stat, idx) => (

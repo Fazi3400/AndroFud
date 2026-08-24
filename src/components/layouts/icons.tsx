@@ -149,4 +149,3 @@ export const Icons = {
     </svg>
   ),
 };
-

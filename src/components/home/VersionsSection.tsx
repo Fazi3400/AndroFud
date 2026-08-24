@@ -23,7 +23,8 @@ interface VersionsSectionProps {
 }
 
 export default function VersionsSection({ products }: VersionsSectionProps) {
-  const [selectedCollection, setSelectedCollection] = useState<string>("androfud");
+  const [selectedCollection, setSelectedCollection] =
+    useState<string>("androfud");
 
   // Debug: Log all received products and their collections
   console.log("=== VERSIONS SECTION DEBUG ===");
@@ -43,7 +44,9 @@ export default function VersionsSection({ products }: VersionsSectionProps) {
     const productCollection = product.collections?.label?.toLowerCase();
     const selected = selectedCollection.toLowerCase();
     const matches = productCollection === selected;
-    console.log(`Checking ${product.name}: "${productCollection}" === "${selected}" = ${matches}`);
+    console.log(
+      `Checking ${product.name}: "${productCollection}" === "${selected}" = ${matches}`,
+    );
     return matches;
   });
 
@@ -53,11 +56,15 @@ export default function VersionsSection({ products }: VersionsSectionProps) {
   const isAndrofud = selectedCollection === "androfud";
 
   return (
-    <section className={`py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b ${isAndrofud ? "from-[#000000] to-[#000000]" : "from-[#0c2d3d] to-[#1e1b4b]"}`}>
+    <section
+      className={`py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b ${isAndrofud ? "from-[#000000] to-[#000000]" : "from-[#0c2d3d] to-[#1e1b4b]"}`}
+    >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 space-y-6">
           <h2 className="text-4xl md:text-5xl font-bold text-white">
-            <span className={`block bg-gradient-to-r ${isAndrofud ? "from-[#0099ff] to-[#000000]" : "from-[#0099ff] to-[#8b5cf6]"} bg-clip-text text-transparent`}>
+            <span
+              className={`block bg-gradient-to-r ${isAndrofud ? "from-[#0099ff] to-[#000000]" : "from-[#0099ff] to-[#8b5cf6]"} bg-clip-text text-transparent`}
+            >
               Versions
             </span>
           </h2>
@@ -91,7 +98,9 @@ export default function VersionsSection({ products }: VersionsSectionProps) {
         {filteredProducts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {filteredProducts.map((product) => {
-              const images = Array.isArray(product.images) ? product.images : [];
+              const images = Array.isArray(product.images)
+                ? product.images
+                : [];
               const imageUrl =
                 images[0] ||
                 `${env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/medias/public/placeholder.jpg`;
@@ -118,14 +127,22 @@ export default function VersionsSection({ products }: VersionsSectionProps) {
 
                   {/* Content */}
                   <div className="p-6 flex-1 flex flex-col justify-between">
-                    <h3 className={`text-lg font-bold transition-colors ${isAndrofud ? "text-[#0099ff]-300 group-hover:text-[#0099ff]-100" : "text-[#67e8f9]-300 group-hover:text-[#67e8f9]-100"}`}>
+                    <h3
+                      className={`text-lg font-bold transition-colors ${isAndrofud ? "text-[#0099ff]-300 group-hover:text-[#0099ff]-100" : "text-[#67e8f9]-300 group-hover:text-[#67e8f9]-100"}`}
+                    >
                       {product.name}
                     </h3>
-                    <div className={`flex items-center justify-between pt-4 border-t ${isAndrofud ? "border-[#0099ff]-500/30" : "border-[#0099ff]-500/30"}`}>
-                      <span className={`text-sm ${isAndrofud ? "text-[#0099ff]-300" : "text-[#67e8f9]-300"}`}>
+                    <div
+                      className={`flex items-center justify-between pt-4 border-t ${isAndrofud ? "border-[#0099ff]-500/30" : "border-[#0099ff]-500/30"}`}
+                    >
+                      <span
+                        className={`text-sm ${isAndrofud ? "text-[#0099ff]-300" : "text-[#67e8f9]-300"}`}
+                      >
                         {product.collections?.label || "No Collection"}
                       </span>
-                      <span className={`text-xl font-bold ${isAndrofud ? "text-[#0099ff]-300" : "text-[#67e8f9]-300"}`}>
+                      <span
+                        className={`text-xl font-bold ${isAndrofud ? "text-[#0099ff]-300" : "text-[#67e8f9]-300"}`}
+                      >
                         ${product.price}
                       </span>
                     </div>
@@ -136,7 +153,9 @@ export default function VersionsSection({ products }: VersionsSectionProps) {
           </div>
         ) : (
           <div className="text-center py-12">
-            <p className={`text-lg ${isAndrofud ? "text-[#0099ff]-300" : "text-[#67e8f9]-300"}`}>
+            <p
+              className={`text-lg ${isAndrofud ? "text-[#0099ff]-300" : "text-[#67e8f9]-300"}`}
+            >
               No products found for {selectedCollection}
             </p>
           </div>

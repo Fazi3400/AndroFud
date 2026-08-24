@@ -69,4 +69,3 @@ function ImagePreviewCard({ mediaId }: ImagePreviewCard) {
 }
 
 export default ImagePreviewCard;
-

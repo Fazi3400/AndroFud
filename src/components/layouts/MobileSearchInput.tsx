@@ -27,4 +27,3 @@ function MobileSearchInput({}: Props) {
 }
 
 export default MobileSearchInput;
-

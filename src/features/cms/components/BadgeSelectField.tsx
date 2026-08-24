@@ -34,7 +34,9 @@ function BadgeSelectField({}: BadgeSelectFieldProps) {
       name="badge"
       render={({ field }) => (
         <FormItem>
-          <FormLabel className="text-[#a855f7] text-sm font-medium">Badge</FormLabel>
+          <FormLabel className="text-[#a855f7] text-sm font-medium">
+            Badge
+          </FormLabel>
           <Select
             onValueChange={field.onChange}
             defaultValue={field.value || undefined}
@@ -48,9 +50,24 @@ function BadgeSelectField({}: BadgeSelectFieldProps) {
             <SelectContent className="bg-[#0d2818] border-[#0099ff]">
               <SelectGroup>
                 <SelectLabel className="text-[#67e8f9]">Badge</SelectLabel>
-                <SelectItem value="new_product" className="text-white focus:bg-[#1a3a2e]">New Product</SelectItem>
-                <SelectItem value="best_sale" className="text-white focus:bg-[#1a3a2e]">Best Sale</SelectItem>
-                <SelectItem value="featured" className="text-white focus:bg-[#1a3a2e]">Featured</SelectItem>
+                <SelectItem
+                  value="new_product"
+                  className="text-white focus:bg-[#1a3a2e]"
+                >
+                  New Product
+                </SelectItem>
+                <SelectItem
+                  value="best_sale"
+                  className="text-white focus:bg-[#1a3a2e]"
+                >
+                  Best Sale
+                </SelectItem>
+                <SelectItem
+                  value="featured"
+                  className="text-white focus:bg-[#1a3a2e]"
+                >
+                  Featured
+                </SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>

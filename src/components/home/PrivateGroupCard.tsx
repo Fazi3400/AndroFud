@@ -27,9 +27,7 @@ export function PrivateGroupCard() {
           </h3>
 
           {/* Price */}
-          <div className="text-3xl font-black text-purple-300">
-            Free
-          </div>
+          <div className="text-3xl font-black text-purple-300">Free</div>
 
           {/* Description */}
           <p className="text-purple-200/85 text-sm leading-relaxed">
@@ -46,8 +44,7 @@ export function PrivateGroupCard() {
               <span className="text-purple-400">✓</span> Paid tools & updates
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-purple-400">✓</span> Advance hacking
-              courses
+              <span className="text-purple-400">✓</span> Advance hacking courses
             </div>
           </div>
 

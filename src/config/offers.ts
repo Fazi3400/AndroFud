@@ -23,13 +23,13 @@ export const offersConfig = {
   // Time-based boosters (applied ON TOP of base discount)
   timeBoosters: {
     // Day of week boosts
-    MONDAY: { boost: 5, label: "Monday Madness" },      // +5% extra
+    MONDAY: { boost: 5, label: "Monday Madness" }, // +5% extra
     TUESDAY: { boost: 0, label: "" },
-    WEDNESDAY: { boost: 10, label: "Mid-Week Mega" },   // +10% extra
+    WEDNESDAY: { boost: 10, label: "Mid-Week Mega" }, // +10% extra
     THURSDAY: { boost: 0, label: "" },
-    FRIDAY: { boost: 15, label: "Friday Flash" },       // +15% extra
-    SATURDAY: { boost: 20, label: "Weekend Blast" },    // +20% extra
-    SUNDAY: { boost: 20, label: "Sunday Special" },     // +20% extra
+    FRIDAY: { boost: 15, label: "Friday Flash" }, // +15% extra
+    SATURDAY: { boost: 20, label: "Weekend Blast" }, // +20% extra
+    SUNDAY: { boost: 20, label: "Sunday Special" }, // +20% extra
 
     // Holiday/Special Events (uncomment to enable)
     // CHRISTMAS: { boost: 50, label: "🎄 Christmas Sale" },
@@ -57,19 +57,37 @@ export const offersConfig = {
 };
 
 // Helper function to get discount for a product
-export function getProductDiscount(productName: string): { discount: number; label: string; timeBoost: string } {
-  const baseOffer = offersConfig.products[productName as keyof typeof offersConfig.products];
+export function getProductDiscount(productName: string): {
+  discount: number;
+  label: string;
+  timeBoost: string;
+} {
+  const baseOffer =
+    offersConfig.products[productName as keyof typeof offersConfig.products];
 
   if (!baseOffer) {
     return { discount: 0, label: "", timeBoost: "" };
   }
 
   // Get current day of week
-  const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+  const days = [
+    "SUNDAY",
+    "MONDAY",
+    "TUESDAY",
+    "WEDNESDAY",
+    "THURSDAY",
+    "FRIDAY",
+    "SATURDAY",
+  ];
   const today = new Date();
-  const dayOfWeek = days[today.getDay()] as keyof typeof offersConfig.timeBoosters;
+  const dayOfWeek = days[
+    today.getDay()
+  ] as keyof typeof offersConfig.timeBoosters;
 
-  const timeBooster = offersConfig.timeBoosters[dayOfWeek] || { boost: 0, label: "" };
+  const timeBooster = offersConfig.timeBoosters[dayOfWeek] || {
+    boost: 0,
+    label: "",
+  };
 
   // Check seasonal offers
   let seasonalBoost = 0;
@@ -85,7 +103,7 @@ export function getProductDiscount(productName: string): { discount: number; lab
   // Calculate total discount (max 70% to keep prices reasonable)
   const totalDiscount = Math.min(
     baseOffer.baseDiscount + timeBooster.boost + seasonalBoost,
-    70
+    70,
   );
 
   return {
@@ -98,9 +116,20 @@ export function getProductDiscount(productName: string): { discount: number; lab
 // Get all active discounts for display
 export function getActiveOffers() {
   const today = new Date();
-  const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+  const days = [
+    "SUNDAY",
+    "MONDAY",
+    "TUESDAY",
+    "WEDNESDAY",
+    "THURSDAY",
+    "FRIDAY",
+    "SATURDAY",
+  ];
   const dayOfWeek = days[today.getDay()];
-  const timeBooster = offersConfig.timeBoosters[dayOfWeek as keyof typeof offersConfig.timeBoosters];
+  const timeBooster =
+    offersConfig.timeBoosters[
+      dayOfWeek as keyof typeof offersConfig.timeBoosters
+    ];
 
   return {
     dayOfWeek,

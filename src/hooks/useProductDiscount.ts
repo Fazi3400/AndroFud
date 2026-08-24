@@ -37,8 +37,7 @@ export function useProductDiscount() {
     // Exact match only
     const productOffer = offersData.productOffers?.find(
       (offer: any) =>
-        offer?.productName &&
-        offer.productName.toLowerCase() === nameLower,
+        offer?.productName && offer.productName.toLowerCase() === nameLower,
     );
 
     if (!productOffer) {

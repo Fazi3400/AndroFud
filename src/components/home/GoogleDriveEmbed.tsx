@@ -6,9 +6,16 @@ interface GoogleDriveEmbedProps {
   className?: string;
 }
 
-export function GoogleDriveEmbed({ fileId, title = "Video", className = "" }: GoogleDriveEmbedProps) {
+export function GoogleDriveEmbed({
+  fileId,
+  title = "Video",
+  className = "",
+}: GoogleDriveEmbedProps) {
   return (
-    <div className={`relative w-full bg-black overflow-hidden rounded-lg ${className}`} style={{ aspectRatio: "16/9" }}>
+    <div
+      className={`relative w-full bg-black overflow-hidden rounded-lg ${className}`}
+      style={{ aspectRatio: "16/9" }}
+    >
       <video
         className="w-full h-full object-cover"
         controls

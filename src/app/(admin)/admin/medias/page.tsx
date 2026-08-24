@@ -18,4 +18,3 @@ async function MediasPage({}: Props) {
 }
 
 export default MediasPage;
-

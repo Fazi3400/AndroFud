@@ -119,7 +119,9 @@ export default function OffersAdminPage() {
     setSaving(true);
     try {
       // Find the exact database product that matches the selected product
-      const selectedProduct = allProducts.find((p: DbProduct) => p.name === newProduct.productName);
+      const selectedProduct = allProducts.find(
+        (p: DbProduct) => p.name === newProduct.productName,
+      );
 
       if (!selectedProduct) {
         setMessage("❌ Product not found in database");
@@ -178,8 +180,12 @@ export default function OffersAdminPage() {
     <div className="space-y-8 p-8">
       {/* Header */}
       <div>
-        <h1 className="text-4xl font-bold text-[#0099ff] mb-2">💰 Manage Offers</h1>
-        <p className="text-[#67e8f9]">Configure product discounts and day-based boosters</p>
+        <h1 className="text-4xl font-bold text-[#0099ff] mb-2">
+          💰 Manage Offers
+        </h1>
+        <p className="text-[#67e8f9]">
+          Configure product discounts and day-based boosters
+        </p>
       </div>
 
       {/* Message */}
@@ -196,17 +202,24 @@ export default function OffersAdminPage() {
           {/* Product Offers */}
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-bold text-[#00f5ff] mb-4">🏷️ Product Discounts</h2>
+              <h2 className="text-2xl font-bold text-[#00f5ff] mb-4">
+                🏷️ Product Discounts
+              </h2>
 
               {/* Add Form */}
               <div className="bg-slate-900/50 rounded-xl p-6 border border-[#0099ff]/20 mb-6">
                 <div className="space-y-3">
                   <div>
-                    <label className="text-[#67e8f9] text-sm mb-2 block">Select Product</label>
+                    <label className="text-[#67e8f9] text-sm mb-2 block">
+                      Select Product
+                    </label>
                     <select
                       value={newProduct.productName}
                       onChange={(e) =>
-                        setNewProduct({ ...newProduct, productName: e.target.value })
+                        setNewProduct({
+                          ...newProduct,
+                          productName: e.target.value,
+                        })
                       }
                       className="w-full px-4 py-2 bg-slate-800 border border-[#0099ff]/50 rounded-lg text-white focus:border-[#00f5ff] outline-none"
                     >
@@ -220,7 +233,9 @@ export default function OffersAdminPage() {
                   </div>
                   <div className="flex gap-3">
                     <div className="flex-1">
-                      <label className="text-[#67e8f9] text-sm">Discount %</label>
+                      <label className="text-[#67e8f9] text-sm">
+                        Discount %
+                      </label>
                       <input
                         type="number"
                         min="0"
@@ -254,7 +269,9 @@ export default function OffersAdminPage() {
                     className="bg-slate-900/30 rounded-lg p-4 border border-[#0099ff]/20 flex items-center justify-between hover:border-[#0099ff]/50 transition-all"
                   >
                     <div>
-                      <p className="text-white font-semibold">{offer.productName}</p>
+                      <p className="text-white font-semibold">
+                        {offer.productName}
+                      </p>
                       <p className="text-[#67e8f9] text-sm">{offer.label}</p>
                     </div>
                     <div className="flex items-center gap-3">
@@ -264,7 +281,10 @@ export default function OffersAdminPage() {
                         max="100"
                         value={offer.baseDiscount}
                         onChange={(e) =>
-                          updateProductOffer(offer.productName, parseInt(e.target.value))
+                          updateProductOffer(
+                            offer.productName,
+                            parseInt(e.target.value),
+                          )
                         }
                         className="w-20 px-3 py-2 bg-slate-800 border border-[#0099ff]/50 rounded text-white focus:border-[#00f5ff] outline-none"
                       />
@@ -283,7 +303,9 @@ export default function OffersAdminPage() {
 
           {/* Day Boosts */}
           <div>
-            <h2 className="text-2xl font-bold text-purple-300 mb-4">📅 Day-Based Boosts</h2>
+            <h2 className="text-2xl font-bold text-purple-300 mb-4">
+              📅 Day-Based Boosts
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {dayOffers.map((offer) => (
                 <div
@@ -298,10 +320,14 @@ export default function OffersAdminPage() {
                       min="0"
                       max="100"
                       value={offer.boost}
-                      onChange={(e) => updateDayOffer(offer.day, parseInt(e.target.value))}
+                      onChange={(e) =>
+                        updateDayOffer(offer.day, parseInt(e.target.value))
+                      }
                       className="w-full px-3 py-2 bg-slate-800 border border-purple-500/50 rounded text-white focus:border-purple-400 outline-none"
                     />
-                    <p className="text-purple-200 text-xs mt-2">{offer.label || "—"}</p>
+                    <p className="text-purple-200 text-xs mt-2">
+                      {offer.label || "—"}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -311,7 +337,9 @@ export default function OffersAdminPage() {
           {/* Info */}
           <div className="space-y-6">
             <div className="bg-cyan-900/20 rounded-lg p-4 border border-cyan-500/30 text-cyan-100 text-sm space-y-2">
-              <p><strong>ℹ️ How it works:</strong></p>
+              <p>
+                <strong>ℹ️ How it works:</strong>
+              </p>
               <ul className="space-y-1 text-xs">
                 <li>• Base Discount: Fixed discount per product</li>
                 <li>• Day Boost: Extra % added on specific days</li>
@@ -322,13 +350,16 @@ export default function OffersAdminPage() {
 
             {/* Available Products Info */}
             <div className="bg-blue-900/20 rounded-lg p-4 border border-blue-500/30 text-blue-100 text-sm space-y-3">
-              <p><strong>📦 Available Products in Database:</strong></p>
+              <p>
+                <strong>📦 Available Products in Database:</strong>
+              </p>
               <div className="max-h-48 overflow-y-auto bg-slate-900/50 rounded p-3 border border-blue-500/20">
                 {allProducts.length > 0 ? (
                   <ul className="text-xs space-y-1">
                     {allProducts.map((product) => (
                       <li key={product.id} className="text-blue-300">
-                        • <span className="font-semibold">{product.name}</span> (${product.price})
+                        • <span className="font-semibold">{product.name}</span>{" "}
+                        (${product.price})
                       </li>
                     ))}
                   </ul>
@@ -336,7 +367,10 @@ export default function OffersAdminPage() {
                   <p className="text-blue-400 text-xs">No products found</p>
                 )}
               </div>
-              <p className="text-xs text-blue-200">Select any product above to create an offer. The offer will automatically apply to that exact product in the database.</p>
+              <p className="text-xs text-blue-200">
+                Select any product above to create an offer. The offer will
+                automatically apply to that exact product in the database.
+              </p>
             </div>
           </div>
         </>

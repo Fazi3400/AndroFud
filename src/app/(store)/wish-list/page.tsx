@@ -28,4 +28,3 @@ function WishListPage({}: Props) {
 }
 
 export default WishListPage;
-

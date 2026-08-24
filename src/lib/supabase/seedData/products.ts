@@ -8,7 +8,9 @@ const seedProducts = async () => {
   try {
     // Clear old products if needed (optional)
     // await db.delete(schema.products);
-    console.log("✅ Products seeding skipped - use admin panel to add products");
+    console.log(
+      "✅ Products seeding skipped - use admin panel to add products",
+    );
   } catch (err) {
     console.log("Error during products seed", err);
   }

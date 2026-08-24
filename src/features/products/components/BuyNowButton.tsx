@@ -7,8 +7,11 @@ type BuyNowButtonProps = {
 };
 
 function BuyNowButton({ productId }: BuyNowButtonProps) {
-  return <Button type="submit" variant="primary" className="w-full">Buy Now</Button>;
+  return (
+    <Button type="submit" variant="primary" className="w-full">
+      Buy Now
+    </Button>
+  );
 }
 
 export default BuyNowButton;
-

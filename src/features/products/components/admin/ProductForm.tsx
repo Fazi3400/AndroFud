@@ -64,11 +64,7 @@ function ProductFrom({ product }: ProductsFormProps) {
     },
   });
 
-  const {
-    register,
-    control,
-    handleSubmit,
-  } = form;
+  const { register, control, handleSubmit } = form;
 
   const onSubmit = handleSubmit(async (formData: InsertProducts) => {
     startTransition(async () => {
@@ -100,7 +96,8 @@ function ProductFrom({ product }: ProductsFormProps) {
         console.error("Product creation error:", err);
         toast({
           title: "Error",
-          description: err instanceof Error ? err.message : "Failed to save product",
+          description:
+            err instanceof Error ? err.message : "Failed to save product",
           variant: "destructive",
         });
       }
@@ -116,7 +113,9 @@ function ProductFrom({ product }: ProductsFormProps) {
       >
         <div className="grid grid-cols-2 gap-6 max-w-6xl">
           <FormItem>
-            <FormLabel className="text-[#a855f7] text-sm font-medium">Name*</FormLabel>
+            <FormLabel className="text-[#a855f7] text-sm font-medium">
+              Name*
+            </FormLabel>
             <FormControl>
               <Input
                 aria-invalid={!!form.formState.errors.name}
@@ -129,7 +128,9 @@ function ProductFrom({ product }: ProductsFormProps) {
           </FormItem>
 
           <FormItem>
-            <FormLabel className="text-[#a855f7] text-sm font-medium">Slug*</FormLabel>
+            <FormLabel className="text-[#a855f7] text-sm font-medium">
+              Slug*
+            </FormLabel>
             <FormControl>
               <Input
                 defaultValue={product?.slug}
@@ -144,7 +145,9 @@ function ProductFrom({ product }: ProductsFormProps) {
 
           <div className="col-span-2">
             <FormItem>
-              <FormLabel className="text-[#a855f7] text-sm font-medium">Description*</FormLabel>
+              <FormLabel className="text-[#a855f7] text-sm font-medium">
+                Description*
+              </FormLabel>
               <FormControl>
                 <Input
                   defaultValue={product?.description || ""}
@@ -161,7 +164,9 @@ function ProductFrom({ product }: ProductsFormProps) {
           <BadgeSelectField name="badge" label={""} />
 
           <FormItem>
-            <FormLabel className="text-[#a855f7] text-sm font-medium">Rating*</FormLabel>
+            <FormLabel className="text-[#a855f7] text-sm font-medium">
+              Rating*
+            </FormLabel>
             <FormControl>
               <Input
                 defaultValue={product?.rating}
@@ -175,7 +180,9 @@ function ProductFrom({ product }: ProductsFormProps) {
           </FormItem>
 
           <FormItem>
-            <FormLabel className="text-[#a855f7] text-sm font-medium">Price*</FormLabel>
+            <FormLabel className="text-[#a855f7] text-sm font-medium">
+              Price*
+            </FormLabel>
             <FormControl>
               <Input
                 defaultValue={product?.price}
@@ -190,7 +197,9 @@ function ProductFrom({ product }: ProductsFormProps) {
 
           <div className="col-span-2">
             <FormItem>
-              <FormLabel className="text-[#a855f7] text-sm font-medium">Tags</FormLabel>
+              <FormLabel className="text-[#a855f7] text-sm font-medium">
+                Tags
+              </FormLabel>
               <FormControl>
                 <TagsField name={"tags"} defaultValue={product?.tags || []} />
               </FormControl>
@@ -204,7 +213,9 @@ function ProductFrom({ product }: ProductsFormProps) {
               name="featuredImageId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-[#a855f7] text-sm font-medium">Featured Image*</FormLabel>
+                  <FormLabel className="text-[#a855f7] text-sm font-medium">
+                    Featured Image*
+                  </FormLabel>
                   <Suspense>
                     <ImageDialog
                       defaultValue={product?.featuredImageId}
@@ -214,8 +225,8 @@ function ProductFrom({ product }: ProductsFormProps) {
                   </Suspense>
 
                   <FormDescription className="text-[#67e8f9]">
-                    Drag n Drop the image to above section or click the button to
-                    select from Image gallery.
+                    Drag n Drop the image to above section or click the button
+                    to select from Image gallery.
                   </FormDescription>
                   <FormMessage className="text-red-400" />
                 </FormItem>
@@ -238,7 +249,13 @@ function ProductFrom({ product }: ProductsFormProps) {
               />
             )}
           </Button>
-          <Link href="/admin/products" className={buttonVariants({ className: "rounded-full bg-gray-600 hover:bg-gray-700 text-white px-8" })}>
+          <Link
+            href="/admin/products"
+            className={buttonVariants({
+              className:
+                "rounded-full bg-gray-600 hover:bg-gray-700 text-white px-8",
+            })}
+          >
             Cancel
           </Link>
         </div>

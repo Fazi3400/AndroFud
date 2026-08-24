@@ -17,6 +17,9 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error("Error:", error);
-    return NextResponse.json({ error: "Failed to cleanup products" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to cleanup products" },
+      { status: 500 },
+    );
   }
 }

@@ -87,4 +87,3 @@ export const ImageGridFragment = gql(/* GraphQL */ `
     alt
   }
 `);
-

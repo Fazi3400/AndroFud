@@ -35,4 +35,3 @@ function OrderProgress({}: Props) {
 }
 
 export default OrderProgress;
-

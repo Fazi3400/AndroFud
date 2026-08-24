@@ -25,7 +25,9 @@ interface SettingsLayoutProps {
   children: React.ReactNode;
 }
 
-export default async function SettingsLayout({ children }: SettingsLayoutProps) {
+export default async function SettingsLayout({
+  children,
+}: SettingsLayoutProps) {
   const cookieStore = await cookies();
   const supabase = await createClient({ cookieStore });
 
@@ -42,7 +44,9 @@ export default async function SettingsLayout({ children }: SettingsLayoutProps) 
     <>
       <div className="hidden space-y-6 p-10 pb-16 md:block bg-black min-h-screen">
         <div className="space-y-0.5">
-          <h2 className="text-2xl font-bold tracking-tight text-[#a855f7]">Settings</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-[#a855f7]">
+            Settings
+          </h2>
           <p className="text-[#67e8f9]">
             Manage your account settings and set e-mail preferences.
           </p>

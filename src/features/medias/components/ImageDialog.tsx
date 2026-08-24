@@ -55,7 +55,9 @@ function ImageDialog({
 
         <DialogContent className="max-w-[1080px] min-h-full md:min-h-[480px] bg-black border-[#0099ff]">
           <DialogHeader>
-            <DialogTitle className="mb-5 text-[#a855f7]">Image Gallery</DialogTitle>
+            <DialogTitle className="mb-5 text-[#a855f7]">
+              Image Gallery
+            </DialogTitle>
             <Suspense>
               <UploadMediaContainer
                 onClickItemsHandler={onClickHandler}

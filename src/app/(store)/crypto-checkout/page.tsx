@@ -32,8 +32,13 @@ export default function CryptoCheckoutPage() {
           if (checkoutProductStr) {
             try {
               const checkoutProduct = JSON.parse(checkoutProductStr);
-              console.log("Using product from sessionStorage:", checkoutProduct);
-              cartItems[checkoutProduct.id] = { quantity: checkoutProduct.quantity || 1 };
+              console.log(
+                "Using product from sessionStorage:",
+                checkoutProduct,
+              );
+              cartItems[checkoutProduct.id] = {
+                quantity: checkoutProduct.quantity || 1,
+              };
               fromSessionStorage = true;
               sessionStorage.removeItem("checkoutProduct");
             } catch (e) {
@@ -57,7 +62,12 @@ export default function CryptoCheckoutPage() {
           }
         }
 
-        console.log("Crypto checkout - cart items:", cartItems, "User:", !!user);
+        console.log(
+          "Crypto checkout - cart items:",
+          cartItems,
+          "User:",
+          !!user,
+        );
 
         if (Object.keys(cartItems).length === 0) {
           console.warn("No cart items, redirecting to cart");
@@ -80,7 +90,9 @@ export default function CryptoCheckoutPage() {
 
         if (response.status === 401) {
           console.warn("❌ Unauthorized - redirecting to login");
-          router.push(`/sign-in?redirectTo=${encodeURIComponent('/crypto-checkout')}`);
+          router.push(
+            `/sign-in?redirectTo=${encodeURIComponent("/crypto-checkout")}`,
+          );
           return;
         }
 
@@ -88,7 +100,10 @@ export default function CryptoCheckoutPage() {
           throw new Error(data.error || `Checkout failed: ${response.status}`);
         }
 
-        console.log("✅ Payment data received, redirecting to NOWPayments...", data);
+        console.log(
+          "✅ Payment data received, redirecting to NOWPayments...",
+          data,
+        );
 
         // Clear guest cart before redirecting
         if (!user) {
@@ -97,7 +112,10 @@ export default function CryptoCheckoutPage() {
 
         // Redirect to NOWPayments hosted payment page
         if (data.hostedPaymentUrl) {
-          console.log("✅ Redirecting to NOWPayments hosted page:", data.hostedPaymentUrl);
+          console.log(
+            "✅ Redirecting to NOWPayments hosted page:",
+            data.hostedPaymentUrl,
+          );
           window.location.href = data.hostedPaymentUrl;
         } else {
           throw new Error("No payment URL received from NOWPayments");

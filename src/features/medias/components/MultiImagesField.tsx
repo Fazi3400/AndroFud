@@ -19,4 +19,3 @@ function MultiImagesField({}: Props) {
 }
 
 export default MultiImagesField;
-

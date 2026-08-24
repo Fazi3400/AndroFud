@@ -28,4 +28,3 @@ export const TagsField: FC<TagsFieldProps> = ({ name, defaultValue }) => {
 };
 
 export default TagsField;
-

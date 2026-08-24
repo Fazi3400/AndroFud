@@ -8,4 +8,3 @@ it("should render Component Section Header", () => {
   expect(screen.getByText("Section Header")).toBeInTheDocument();
   expect(screen.getByText("section description.")).toBeInTheDocument();
 });
-

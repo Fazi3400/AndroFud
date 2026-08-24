@@ -221,4 +221,3 @@ function FilterSheet({ collections }: Props) {
 }
 
 export default FilterSheet;
-

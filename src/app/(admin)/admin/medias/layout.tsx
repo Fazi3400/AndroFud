@@ -15,4 +15,3 @@ function layout({ mediaModal, children }: Props) {
 }
 
 export default layout;
-

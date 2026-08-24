@@ -124,4 +124,3 @@ export function PaginationTable<TData, TValue>({
 }
 
 export default PaginationTable;
-

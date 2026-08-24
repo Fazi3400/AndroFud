@@ -42,4 +42,3 @@ async function ProductsPage({}: ProductsPageProps) {
 }
 
 export default ProductsPage;
-

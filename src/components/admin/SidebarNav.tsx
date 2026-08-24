@@ -53,4 +53,3 @@ export function SidebarNav({ items }: SidebarNavProps) {
     </div>
   );
 }
-

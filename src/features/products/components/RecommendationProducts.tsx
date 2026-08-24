@@ -56,4 +56,3 @@ function RecommendationProducts({}: RecommendationProductsProps) {
 }
 
 export default RecommendationProducts;
-

@@ -165,4 +165,3 @@ export const MediasPageContentQuery = gql(/* GraphQL */ `
     }
   }
 `);
-

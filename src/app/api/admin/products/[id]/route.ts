@@ -13,8 +13,9 @@ async function checkAdminAuth(request: NextRequest) {
     }
 
     // Get auth cookie from request
-    const authCookie = request.cookies.get("sb-auth-token")?.value ||
-                       request.cookies.get("sb-prwidbcixjusoqyajtav-auth-token")?.value;
+    const authCookie =
+      request.cookies.get("sb-auth-token")?.value ||
+      request.cookies.get("sb-prwidbcixjusoqyajtav-auth-token")?.value;
 
     if (!authCookie) {
       return null;
@@ -28,12 +29,14 @@ async function checkAdminAuth(request: NextRequest) {
         auth: {
           persistSession: false,
         },
-      }
+      },
     );
 
     // Parse the auth cookie to get user ID
     try {
-      const { data: { session } } = JSON.parse(authCookie);
+      const {
+        data: { session },
+      } = JSON.parse(authCookie);
       if (!session?.user?.id) {
         return null;
       }
@@ -56,12 +59,15 @@ async function checkAdminAuth(request: NextRequest) {
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } },
 ) {
   try {
     const user = await checkAdminAuth(request);
     if (!user) {
-      return NextResponse.json({ error: "Unauthorized - Admin access required" }, { status: 401 });
+      return NextResponse.json(
+        { error: "Unauthorized - Admin access required" },
+        { status: 401 },
+      );
     }
 
     const { id } = params;
@@ -90,18 +96,24 @@ export async function PUT(
     return NextResponse.json(result[0]);
   } catch (error) {
     console.error("Error:", error);
-    return NextResponse.json({ error: "Failed to update product" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to update product" },
+      { status: 500 },
+    );
   }
 }
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } },
 ) {
   try {
     const user = await checkAdminAuth(request);
     if (!user) {
-      return NextResponse.json({ error: "Unauthorized - Admin access required" }, { status: 401 });
+      return NextResponse.json(
+        { error: "Unauthorized - Admin access required" },
+        { status: 401 },
+      );
     }
 
     const { id } = params;
@@ -118,6 +130,9 @@ export async function DELETE(
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Error:", error);
-    return NextResponse.json({ error: "Failed to delete product" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to delete product" },
+      { status: 500 },
+    );
   }
 }

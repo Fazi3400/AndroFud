@@ -49,7 +49,7 @@ export const deleteProductAction = async (productId: string) => {
 
     if (ordersWithProduct && ordersWithProduct.length > 0) {
       throw new Error(
-        `Cannot delete product. It has ${ordersWithProduct.length} associated order(s). Please contact support to remove this product.`
+        `Cannot delete product. It has ${ordersWithProduct.length} associated order(s). Please contact support to remove this product.`,
       );
     }
 
@@ -59,6 +59,10 @@ export const deleteProductAction = async (productId: string) => {
       .returning();
     return result;
   } catch (error) {
-    throw new Error(error instanceof Error ? error.message : `Failed to delete product: ${error}`);
+    throw new Error(
+      error instanceof Error
+        ? error.message
+        : `Failed to delete product: ${error}`,
+    );
   }
 };

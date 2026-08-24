@@ -1,5 +1,8 @@
 ﻿import type { CartItems } from "@/features/carts";
-import { createNOWPayment, getMinimumPaymentAmount } from "@/lib/payments/nowPayments";
+import {
+  createNOWPayment,
+  getMinimumPaymentAmount,
+} from "@/lib/payments/nowPayments";
 import { createLemonSqueezyCheckout } from "@/lib/payments/lemonSqueezy";
 import db from "@/lib/supabase/db";
 import { orders } from "@/lib/supabase/schema";
@@ -28,10 +31,7 @@ export async function POST(request: Request) {
   const supabase = createRouteHandlerClient({ cookies });
 
   if (!validation.success) {
-    return NextResponse.json(
-      { error: "Invalid data format" },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: "Invalid data format" }, { status: 400 });
   }
 
   try {
@@ -63,19 +63,22 @@ export async function POST(request: Request) {
       .in("id", productIds);
 
     if (productError) {
-      throw new Error(`Failed to fetch product prices: ${productError.message}`);
+      throw new Error(
+        `Failed to fetch product prices: ${productError.message}`,
+      );
     }
 
     // Calculate total amount from actual product prices
     let amount = data.amount || 0;
     if (!amount) {
       if (products && products.length > 0) {
-        amount = Object.entries(data.orderProducts as Record<string, { quantity: number }>)
-          .reduce((sum, [productId, item]) => {
-            const product = products.find((p: any) => p.id === productId);
-            const price = product ? parseFloat(product.price) : 0;
-            return sum + (item.quantity * price);
-          }, 0);
+        amount = Object.entries(
+          data.orderProducts as Record<string, { quantity: number }>,
+        ).reduce((sum, [productId, item]) => {
+          const product = products.find((p: any) => p.id === productId);
+          const price = product ? parseFloat(product.price) : 0;
+          return sum + item.quantity * price;
+        }, 0);
       }
 
       console.log("💰 Calculated amount from products:", amount);
@@ -103,18 +106,18 @@ export async function POST(request: Request) {
 
     // Insert order lines with actual product prices (reusing fetched products)
     console.log("📝 Creating order lines...");
-    const lineItems = Object.entries(data.orderProducts as Record<string, { quantity: number }>).map(
-      ([productId, item]) => {
-        const product = products?.find((p: any) => p.id === productId);
-        const price = product ? product.price : "0";
-        return {
-          productId,
-          quantity: item.quantity,
-          price,
-          orderId,
-        };
-      },
-    );
+    const lineItems = Object.entries(
+      data.orderProducts as Record<string, { quantity: number }>,
+    ).map(([productId, item]) => {
+      const product = products?.find((p: any) => p.id === productId);
+      const price = product ? product.price : "0";
+      return {
+        productId,
+        quantity: item.quantity,
+        price,
+        orderId,
+      };
+    });
 
     await db.insert(orderLines).values(lineItems);
     console.log("✅ Order lines created");
@@ -135,10 +138,7 @@ export async function POST(request: Request) {
     console.error("❌ Checkout failed:", errorMessage);
     console.error("Stack:", err instanceof Error ? err.stack : "");
 
-    return NextResponse.json(
-      { error: errorMessage },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
 
@@ -181,7 +181,13 @@ async function handleCryptoPayment(
         const minAmount = parseFloat(minData.min_amount);
 
         console.log("💵 Minimum payment required:", minAmount, "USD");
-        console.log("💵 Order amount:", amount, "CAD (~", Math.round(amount * 0.75), "USD)");
+        console.log(
+          "💵 Order amount:",
+          amount,
+          "CAD (~",
+          Math.round(amount * 0.75),
+          "USD)",
+        );
 
         if (amount < minAmount) {
           console.warn("❌ Order amount below minimum for crypto payment");
@@ -238,7 +244,10 @@ async function handleCryptoPayment(
     console.error("❌ Crypto payment error:", errorMessage);
 
     // Check if it's an amount-related error
-    if (errorMessage.includes("AMOUNT_MINIMAL_ERROR") || errorMessage.includes("less than minimal")) {
+    if (
+      errorMessage.includes("AMOUNT_MINIMAL_ERROR") ||
+      errorMessage.includes("less than minimal")
+    ) {
       const match = errorMessage.match(/0\.\d+/);
       const cryptoAmount = match ? match[0] : "unknown";
       return NextResponse.json(

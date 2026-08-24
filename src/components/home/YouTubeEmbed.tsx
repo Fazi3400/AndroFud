@@ -6,9 +6,16 @@ interface YouTubeEmbedProps {
   className?: string;
 }
 
-export function YouTubeEmbed({ videoId, title = "Video", className = "" }: YouTubeEmbedProps) {
+export function YouTubeEmbed({
+  videoId,
+  title = "Video",
+  className = "",
+}: YouTubeEmbedProps) {
   return (
-    <div className={`relative w-full bg-black overflow-hidden rounded-lg ${className}`} style={{ aspectRatio: "16/9" }}>
+    <div
+      className={`relative w-full bg-black overflow-hidden rounded-lg ${className}`}
+      style={{ aspectRatio: "16/9" }}
+    >
       <iframe
         width="100%"
         height="100%"

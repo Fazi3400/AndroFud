@@ -8,4 +8,3 @@ function AddMediaPage({}: Props) {
 }
 
 export default AddMediaPage;
-

@@ -13,12 +13,12 @@ interface WindowsToolsSectionProps {
 }
 
 const ratNameMapping: { [key: string]: string } = {
-  "S400": "S400 Rat",
-  "XWORM": "Xworm Rat ORG",
-  "WIZORM": "Wizorm Rat 4.5",
-  "CRYSOME": "Crysome Rat",
+  S400: "S400 Rat",
+  XWORM: "Xworm Rat ORG",
+  WIZORM: "Wizorm Rat 4.5",
+  CRYSOME: "Crysome Rat",
   "VENOM RAT": "Venom Rat",
-  "NEPTUNE": "Neptune Rat 5.4",
+  NEPTUNE: "Neptune Rat 5.4",
 };
 
 export function WindowsToolsSection({

@@ -47,4 +47,3 @@ function SortSelection({
 }
 
 export default SortSelection;
-

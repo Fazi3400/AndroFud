@@ -66,7 +66,10 @@ export function SignInForm() {
           // Set admin session in localStorage
           localStorage.setItem("admin_auth", "true");
           localStorage.setItem("admin_email", email);
-          console.log("Admin auth set in localStorage:", localStorage.getItem("admin_auth"));
+          console.log(
+            "Admin auth set in localStorage:",
+            localStorage.getItem("admin_auth"),
+          );
 
           submitTimeoutRef.current = setTimeout(() => {
             console.log("Redirecting to /auth/redirect");
@@ -95,7 +98,8 @@ export function SignInForm() {
 
           // Handle rate limit error
           if (error?.status === 429 || errorMessage.includes("429")) {
-            errorMessage = "Too many login attempts. Please wait a few minutes and try again.";
+            errorMessage =
+              "Too many login attempts. Please wait a few minutes and try again.";
           }
           // Handle invalid credentials
           else if (errorMessage.includes("Invalid login credentials")) {
@@ -135,7 +139,8 @@ export function SignInForm() {
         <form
           className="grid gap-6 space-y-4"
           style={{
-            animation: "floatIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
+            animation:
+              "floatIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
             transformStyle: "preserve-3d",
           }}
           onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}
@@ -185,9 +190,14 @@ export function SignInForm() {
                 type="checkbox"
                 className="w-5 h-5 rounded border-2 border-[#0099ff]/50 bg-[#0a0a0a] cursor-pointer accent-[#00f5ff] focus:outline-none focus:border-[#00f5ff] transition-colors"
               />
-              <span className="text-sm text-[#00f5ff]/70 font-medium group-hover:text-[#00f5ff] transition-colors">Remember me</span>
+              <span className="text-sm text-[#00f5ff]/70 font-medium group-hover:text-[#00f5ff] transition-colors">
+                Remember me
+              </span>
             </label>
-            <Link href="/sign-in/reset-password" className="text-sm text-[#00f5ff] hover:text-[#0099ff] transition-colors font-medium">
+            <Link
+              href="/sign-in/reset-password"
+              className="text-sm text-[#00f5ff] hover:text-[#0099ff] transition-colors font-medium"
+            >
               Forgot password?
             </Link>
           </div>

@@ -4,20 +4,16 @@ import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import SearchResultPage from "./SearchResultPage";
 
-interface SearchProductsInifiteScrollProps {
-}
+interface SearchProductsInifiteScrollProps {}
 
-function SearchProductsInifiteScroll({
-}: SearchProductsInifiteScrollProps) {
+function SearchProductsInifiteScroll({}: SearchProductsInifiteScrollProps) {
   const searchParmas = useSearchParams();
   const varaibles = searchParamsVariablesFactory(searchParmas);
 
   const [pageVariables, setPageVariables] = useState([varaibles]);
 
   useEffect(() => {
-    setPageVariables([
-      searchParamsVariablesFactory(searchParmas),
-    ]);
+    setPageVariables([searchParamsVariablesFactory(searchParmas)]);
   }, [searchParmas]);
 
   const loadMoreHandler = (after: string) => {
@@ -81,13 +77,11 @@ const searchParamsVariablesFactory = (
     search: search ? `%${search.trim()}%` : "%%",
     lower: range && range[0] ? `${range[0]}` : undefined,
     upper: range && range[1] ? `${range[1]}` : undefined,
-    collections: collections && collections.length > 0
-        ? collections
-        : undefined,
+    collections:
+      collections && collections.length > 0 ? collections : undefined,
     orderBy,
     first: 4,
     after: undefined,
   };
   return varaibles;
 };
-

@@ -53,9 +53,7 @@ export function FloatingOfferBadge() {
             <div className="text-xs font-bold text-pink-100 uppercase tracking-widest">
               🎉 MEGA OFFER
             </div>
-            <div className="text-2xl font-black text-white">
-              30% OFF
-            </div>
+            <div className="text-2xl font-black text-white">30% OFF</div>
             <div className="text-xs text-pink-100 font-semibold">
               All Products
             </div>
@@ -69,8 +67,14 @@ export function FloatingOfferBadge() {
           {/* Animated Dots */}
           <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
             <span className="w-1.5 h-1.5 bg-yellow-300 rounded-full animate-bounce"></span>
-            <span className="w-1.5 h-1.5 bg-yellow-300 rounded-full animate-bounce" style={{ animationDelay: "0.1s" }}></span>
-            <span className="w-1.5 h-1.5 bg-yellow-300 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></span>
+            <span
+              className="w-1.5 h-1.5 bg-yellow-300 rounded-full animate-bounce"
+              style={{ animationDelay: "0.1s" }}
+            ></span>
+            <span
+              className="w-1.5 h-1.5 bg-yellow-300 rounded-full animate-bounce"
+              style={{ animationDelay: "0.2s" }}
+            ></span>
           </div>
         </Link>
       </div>

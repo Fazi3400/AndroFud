@@ -11,4 +11,3 @@ function CartSection() {
 }
 
 export default CartSection;
-

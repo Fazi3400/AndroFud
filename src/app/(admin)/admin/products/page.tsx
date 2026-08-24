@@ -20,9 +20,24 @@ interface FormData {
 }
 
 const SECTIONS = {
-  androfud: { label: "🔵 AndroFud", icon: "📱", color: "from-cyan-500 to-blue-500", subsections: ["plans"] },
-  btmob: { label: "🟦 BT MOB", icon: "📡", color: "from-blue-500 to-purple-500", subsections: ["versions"] },
-  windows: { label: "🪟 Windows Tools", icon: "💻", color: "from-green-500 to-emerald-500", subsections: ["rats"] },
+  androfud: {
+    label: "🔵 AndroFud",
+    icon: "📱",
+    color: "from-cyan-500 to-blue-500",
+    subsections: ["plans"],
+  },
+  btmob: {
+    label: "🟦 BT MOB",
+    icon: "📡",
+    color: "from-blue-500 to-purple-500",
+    subsections: ["versions"],
+  },
+  windows: {
+    label: "🪟 Windows Tools",
+    icon: "💻",
+    color: "from-green-500 to-emerald-500",
+    subsections: ["rats"],
+  },
 };
 
 export default function ProductsAdminPage() {
@@ -30,7 +45,9 @@ export default function ProductsAdminPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
-  const [selectedSection, setSelectedSection] = useState<"androfud" | "btmob" | "windows">("androfud");
+  const [selectedSection, setSelectedSection] = useState<
+    "androfud" | "btmob" | "windows"
+  >("androfud");
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -40,7 +57,9 @@ export default function ProductsAdminPage() {
     subsection: "plans",
   });
 
-  useEffect(() => { fetchProducts(); }, []);
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   const fetchProducts = async () => {
     try {
@@ -63,7 +82,9 @@ export default function ProductsAdminPage() {
     setSaving(true);
     try {
       const method = editingId ? "PUT" : "POST";
-      const url = editingId ? `/api/admin/products/${editingId}` : "/api/admin/products";
+      const url = editingId
+        ? `/api/admin/products/${editingId}`
+        : "/api/admin/products";
       const response = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
@@ -78,7 +99,13 @@ export default function ProductsAdminPage() {
       if (response.ok) {
         setMessage(editingId ? "✅ Updated!" : "✅ Added!");
         setTimeout(() => setMessage(""), 2000);
-        setFormData({ name: "", price: 0, description: "", section: "androfud", subsection: "plans" });
+        setFormData({
+          name: "",
+          price: 0,
+          description: "",
+          section: "androfud",
+          subsection: "plans",
+        });
         setEditingId(null);
         fetchProducts();
       }
@@ -91,7 +118,13 @@ export default function ProductsAdminPage() {
 
   const handleEdit = (product: Product) => {
     setEditingId(product.id);
-    setFormData({ name: product.name, price: product.price, description: product.description || "", section: product.section as any, subsection: product.subsection });
+    setFormData({
+      name: product.name,
+      price: product.price,
+      description: product.description || "",
+      section: product.section as any,
+      subsection: product.subsection,
+    });
     setSelectedSection(product.section as any);
   };
 
@@ -105,7 +138,9 @@ export default function ProductsAdminPage() {
     }
   };
 
-  const filteredProducts = products.filter((p) => p.section === selectedSection);
+  const filteredProducts = products.filter(
+    (p) => p.section === selectedSection,
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900/20 to-slate-900 p-8">
@@ -117,7 +152,10 @@ export default function ProductsAdminPage() {
             <h1 className="text-5xl font-black bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">
               Product Management
             </h1>
-            <p className="text-cyan-300/70 text-lg">Manage products for all sections - Only displayed products appear on website</p>
+            <p className="text-cyan-300/70 text-lg">
+              Manage products for all sections - Only displayed products appear
+              on website
+            </p>
           </div>
         </div>
         <div className="h-1 w-32 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"></div>
@@ -147,44 +185,63 @@ export default function ProductsAdminPage() {
               <div className="space-y-4">
                 {/* Section */}
                 <div>
-                  <label className="block text-cyan-300 text-sm font-bold mb-2">Section</label>
+                  <label className="block text-cyan-300 text-sm font-bold mb-2">
+                    Section
+                  </label>
                   <select
                     value={formData.section}
                     onChange={(e) => {
                       const s = e.target.value as any;
-                      setFormData({ ...formData, section: s, subsection: SECTIONS[s]?.subsections[0] || "" });
+                      setFormData({
+                        ...formData,
+                        section: s,
+                        subsection: SECTIONS[s]?.subsections[0] || "",
+                      });
                       setSelectedSection(s);
                     }}
                     className="w-full px-4 py-3 bg-slate-700/50 border-2 border-cyan-500/30 rounded-lg text-white font-semibold focus:border-cyan-400 outline-none transition-all"
                   >
                     <option value="">Choose Section</option>
                     {Object.entries(SECTIONS).map(([k, v]) => (
-                      <option key={k} value={k}>{v.label}</option>
+                      <option key={k} value={k}>
+                        {v.label}
+                      </option>
                     ))}
                   </select>
                 </div>
 
                 {/* Name */}
                 <div>
-                  <label className="block text-cyan-300 text-sm font-bold mb-2">Product Name</label>
+                  <label className="block text-cyan-300 text-sm font-bold mb-2">
+                    Product Name
+                  </label>
                   <input
                     type="text"
                     placeholder="e.g., Lifetime, v4.6.1, S400"
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
                     className="w-full px-4 py-3 bg-slate-700/50 border-2 border-cyan-500/30 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 outline-none transition-all"
                   />
                 </div>
 
                 {/* Price */}
                 <div>
-                  <label className="block text-cyan-300 text-sm font-bold mb-2">Price ($)</label>
+                  <label className="block text-cyan-300 text-sm font-bold mb-2">
+                    Price ($)
+                  </label>
                   <input
                     type="number"
                     placeholder="0"
                     min="0"
                     value={formData.price}
-                    onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) || 0 })}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        price: parseFloat(e.target.value) || 0,
+                      })
+                    }
                     className="w-full px-4 py-3 bg-slate-700/50 border-2 border-cyan-500/30 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 outline-none transition-all"
                   />
                 </div>
@@ -195,7 +252,11 @@ export default function ProductsAdminPage() {
                   disabled={saving || !formData.section}
                   className="w-full px-6 py-3 mt-6 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-bold rounded-lg transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-cyan-500/50"
                 >
-                  {saving ? "Processing..." : editingId ? "Update Product" : "Add Product"}
+                  {saving
+                    ? "Processing..."
+                    : editingId
+                      ? "Update Product"
+                      : "Add Product"}
                 </button>
               </div>
             </div>
@@ -241,11 +302,17 @@ export default function ProductsAdminPage() {
                   >
                     <div className="flex justify-between items-start mb-4">
                       <div>
-                        <h3 className="text-lg font-bold text-cyan-300 mb-1">{product.name}</h3>
-                        <p className="text-cyan-400/60 text-sm">{product.subsection}</p>
+                        <h3 className="text-lg font-bold text-cyan-300 mb-1">
+                          {product.name}
+                        </h3>
+                        <p className="text-cyan-400/60 text-sm">
+                          {product.subsection}
+                        </p>
                       </div>
                       <div className="text-right">
-                        <p className="text-2xl font-black text-green-400">${product.price}</p>
+                        <p className="text-2xl font-black text-green-400">
+                          ${product.price}
+                        </p>
                       </div>
                     </div>
 
@@ -269,8 +336,12 @@ export default function ProductsAdminPage() {
             ) : (
               <div className="text-center py-16 bg-slate-800/30 rounded-xl border-2 border-dashed border-cyan-500/30">
                 <div className="text-5xl mb-4">📭</div>
-                <p className="text-cyan-300/70 text-lg font-semibold">No products added yet</p>
-                <p className="text-cyan-400/50 mt-2">Add products using the form on the left</p>
+                <p className="text-cyan-300/70 text-lg font-semibold">
+                  No products added yet
+                </p>
+                <p className="text-cyan-400/50 mt-2">
+                  Add products using the form on the left
+                </p>
               </div>
             )}
           </div>

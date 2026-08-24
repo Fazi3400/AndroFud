@@ -65,4 +65,3 @@ export function CalendarDateRangePicker({
 }
 
 export default CalendarDateRangePicker;
-

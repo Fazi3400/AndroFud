@@ -55,4 +55,3 @@ QuantityInput.displayName = "QuantityInput";
 
 export { QuantityInput };
 export default QuantityInput;
-

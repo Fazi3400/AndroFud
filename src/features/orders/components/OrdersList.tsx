@@ -128,4 +128,3 @@ function OrdersList({ orders }: OrdersListProps) {
 }
 
 export default OrdersList;
-

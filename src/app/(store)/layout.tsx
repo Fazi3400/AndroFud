@@ -19,4 +19,3 @@ async function StoreLayout({ children }: Props) {
 }
 
 export default StoreLayout;
-

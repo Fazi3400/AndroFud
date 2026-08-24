@@ -4,7 +4,8 @@ import { useState } from "react";
 
 const ratInfo = {
   "S400 Rat": {
-    description: "S400 Rat is a newly released and highly advanced all-in-one hacking software designed for Windows, offering a combination of RAT (Remote Access Trojan), HVNC (Hidden Virtual Network Computing), and Worm functionalities. This software enables users to discreetly infiltrate and control the PCs and laptops of unsuspecting victims.",
+    description:
+      "S400 Rat is a newly released and highly advanced all-in-one hacking software designed for Windows, offering a combination of RAT (Remote Access Trojan), HVNC (Hidden Virtual Network Computing), and Worm functionalities. This software enables users to discreetly infiltrate and control the PCs and laptops of unsuspecting victims.",
     features: [
       "Remote Access Trojan (RAT)",
       "Hidden Virtual Network Computing (HVNC)",
@@ -20,13 +21,14 @@ const ratInfo = {
       "Antikill & Antidelete",
       "Hidden RDP/VNC",
       "Reverse proxy",
-      "Cryptocurrency stealer"
+      "Cryptocurrency stealer",
     ],
     version: "Latest",
-    status: "Active"
+    status: "Active",
   },
   "Xworm Rat ORG": {
-    description: "XWorm RAT 5.6 is a newly released and highly advanced all-in-one hacking software designed for Windows, offering a combination of RAT (Remote Access Trojan), HVNC (Hidden Virtual Network Computing), and Worm functionalities. This software enables users to discreetly infiltrate and control the PCs and laptops of unsuspecting victims.",
+    description:
+      "XWorm RAT 5.6 is a newly released and highly advanced all-in-one hacking software designed for Windows, offering a combination of RAT (Remote Access Trojan), HVNC (Hidden Virtual Network Computing), and Worm functionalities. This software enables users to discreetly infiltrate and control the PCs and laptops of unsuspecting victims.",
     features: [
       "Full System Control",
       "Credential Theft",
@@ -43,13 +45,14 @@ const ratInfo = {
       "Silent Browser Operations",
       "Bypassing Banking Security",
       "Reverse Proxy",
-      "Data Exfiltration"
+      "Data Exfiltration",
     ],
     version: "5.6",
-    status: "Active"
+    status: "Active",
   },
   "Venom Rat": {
-    description: "Venom Rat 6.03 is a newly released and highly advanced all-in-one hacking software designed for Windows, offering a combination of RAT (Remote Access Trojan), HVNC (Hidden Virtual Network Computing), and Worm functionalities. Equipped to handle high-stakes cyberattacks, ranging from personal data theft to corporate espionage.",
+    description:
+      "Venom Rat 6.03 is a newly released and highly advanced all-in-one hacking software designed for Windows, offering a combination of RAT (Remote Access Trojan), HVNC (Hidden Virtual Network Computing), and Worm functionalities. Equipped to handle high-stakes cyberattacks, ranging from personal data theft to corporate espionage.",
     features: [
       "Full System Control",
       "Credential Theft",
@@ -66,25 +69,40 @@ const ratInfo = {
       "Silent Browser Operations",
       "Bypassing Banking Security",
       "Reverse Proxy",
-      "Data Exfiltration"
+      "Data Exfiltration",
     ],
     version: "6.03",
-    status: "Active"
+    status: "Active",
   },
   "Crysome Rat": {
-    description: "Coming Soon - Advanced cryptographic RAT with stealth capabilities",
-    features: ["Encrypted C2", "Anti-analysis", "Polymorphic", "Rootkit capabilities", "Awaiting detailed specs"],
+    description:
+      "Coming Soon - Advanced cryptographic RAT with stealth capabilities",
+    features: [
+      "Encrypted C2",
+      "Anti-analysis",
+      "Polymorphic",
+      "Rootkit capabilities",
+      "Awaiting detailed specs",
+    ],
     version: "TBD",
-    status: "Coming Soon"
+    status: "Coming Soon",
   },
   "Neptune Rat 5.4": {
-    description: "Coming Soon - Latest Neptune RAT version with enhanced features",
-    features: ["Real-time monitoring", "Voice recording", "GPS tracking", "SMS interception", "Awaiting detailed specs"],
+    description:
+      "Coming Soon - Latest Neptune RAT version with enhanced features",
+    features: [
+      "Real-time monitoring",
+      "Voice recording",
+      "GPS tracking",
+      "SMS interception",
+      "Awaiting detailed specs",
+    ],
     version: "5.4",
-    status: "Coming Soon"
+    status: "Coming Soon",
   },
   "Wizorm Rat 4.5": {
-    description: "WizWorm RAT 4.5 is a newly released and highly advanced all-in-one hacking software designed for Windows, offering a combination of RAT (Remote Access Trojan), HVNC (Hidden Virtual Network Computing), and Worm functionalities. Equipped to handle high-stakes cyberattacks with comprehensive features.",
+    description:
+      "WizWorm RAT 4.5 is a newly released and highly advanced all-in-one hacking software designed for Windows, offering a combination of RAT (Remote Access Trojan), HVNC (Hidden Virtual Network Computing), and Worm functionalities. Equipped to handle high-stakes cyberattacks with comprehensive features.",
     features: [
       "Full System Control",
       "Credential Theft",
@@ -101,14 +119,20 @@ const ratInfo = {
       "Silent Browser Operations",
       "Bypassing Banking Security",
       "Reverse Proxy",
-      "Data Exfiltration"
+      "Data Exfiltration",
     ],
     version: "4.5",
-    status: "Active"
+    status: "Active",
   },
 };
 
-export function WindowsRatsInfoSection({ gradient, textColor }: { gradient: string; textColor: string }) {
+export function WindowsRatsInfoSection({
+  gradient,
+  textColor,
+}: {
+  gradient: string;
+  textColor: string;
+}) {
   const [selectedRat, setSelectedRat] = useState<string | null>(null);
   const rats = Object.keys(ratInfo);
 
@@ -116,7 +140,9 @@ export function WindowsRatsInfoSection({ gradient, textColor }: { gradient: stri
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#001a00] to-[#000000]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 slide-in-up">
-          <h2 className={`text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${gradient} mb-4`}>
+          <h2
+            className={`text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${gradient} mb-4`}
+          >
             Windows Rats
           </h2>
           <p className="text-lg text-[#00ff00]">
@@ -137,8 +163,12 @@ export function WindowsRatsInfoSection({ gradient, textColor }: { gradient: stri
               }`}
               style={{ animationDelay: `${idx * 0.08}s` }}
             >
-              <span className="relative z-10 text-sm font-semibold">◆ {rat}</span>
-              <div className={`absolute inset-0 bg-gradient-to-r ${gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-lg`}></div>
+              <span className="relative z-10 text-sm font-semibold">
+                ◆ {rat}
+              </span>
+              <div
+                className={`absolute inset-0 bg-gradient-to-r ${gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-lg`}
+              ></div>
             </button>
           ))}
         </div>
@@ -172,17 +202,25 @@ export function WindowsRatsInfoSection({ gradient, textColor }: { gradient: stri
 
                 {/* Features */}
                 <div>
-                  <h4 className="text-lg font-bold text-green-300 mb-4">Key Features:</h4>
+                  <h4 className="text-lg font-bold text-green-300 mb-4">
+                    Key Features:
+                  </h4>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                    {ratInfo[selectedRat as keyof typeof ratInfo].features.map((feature, idx) => (
-                      <div
-                        key={idx}
-                        className="flex items-start gap-2 p-3 rounded-lg bg-green-600/15 border border-green-500/40 hover:bg-green-600/25 transition-colors"
-                      >
-                        <span className="text-green-400 font-bold text-lg mt-0.5">◆</span>
-                        <span className="text-green-200 text-sm">{feature}</span>
-                      </div>
-                    ))}
+                    {ratInfo[selectedRat as keyof typeof ratInfo].features.map(
+                      (feature, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-start gap-2 p-3 rounded-lg bg-green-600/15 border border-green-500/40 hover:bg-green-600/25 transition-colors"
+                        >
+                          <span className="text-green-400 font-bold text-lg mt-0.5">
+                            ◆
+                          </span>
+                          <span className="text-green-200 text-sm">
+                            {feature}
+                          </span>
+                        </div>
+                      ),
+                    )}
                   </div>
                 </div>
 

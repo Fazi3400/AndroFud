@@ -45,4 +45,3 @@ function Modal({ header, containerClassName, children }: Props) {
 }
 
 export default Modal;
-

@@ -28,12 +28,20 @@ function MainNavbar({ adminLayout = false }: MainNavbarProps) {
 
   return (
     <>
-      <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
-      <FeedbackModal isOpen={isFeedbackModalOpen} onClose={() => setIsFeedbackModalOpen(false)} />
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
+      <FeedbackModal
+        isOpen={isFeedbackModalOpen}
+        onClose={() => setIsFeedbackModalOpen(false)}
+      />
       <nav className="bg-gradient-to-r from-[#000000]/95 to-[#000000]/95 backdrop-blur-md fixed z-50 w-full border-b border-[#0099ff]/30 shadow-lg shadow-purple-500/10">
         <div
           className={cn(
-            adminLayout ? "mx-auto px-[3rem] max-w-[2500px] py-4" : "container py-4",
+            adminLayout
+              ? "mx-auto px-[3rem] max-w-[2500px] py-4"
+              : "container py-4",
           )}
         >
           <div className="hidden md:flex gap-x-12 justify-between items-center">
@@ -74,12 +82,12 @@ function MainNavbar({ adminLayout = false }: MainNavbarProps) {
                         idx === 0
                           ? "border-cyan-500/50 text-cyan-300 hover:border-cyan-400 hover:text-cyan-200"
                           : idx === 1
-                          ? "border-blue-500/50 text-blue-300 hover:border-blue-400 hover:text-blue-200"
-                          : idx === 2
-                          ? "border-purple-500/50 text-purple-300 hover:border-purple-400 hover:text-purple-200"
-                          : idx === 3
-                          ? "border-green-500/50 text-green-300 hover:border-green-400 hover:text-green-200"
-                          : "border-pink-500/50 text-pink-300 hover:border-pink-400 hover:text-pink-200"
+                            ? "border-blue-500/50 text-blue-300 hover:border-blue-400 hover:text-blue-200"
+                            : idx === 2
+                              ? "border-purple-500/50 text-purple-300 hover:border-purple-400 hover:text-purple-200"
+                              : idx === 3
+                                ? "border-green-500/50 text-green-300 hover:border-green-400 hover:text-green-200"
+                                : "border-pink-500/50 text-pink-300 hover:border-pink-400 hover:text-pink-200"
                       }`}
                     >
                       {/* Animated Background */}
@@ -88,12 +96,12 @@ function MainNavbar({ adminLayout = false }: MainNavbarProps) {
                           idx === 0
                             ? "bg-gradient-to-r from-cyan-600 to-blue-600"
                             : idx === 1
-                            ? "bg-gradient-to-r from-blue-600 to-cyan-600"
-                            : idx === 2
-                            ? "bg-gradient-to-r from-purple-600 to-pink-600"
-                            : idx === 3
-                            ? "bg-gradient-to-r from-green-600 to-emerald-600"
-                            : "bg-gradient-to-r from-pink-600 to-purple-600"
+                              ? "bg-gradient-to-r from-blue-600 to-cyan-600"
+                              : idx === 2
+                                ? "bg-gradient-to-r from-purple-600 to-pink-600"
+                                : idx === 3
+                                  ? "bg-gradient-to-r from-green-600 to-emerald-600"
+                                  : "bg-gradient-to-r from-pink-600 to-purple-600"
                         }`}
                       ></div>
 
@@ -103,12 +111,12 @@ function MainNavbar({ adminLayout = false }: MainNavbarProps) {
                           idx === 0
                             ? "bg-cyan-500/50"
                             : idx === 1
-                            ? "bg-blue-500/50"
-                            : idx === 2
-                            ? "bg-purple-500/50"
-                            : idx === 3
-                            ? "bg-green-500/50"
-                            : "bg-pink-500/50"
+                              ? "bg-blue-500/50"
+                              : idx === 2
+                                ? "bg-purple-500/50"
+                                : idx === 3
+                                  ? "bg-green-500/50"
+                                  : "bg-pink-500/50"
                         }`}
                       ></div>
 
@@ -120,7 +128,7 @@ function MainNavbar({ adminLayout = false }: MainNavbarProps) {
                         </span>
                       </span>
                     </Link>
-                  )
+                  ),
                 )}
 
                 {/* Feedback Button */}
@@ -145,21 +153,23 @@ function MainNavbar({ adminLayout = false }: MainNavbarProps) {
               </div>
             )}
 
+            {/* Right Actions */}
+            <div className="flex gap-x-6 relative items-center flex-shrink-0">
+              <Suspense>
+                <UserNav />
+              </Suspense>
 
-          {/* Right Actions */}
-          <div className="flex gap-x-6 relative items-center flex-shrink-0">
-            <Suspense>
-              <UserNav />
-            </Suspense>
-
-            <Suspense fallback={<CartLink productCount={0} />}>
-              {!adminLayout && <CartNav />}
-            </Suspense>
+              <Suspense fallback={<CartLink productCount={0} />}>
+                {!adminLayout && <CartNav />}
+              </Suspense>
+            </div>
           </div>
-        </div>
 
-        <MobileNavbar adminLayout={adminLayout} onFeedbackClick={() => setIsFeedbackModalOpen(true)} />
-      </div>
+          <MobileNavbar
+            adminLayout={adminLayout}
+            onFeedbackClick={() => setIsFeedbackModalOpen(true)}
+          />
+        </div>
       </nav>
     </>
   );

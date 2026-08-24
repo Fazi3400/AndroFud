@@ -24,7 +24,7 @@ export default function CardCheckoutPage() {
         if (user) {
           // Fetch user cart from /api/cart endpoint
           const cartResponse = await fetch("/api/cart");
-          
+
           if (cartResponse.ok) {
             const cartData = await cartResponse.json();
             cartItems = cartData.cartItems || {};
@@ -60,7 +60,9 @@ export default function CardCheckoutPage() {
         if (response.status === 401) {
           // Redirect to login if not authenticated
           console.warn("? Unauthorized - redirecting to login");
-          router.push(`/sign-in?redirectTo=${encodeURIComponent('/card-checkout')}`);
+          router.push(
+            `/sign-in?redirectTo=${encodeURIComponent("/card-checkout")}`,
+          );
           return;
         }
 
@@ -92,7 +94,9 @@ export default function CardCheckoutPage() {
         <Shell>
           <div className="flex flex-col items-center gap-4">
             <Spinner className="h-8 w-8 animate-spin text-[#a855f7]" />
-            <p className="text-[#a855f7] neon-text">Redirecting to payment...</p>
+            <p className="text-[#a855f7] neon-text">
+              Redirecting to payment...
+            </p>
           </div>
         </Shell>
       </main>

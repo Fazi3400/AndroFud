@@ -42,4 +42,3 @@ function SocialMedias({ containerClassName, itemsClassName }: Props) {
 }
 
 export default SocialMedias;
-

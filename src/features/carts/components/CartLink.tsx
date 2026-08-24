@@ -26,4 +26,3 @@ function CartLink({ productCount }: CartLinkProps) {
 }
 
 export default CartLink;
-

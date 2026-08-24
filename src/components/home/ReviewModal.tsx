@@ -10,7 +10,12 @@ interface ReviewModalProps {
   brand: string;
 }
 
-export function ReviewModal({ isOpen, onClose, productName, brand }: ReviewModalProps) {
+export function ReviewModal({
+  isOpen,
+  onClose,
+  productName,
+  brand,
+}: ReviewModalProps) {
   const router = useRouter();
   const [rating, setRating] = useState(5);
   const [name, setName] = useState("");
@@ -97,7 +102,9 @@ export function ReviewModal({ isOpen, onClose, productName, brand }: ReviewModal
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Rating */}
                 <div className="space-y-3">
-                  <label className="block text-white font-semibold">Rating</label>
+                  <label className="block text-white font-semibold">
+                    Rating
+                  </label>
                   <div className="flex gap-3 justify-center text-5xl">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <button
@@ -121,7 +128,9 @@ export function ReviewModal({ isOpen, onClose, productName, brand }: ReviewModal
 
                 {/* Name */}
                 <div className="space-y-2">
-                  <label className="block text-white font-semibold">Your Name</label>
+                  <label className="block text-white font-semibold">
+                    Your Name
+                  </label>
                   <input
                     type="text"
                     value={name}
@@ -133,7 +142,9 @@ export function ReviewModal({ isOpen, onClose, productName, brand }: ReviewModal
 
                 {/* Review Text */}
                 <div className="space-y-2">
-                  <label className="block text-white font-semibold">Your Review</label>
+                  <label className="block text-white font-semibold">
+                    Your Review
+                  </label>
                   <textarea
                     value={reviewText}
                     onChange={(e) => setReviewText(e.target.value)}
@@ -178,7 +189,8 @@ export function ReviewModal({ isOpen, onClose, productName, brand }: ReviewModal
                   Thank You!
                 </h2>
                 <p className="text-cyan-200/80 text-lg">
-                  Your review has been submitted successfully and will appear on the website shortly.
+                  Your review has been submitted successfully and will appear on
+                  the website shortly.
                 </p>
                 <div className="pt-6">
                   <div className="inline-flex items-center gap-2 text-cyan-400">

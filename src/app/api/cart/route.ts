@@ -5,14 +5,16 @@ import { carts } from "@/lib/supabase/schema";
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
   try {
     const supabase = createRouteHandlerClient({ cookies });
-    
+
     // Get current user
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -37,7 +39,7 @@ export async function GET(request: Request) {
     console.error("Cart API error:", error);
     return NextResponse.json(
       { error: "Failed to fetch cart" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

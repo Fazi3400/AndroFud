@@ -26,7 +26,10 @@ function MobileNavbar({ adminLayout, onFeedbackClick }: Props) {
 
   return (
     <>
-      <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
       <div className="md:hidden flex gap-x-4 justify-between items-center h-[64px] px-4">
         <Branding />
 
@@ -41,9 +44,15 @@ function MobileNavbar({ adminLayout, onFeedbackClick }: Props) {
             className="text-[#67e8f9] hover:text-[#0099ff] transition-colors p-2 flex flex-col gap-1.5"
             aria-label="Menu"
           >
-            <span className={`block w-6 h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`}></span>
-            <span className={`block w-6 h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? "opacity-0" : ""}`}></span>
-            <span className={`block w-6 h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""}`}></span>
+            <span
+              className={`block w-6 h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`}
+            ></span>
+            <span
+              className={`block w-6 h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? "opacity-0" : ""}`}
+            ></span>
+            <span
+              className={`block w-6 h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""}`}
+            ></span>
           </button>
         </div>
 
@@ -86,4 +95,3 @@ function MobileNavbar({ adminLayout, onFeedbackClick }: Props) {
 }
 
 export default MobileNavbar;
-

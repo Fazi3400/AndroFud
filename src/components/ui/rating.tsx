@@ -35,4 +35,3 @@ const Rating = React.forwardRef<HTMLInputElement, RatingProps>(
 Rating.displayName = "Rating";
 
 export { Rating };
-

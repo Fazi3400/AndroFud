@@ -34,16 +34,11 @@ function UpdateUserForm({ user }: AdminUserFormProps) {
     resolver: zodResolver(adminUserShcema),
   });
 
-  const {
-    register,
-    handleSubmit,
-  } = form;
+  const { register, handleSubmit } = form;
 
-  const onSubmit = handleSubmit(
-    async () => {
-      // TODO: Implement update user logic
-    },
-  );
+  const onSubmit = handleSubmit(async () => {
+    // TODO: Implement update user logic
+  });
 
   return (
     <Form {...form}>
@@ -54,7 +49,9 @@ function UpdateUserForm({ user }: AdminUserFormProps) {
       >
         <div className="flex flex-col gap-y-6 max-w-[600px]">
           <FormItem>
-            <FormLabel className="text-[#a855f7] text-sm font-medium">Email*</FormLabel>
+            <FormLabel className="text-[#a855f7] text-sm font-medium">
+              Email*
+            </FormLabel>
             <FormControl>
               <Input
                 defaultValue={user?.email || ""}
@@ -75,7 +72,9 @@ function UpdateUserForm({ user }: AdminUserFormProps) {
             name="password"
             render={({ field }) => (
               <FormItem className="">
-                <FormLabel className="text-[#a855f7] text-sm font-medium">Password*</FormLabel>
+                <FormLabel className="text-[#a855f7] text-sm font-medium">
+                  Password*
+                </FormLabel>
                 <FormControl>
                   <PasswordInput
                     aria-invalid={!!form.formState.errors}
@@ -108,7 +107,13 @@ function UpdateUserForm({ user }: AdminUserFormProps) {
               />
             )}
           </Button>
-          <Link href="/admin/users" className={buttonVariants({ className: "rounded-full bg-gray-600 hover:bg-gray-700 text-white px-8" })}>
+          <Link
+            href="/admin/users"
+            className={buttonVariants({
+              className:
+                "rounded-full bg-gray-600 hover:bg-gray-700 text-white px-8",
+            })}
+          >
             Cancel
           </Link>
         </div>

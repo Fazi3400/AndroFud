@@ -39,8 +39,7 @@ export const createLemonSqueezyCheckout = async (
   if (email) checkoutUrl.searchParams.append("email", email);
   if (name) checkoutUrl.searchParams.append("name", name);
   if (custom) checkoutUrl.searchParams.append("custom", JSON.stringify(custom));
-  if (successUrl)
-    checkoutUrl.searchParams.append("success_url", successUrl);
+  if (successUrl) checkoutUrl.searchParams.append("success_url", successUrl);
   if (cancelUrl) checkoutUrl.searchParams.append("cancel_url", cancelUrl);
 
   return {
@@ -54,8 +53,10 @@ export const verifyLemonSqueezyWebhook = async (
 ): Promise<boolean> => {
   try {
     const crypto = await import("crypto");
+    // Use webhook secret if available, otherwise fall back to API key
+    const secret = env.LEMON_SQUEEZY_WEBHOOK_SECRET || env.LEMON_SQUEEZY_API_KEY;
     const hash = crypto
-      .createHmac("sha256", env.LEMON_SQUEEZY_API_KEY)
+      .createHmac("sha256", secret)
       .update(body)
       .digest("hex");
 
@@ -75,7 +76,9 @@ export const getLemonSqueezyProduct = async (productId: string) => {
   });
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch Lemon Squeezy product: ${response.status}`);
+    throw new Error(
+      `Failed to fetch Lemon Squeezy product: ${response.status}`,
+    );
   }
 
   return response.json();

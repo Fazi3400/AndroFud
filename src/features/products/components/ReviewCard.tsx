@@ -7,4 +7,3 @@ function ReviewCard({}: ReviewCardProps) {
 }
 
 export default ReviewCard;
-

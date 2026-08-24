@@ -20,4 +20,3 @@ function NewsletterForm() {
 }
 
 export default NewsletterForm;
-

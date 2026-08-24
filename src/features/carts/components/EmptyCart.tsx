@@ -10,7 +10,10 @@ function EmptyCart() {
       <p className="text-gray-400 text-sm">Your Cart is empty.</p>
       <Link
         href="/shop"
-        className={cn(buttonVariants({ size: "lg", variant: "primary" }), "font-semibold")}
+        className={cn(
+          buttonVariants({ size: "lg", variant: "primary" }),
+          "font-semibold",
+        )}
       >
         <Icons.cart className="mr-3 w-5 h-5" />
         Continue shopping

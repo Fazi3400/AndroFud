@@ -10,23 +10,32 @@ interface VideoItem {
 }
 
 export default function LiveDemoPage() {
-  const [selectedBrand, setSelectedBrand] = useState<"androfud" | "btmob">("androfud");
-  const [selectedBtmobVersion, setSelectedBtmobVersion] = useState<"4.6.1" | "3.6.3">("4.6.1");
+  const [selectedBrand, setSelectedBrand] = useState<"androfud" | "btmob">(
+    "androfud",
+  );
+  const [selectedBtmobVersion, setSelectedBtmobVersion] = useState<
+    "4.6.1" | "3.6.3"
+  >("4.6.1");
 
   const allVideos = {
-    androfud: [
-      { title: "Androfud v 4.0", videoId: "5oV5Yp3-f-U" },
-    ],
+    androfud: [{ title: "Androfud v 4.0", videoId: "5oV5Yp3-f-U" }],
     btmob: {
-      "4.6.1": [
-        { title: "BTMOB 4.6.1 Latest", videoId: "uNS0Gu9MzOM" },
-      ],
+      "4.6.1": [{ title: "BTMOB 4.6.1 Latest", videoId: "uNS0Gu9MzOM" }],
       "3.6.3": [
         { title: "BTMOB 3.6.3 Other Options", videoId: "B1VBnA4N6Ms" },
-        { title: "BTMOB 3.6.3 Target Device Screen Controlling", videoId: "L7XdREoTiMU" },
-        { title: "BTMOB 3.6.3 How to Unlock Phone Automatically", videoId: "PwMcEDl_s2Q" },
+        {
+          title: "BTMOB 3.6.3 Target Device Screen Controlling",
+          videoId: "L7XdREoTiMU",
+        },
+        {
+          title: "BTMOB 3.6.3 How to Unlock Phone Automatically",
+          videoId: "PwMcEDl_s2Q",
+        },
         { title: "BTMOB APK Installation Process", videoId: "gnyzShP5j8o" },
-        { title: "BTMOB 3.6.3 APK Building Process Complete", videoId: "Dpn9EwlCvog" },
+        {
+          title: "BTMOB 3.6.3 APK Building Process Complete",
+          videoId: "Dpn9EwlCvog",
+        },
       ],
     },
   };
@@ -45,9 +54,7 @@ export default function LiveDemoPage() {
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-widest uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#0099ff] via-[#a855f7] to-[#000000]">
             Live Demo
           </h1>
-          <p className="text-xl text-[#67e8f9]">
-            Watch our systems in action
-          </p>
+          <p className="text-xl text-[#67e8f9]">Watch our systems in action</p>
         </div>
       </div>
 
@@ -126,24 +133,34 @@ export default function LiveDemoPage() {
               ></div>
 
               {/* Video Container - YouTube Embed */}
-              <YouTubeEmbed videoId={video.videoId} title={video.title} className="rounded-lg" />
+              <YouTubeEmbed
+                videoId={video.videoId}
+                title={video.title}
+                className="rounded-lg"
+              />
 
               {/* Content */}
               <div className="relative z-10 p-8 space-y-3">
-                <h3 className={`text-2xl md:text-3xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r ${
-                  selectedBrand === "androfud"
-                    ? "group-hover:from-purple-200 group-hover:to-pink-200"
-                    : "group-hover:from-cyan-200 group-hover:to-blue-200"
-                } transition-all duration-300`}>
+                <h3
+                  className={`text-2xl md:text-3xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r ${
+                    selectedBrand === "androfud"
+                      ? "group-hover:from-purple-200 group-hover:to-pink-200"
+                      : "group-hover:from-cyan-200 group-hover:to-blue-200"
+                  } transition-all duration-300`}
+                >
                   {video.title}
                 </h3>
               </div>
 
               {/* Corner Accent */}
-              <div className={`absolute -bottom-12 -right-12 w-32 h-32 opacity-0 group-hover:opacity-30 transition-opacity duration-500 pointer-events-none`}>
+              <div
+                className={`absolute -bottom-12 -right-12 w-32 h-32 opacity-0 group-hover:opacity-30 transition-opacity duration-500 pointer-events-none`}
+              >
                 <div
                   className={`absolute bottom-0 right-0 w-16 h-16 border-b-3 border-r-3 ${
-                    selectedBrand === "androfud" ? "border-purple-400" : "border-cyan-400"
+                    selectedBrand === "androfud"
+                      ? "border-purple-400"
+                      : "border-cyan-400"
                   }`}
                 ></div>
               </div>

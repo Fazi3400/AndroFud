@@ -45,4 +45,3 @@ function CollectionsSelection({
 }
 
 export default CollectionsSelection;
-

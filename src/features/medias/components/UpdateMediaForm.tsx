@@ -155,4 +155,3 @@ function UpdateMediaForm({ media }: UpdateMediaFormProps) {
 }
 
 export default UpdateMediaForm;
-

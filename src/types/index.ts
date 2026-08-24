@@ -46,7 +46,7 @@ export type StoredFile = {
 };
 
 export type CartItem = {
-  productId: number;
+  productId: string;
   quantity: number;
 };
 

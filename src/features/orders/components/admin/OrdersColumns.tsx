@@ -168,4 +168,3 @@ const OrdersColumns: ColumnDef<{
 ];
 
 export default OrdersColumns;
-

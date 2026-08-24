@@ -60,18 +60,20 @@ export const SupabaseAuthProvider: React.FC<SupabaseAuthProviderProps> = ({
           supabase.auth.getUser().then(({ data }) => {
             setUser(data.user);
 
-            const { cart } = JSON.parse(localStorage.getItem("cart") || "{}") as {
+            const { cart } = JSON.parse(
+              localStorage.getItem("cart") || "{}",
+            ) as {
               cart?: CartItems;
             };
 
-            const storageCarts = cart ? Object.entries(cart).map(
-              ([productId, productValue]) => ({
-                id: nanoid(),
-                productId,
-                quantity: productValue.quantity,
-                userId: data.user.id,
-              }),
-            ) : [];
+            const storageCarts = cart
+              ? Object.entries(cart).map(([productId, productValue]) => ({
+                  id: nanoid(),
+                  productId,
+                  quantity: productValue.quantity,
+                  userId: data.user.id,
+                }))
+              : [];
             // console.log("!!! storageCart", storageCarts)
 
             if (storageCarts.length > 0) {
@@ -91,12 +93,15 @@ export const SupabaseAuthProvider: React.FC<SupabaseAuthProviderProps> = ({
             .eq("user_id", session.user.id)
             .then((data) => {
               // console.log("wishlist!!!", data)
-              const wishlistItems: Record<string, { createdAt: Date; updatedAt: Date }> = {};
+              const wishlistItems: Record<
+                string,
+                { createdAt: Date; updatedAt: Date }
+              > = {};
 
               data?.data?.forEach((item) => {
                 wishlistItems[item.product_id] = {
                   createdAt: new Date(item.created_at),
-                  updatedAt: new Date(item.create_at),
+                  updatedAt: new Date(item.updated_at),
                 };
               });
 
@@ -140,4 +145,3 @@ export const SupabaseAuthProvider: React.FC<SupabaseAuthProviderProps> = ({
     </SupabaseAuthContext.Provider>
   );
 };
-

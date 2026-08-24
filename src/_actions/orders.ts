@@ -19,7 +19,7 @@ export const deleteOrderAction = async (orderId: string) => {
     throw new Error(
       error instanceof Error
         ? error.message
-        : `Failed to delete order: ${error}`
+        : `Failed to delete order: ${error}`,
     );
   }
 };

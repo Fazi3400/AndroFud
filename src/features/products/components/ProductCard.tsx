@@ -123,4 +123,3 @@ export function ProductCard({
 }
 
 export default ProductCard;
-

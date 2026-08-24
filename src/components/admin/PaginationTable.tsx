@@ -122,4 +122,3 @@ export function PaginationTable<TData, TValue>({
     </div>
   );
 }
-

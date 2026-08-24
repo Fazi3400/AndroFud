@@ -94,4 +94,3 @@ function PriceRange({
 }
 
 export default PriceRange;
-

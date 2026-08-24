@@ -15,4 +15,3 @@ function CloseButton({}: Props) {
 }
 
 export default CloseButton;
-

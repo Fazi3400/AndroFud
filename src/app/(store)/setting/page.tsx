@@ -102,9 +102,7 @@ export default function ProfilePage() {
     <div className="min-h-screen bg-black space-y-8">
       {/* Header */}
       <div className="space-y-2">
-        <h1 className="text-4xl font-bold text-[#a855f7]">
-          Profile
-        </h1>
+        <h1 className="text-4xl font-bold text-[#a855f7]">Profile</h1>
         <p className="text-[#67e8f9]">
           Manage and update your profile information
         </p>
@@ -124,9 +122,13 @@ export default function ProfilePage() {
           </div>
 
           <div className="text-center md:text-left flex-1">
-            <h2 className="text-3xl font-bold text-[#a855f7]">{formData.name || "User"}</h2>
+            <h2 className="text-3xl font-bold text-[#a855f7]">
+              {formData.name || "User"}
+            </h2>
             <p className="text-[#67e8f9] text-lg mt-1">{formData.email}</p>
-            <p className="text-xs text-[#a855f7] font-medium mt-3">✓ Account Verified</p>
+            <p className="text-xs text-[#a855f7] font-medium mt-3">
+              ✓ Account Verified
+            </p>
           </div>
         </div>
       </div>
@@ -137,8 +139,12 @@ export default function ProfilePage() {
           <div className="flex items-center gap-3">
             <User className="w-5 h-5 text-[#a855f7]" />
             <div>
-              <h3 className="text-lg font-bold text-[#a855f7]">Personal Information</h3>
-              <p className="text-sm text-[#67e8f9] mt-1">Update your personal details</p>
+              <h3 className="text-lg font-bold text-[#a855f7]">
+                Personal Information
+              </h3>
+              <p className="text-sm text-[#67e8f9] mt-1">
+                Update your personal details
+              </p>
             </div>
           </div>
         </div>
@@ -146,7 +152,10 @@ export default function ProfilePage() {
         <div className="p-8 space-y-6">
           {/* Name Field */}
           <div className="space-y-3">
-            <label htmlFor="name" className="text-sm font-semibold text-[#1a3a2e] dark:text-[#a855f7] block">
+            <label
+              htmlFor="name"
+              className="text-sm font-semibold text-[#1a3a2e] dark:text-[#a855f7] block"
+            >
               Full Name
             </label>
             {isEditing ? (
@@ -167,13 +176,18 @@ export default function ProfilePage() {
 
           {/* Email Field */}
           <div className="space-y-3">
-            <label htmlFor="email" className="text-sm font-semibold text-[#a855f7] block">
+            <label
+              htmlFor="email"
+              className="text-sm font-semibold text-[#a855f7] block"
+            >
               Email Address
             </label>
             <div className="h-12 px-4 rounded-full border-2 border-[#0099ff] bg-[#1a3a2e] flex items-center text-[#67e8f9] font-medium">
               {formData.email}
             </div>
-            <p className="text-xs text-[#67e8f9]">Email cannot be changed here</p>
+            <p className="text-xs text-[#67e8f9]">
+              Email cannot be changed here
+            </p>
           </div>
 
           {/* Action Buttons */}
@@ -217,12 +231,16 @@ export default function ProfilePage() {
       <div className="bg-[#0d2818] rounded-2xl border-2 border-[#0099ff] overflow-hidden shadow-sm hover:shadow-md transition-shadow">
         <div className="bg-gradient-to-r from-[#1a3a2e] to-[#285A48] px-8 py-6 border-b-2 border-[#0099ff]">
           <h3 className="text-lg font-bold text-[#a855f7]">Account ID</h3>
-          <p className="text-sm text-[#67e8f9] mt-1">Your unique account identifier</p>
+          <p className="text-sm text-[#67e8f9] mt-1">
+            Your unique account identifier
+          </p>
         </div>
 
         <div className="p-8">
           <div className="flex items-center gap-2 bg-[#1a3a2e] rounded-full p-4 border-2 border-[#0099ff]">
-            <code className="flex-1 text-sm font-mono text-[#a855f7] break-all">{user.id}</code>
+            <code className="flex-1 text-sm font-mono text-[#a855f7] break-all">
+              {user.id}
+            </code>
             <button
               onClick={copyToClipboard}
               className="flex-shrink-0 p-2 hover:bg-[#0099ff] dark:hover:bg-[#0099ff] rounded-lg transition-colors"

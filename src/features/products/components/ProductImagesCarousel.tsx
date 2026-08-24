@@ -52,4 +52,3 @@ export function ProductImagesCarousel({ images }: ProductImagesCarouselProps) {
     </Carousel>
   );
 }
-

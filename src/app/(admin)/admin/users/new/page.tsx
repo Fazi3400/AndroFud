@@ -17,4 +17,3 @@ function NewUserPage({}: Props) {
 }
 
 export default NewUserPage;
-

@@ -1,8 +1,4 @@
-﻿import {
-  listUsers,
-  UsersColumns,
-  AdminUserNav,
-} from "@/features/users";
+﻿import { listUsers, UsersColumns, AdminUserNav } from "@/features/users";
 import AdminShell from "@/components/admin/AdminShell";
 import { ProductsDataTable } from "@/features/products";
 import ErrorToaster from "@/components/layouts/ErrorToaster";
@@ -20,4 +16,3 @@ async function UsersPage() {
 }
 
 export default UsersPage;
-

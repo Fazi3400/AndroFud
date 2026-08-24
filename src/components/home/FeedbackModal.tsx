@@ -96,7 +96,9 @@ export function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
               <div className="space-y-3">
                 <div className="inline-block">
                   <div className="px-4 py-2 rounded-full bg-gradient-to-r from-cyan-600/30 to-blue-600/30 border border-cyan-500/50">
-                    <p className="text-xs font-mono text-cyan-400 font-semibold uppercase tracking-widest">Your Feedback Matters</p>
+                    <p className="text-xs font-mono text-cyan-400 font-semibold uppercase tracking-widest">
+                      Your Feedback Matters
+                    </p>
                   </div>
                 </div>
 
@@ -104,7 +106,9 @@ export function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
                   <h2 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 mb-2">
                     Share Your Feedback
                   </h2>
-                  <p className="text-cyan-200/70">Help us improve by sharing your thoughts and experiences</p>
+                  <p className="text-cyan-200/70">
+                    Help us improve by sharing your thoughts and experiences
+                  </p>
                 </div>
               </div>
 
@@ -119,7 +123,9 @@ export function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
 
                 {/* Rating */}
                 <div className="space-y-3">
-                  <label className="block text-white font-semibold">Your Rating</label>
+                  <label className="block text-white font-semibold">
+                    Your Rating
+                  </label>
                   <div className="flex gap-3 justify-center text-5xl">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <button
@@ -143,7 +149,9 @@ export function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
 
                 {/* Name */}
                 <div className="space-y-2">
-                  <label className="block text-white font-semibold">Your Name</label>
+                  <label className="block text-white font-semibold">
+                    Your Name
+                  </label>
                   <input
                     type="text"
                     value={name}
@@ -155,7 +163,9 @@ export function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
 
                 {/* Email */}
                 <div className="space-y-2">
-                  <label className="block text-white font-semibold">Email Address</label>
+                  <label className="block text-white font-semibold">
+                    Email Address
+                  </label>
                   <input
                     type="email"
                     value={email}
@@ -167,7 +177,9 @@ export function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
 
                 {/* Feedback Text */}
                 <div className="space-y-2">
-                  <label className="block text-white font-semibold">Your Feedback</label>
+                  <label className="block text-white font-semibold">
+                    Your Feedback
+                  </label>
                   <textarea
                     value={feedback}
                     onChange={(e) => setFeedback(e.target.value)}
@@ -225,7 +237,8 @@ export function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
                   Thank You!
                 </h2>
                 <p className="text-cyan-200/80 text-lg">
-                  Your feedback has been received successfully. We appreciate your valuable input and will use it to improve our services.
+                  Your feedback has been received successfully. We appreciate
+                  your valuable input and will use it to improve our services.
                 </p>
                 <div className="pt-6">
                   <div className="inline-flex items-center gap-2 text-cyan-400">

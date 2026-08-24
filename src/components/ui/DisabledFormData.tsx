@@ -21,4 +21,3 @@ function DisabledFormData({ data, label, htmlFor }: DisabledFormDataProps) {
 }
 
 export default DisabledFormData;
-

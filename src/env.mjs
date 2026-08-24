@@ -11,6 +11,7 @@ export const env = createEnv({
     NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string(),
     DATABASE_SERVICE_ROLE: z.string(),
     LEMON_SQUEEZY_API_KEY: z.string(),
+    LEMON_SQUEEZY_WEBHOOK_SECRET: z.string().optional(),
     NOWPAYMENTS_API_KEY: z.string(),
     NOWPAYMENTS_IPN_SECRET_KEY: z.string(),
   },
@@ -44,6 +45,7 @@ export const env = createEnv({
     NEXT_PUBLIC_LEMON_SQUEEZY_STORE_ID:
       process.env.NEXT_PUBLIC_LEMON_SQUEEZY_STORE_ID,
     LEMON_SQUEEZY_API_KEY: process.env.LEMON_SQUEEZY_API_KEY,
+    LEMON_SQUEEZY_WEBHOOK_SECRET: process.env.LEMON_SQUEEZY_WEBHOOK_SECRET,
     NOWPAYMENTS_API_KEY: process.env.NOWPAYMENTS_API_KEY,
     NOWPAYMENTS_IPN_SECRET_KEY: process.env.NOWPAYMENTS_IPN_SECRET_KEY,
   },

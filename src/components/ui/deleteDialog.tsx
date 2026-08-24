@@ -58,4 +58,3 @@ function DeleteDialog({
 }
 
 export default DeleteDialog;
-

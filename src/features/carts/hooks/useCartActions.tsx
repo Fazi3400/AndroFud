@@ -57,4 +57,3 @@ function useCartActions(user: User | null, productId: string) {
 }
 
 export default useCartActions;
-

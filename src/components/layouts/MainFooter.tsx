@@ -9,10 +9,16 @@ function MainFooter() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-8 pb-8 border-b border-[#0099ff]/30">
           <Branding className="text-2xl" />
           <div className="flex gap-8">
-            <Link href="/shop" className="text-[#67e8f9] hover:text-[#a855f7] hover:neon-text transition-colors">
+            <Link
+              href="/shop"
+              className="text-[#67e8f9] hover:text-[#a855f7] hover:neon-text transition-colors"
+            >
               Shop
             </Link>
-            <Link href="/contact" className="text-[#67e8f9] hover:text-[#a855f7] hover:neon-text transition-colors">
+            <Link
+              href="/contact"
+              className="text-[#67e8f9] hover:text-[#a855f7] hover:neon-text transition-colors"
+            >
               Contact
             </Link>
           </div>

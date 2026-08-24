@@ -48,4 +48,3 @@ const UserCartNav = ({ currentUser }: { currentUser: User }) => {
   );
 };
 export default CartNav;
-

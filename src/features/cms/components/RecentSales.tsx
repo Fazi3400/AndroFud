@@ -65,4 +65,3 @@ export function RecentSales() {
     </div>
   );
 }
-

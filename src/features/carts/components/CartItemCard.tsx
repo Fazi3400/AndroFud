@@ -39,11 +39,7 @@ type CartItemCardProps = React.ComponentProps<typeof Card> & {
   quantity: number;
 };
 
-function CartItemCard({
-  product,
-  removeHandler,
-  quantity,
-}: CartItemCardProps) {
+function CartItemCard({ product, removeHandler, quantity }: CartItemCardProps) {
   return (
     <Card className="flex items-center justify-between gap-x-6 gap-y-8 px-5 py-3 shadow-none border-0 border-b border-[#0099ff] border-opacity-30 bg-gradient-to-br from-[#1a3a2e] to-[#0d2818] rounded-xl">
       <CardContent className="relative p-0 mb-5 overflow-hidden rounded-lg">
@@ -58,7 +54,10 @@ function CartItemCard({
 
       <CardHeader className="p-0 mb-3 md:mb-5 grow max-w-lg">
         <CardTitle className="text-white">
-          <Link href={`/shop/${product.slug}`} className="hover:text-[#a855f7] transition-colors">
+          <Link
+            href={`/shop/${product.slug}`}
+            className="hover:text-[#a855f7] transition-colors"
+          >
             {product.name}
           </Link>
         </CardTitle>

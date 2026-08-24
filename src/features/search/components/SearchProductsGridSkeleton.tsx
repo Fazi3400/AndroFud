@@ -17,4 +17,3 @@ function SearchProductsGridSkeleton() {
 }
 
 export default SearchProductsGridSkeleton;
-

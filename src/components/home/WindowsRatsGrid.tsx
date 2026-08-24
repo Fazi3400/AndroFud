@@ -21,7 +21,8 @@ const ratsData = {
   "S400 Rat": {
     videoId: "1e8thTQ5w1ri8JBdTxEdR3zRVdFxL3FoZ",
     videoType: "google-drive",
-    description: "S400 Rat is a newly released and highly advanced all-in-one hacking software designed for Windows, offering a combination of RAT (Remote Access Trojan), HVNC (Hidden Virtual Network Computing), and Worm functionalities. This software enables users to discreetly infiltrate and control the PCs and laptops of unsuspecting victims. S400 rat is designed as a multi-purpose hacking tool, equipped to handle high-stakes cyberattacks, ranging from personal data theft to corporate espionage. The integration of RAT, HVNC, and Worm functionalities makes it one of the most comprehensive tools available for silent hacking and unauthorized system access.",
+    description:
+      "S400 Rat is a newly released and highly advanced all-in-one hacking software designed for Windows, offering a combination of RAT (Remote Access Trojan), HVNC (Hidden Virtual Network Computing), and Worm functionalities. This software enables users to discreetly infiltrate and control the PCs and laptops of unsuspecting victims. S400 rat is designed as a multi-purpose hacking tool, equipped to handle high-stakes cyberattacks, ranging from personal data theft to corporate espionage. The integration of RAT, HVNC, and Worm functionalities makes it one of the most comprehensive tools available for silent hacking and unauthorized system access.",
     keyFeatures: [
       "Remote Access Trojan (RAT) - Allows full remote control with password theft and browser data access",
       "Hidden Virtual Network Computing (HVNC) - Operates in stealth mode with login bypass capabilities",
@@ -30,7 +31,7 @@ const ratsData = {
       "Silent Browser Operations - Perform hidden browser sessions to bypass security measures",
       "Reverse Proxy - Create secure backdoor for persistent control over infected systems",
       "Bypass Security Layers - Circumvent protections like two-factor authentication",
-      "File Theft and Management - Access, steal, or modify files unnoticed"
+      "File Theft and Management - Access, steal, or modify files unnoticed",
     ],
     features: [
       "Fast HVNC feature",
@@ -93,14 +94,15 @@ const ratsData = {
       "Ngrok installer",
       "Cryptocurrency stealer",
       "Telegram bot",
-      "DDOS"
+      "DDOS",
     ],
-    version: "Latest"
+    version: "Latest",
   },
   "Xworm Rat ORG": {
     videoId: null,
     videoType: "youtube",
-    description: "XWorm RAT 5.6 is a newly released and highly advanced all-in-one hacking software designed for Windows, offering a combination of RAT (Remote Access Trojan), HVNC (Hidden Virtual Network Computing), and Worm functionalities. This software enables users to discreetly infiltrate and control the PCs and laptops of unsuspecting victims. XWorm RAT 5.6 is designed as a multi-purpose hacking tool, equipped to handle high-stakes cyberattacks, ranging from personal data theft to corporate espionage. The integration of RAT, HVNC, and Worm functionalities makes it one of the most comprehensive tools available for silent hacking and unauthorized system access.",
+    description:
+      "XWorm RAT 5.6 is a newly released and highly advanced all-in-one hacking software designed for Windows, offering a combination of RAT (Remote Access Trojan), HVNC (Hidden Virtual Network Computing), and Worm functionalities. This software enables users to discreetly infiltrate and control the PCs and laptops of unsuspecting victims. XWorm RAT 5.6 is designed as a multi-purpose hacking tool, equipped to handle high-stakes cyberattacks, ranging from personal data theft to corporate espionage. The integration of RAT, HVNC, and Worm functionalities makes it one of the most comprehensive tools available for silent hacking and unauthorized system access.",
     keyFeatures: [
       "Remote Access Trojan (RAT) - Complete remote control with password theft capabilities",
       "Hidden Virtual Network Computing (HVNC) - Stealth mode with invisible access and login bypass",
@@ -109,7 +111,7 @@ const ratsData = {
       "Silent Browser Operations - Perform hidden browser sessions to bypass security",
       "Reverse Proxy - Create secure backdoor for persistent control",
       "Bypass Security Layers - Circumvent two-factor authentication and banking security",
-      "File Theft and Management - Access, steal, or modify files unnoticed"
+      "File Theft and Management - Access, steal, or modify files unnoticed",
     ],
     features: [
       "Full System Control",
@@ -134,14 +136,15 @@ const ratsData = {
       "Persistence Mechanisms",
       "Simple Configuration",
       "Automation Tools",
-      "Detailed Monitoring"
+      "Detailed Monitoring",
     ],
-    version: "5.6"
+    version: "5.6",
   },
   "Venom Rat": {
     videoId: "QwtoZfpaiMk",
     videoType: "youtube",
-    description: "Venom Rat 6.03 is a newly released and highly advanced all-in-one hacking software designed for Windows, offering a combination of RAT (Remote Access Trojan), HVNC (Hidden Virtual Network Computing), and Worm functionalities. This software enables users to discreetly infiltrate and control the PCs and laptops of unsuspecting victims. Venom Rat 6.03 is designed as a multi-purpose hacking tool, equipped to handle high-stakes cyberattacks, ranging from personal data theft to corporate espionage. The integration of RAT, HVNC, and Worm functionalities makes it one of the most comprehensive tools available for silent hacking and unauthorized system access.",
+    description:
+      "Venom Rat 6.03 is a newly released and highly advanced all-in-one hacking software designed for Windows, offering a combination of RAT (Remote Access Trojan), HVNC (Hidden Virtual Network Computing), and Worm functionalities. This software enables users to discreetly infiltrate and control the PCs and laptops of unsuspecting victims. Venom Rat 6.03 is designed as a multi-purpose hacking tool, equipped to handle high-stakes cyberattacks, ranging from personal data theft to corporate espionage. The integration of RAT, HVNC, and Worm functionalities makes it one of the most comprehensive tools available for silent hacking and unauthorized system access.",
     keyFeatures: [
       "Remote Access Trojan (RAT) - Full remote control with password theft and browser data access",
       "Hidden Virtual Network Computing (HVNC) - Stealth mode access with banking platform bypass",
@@ -150,7 +153,7 @@ const ratsData = {
       "Silent Browser Operations - Perform hidden browser sessions to bypass security measures",
       "Reverse Proxy - Create secure backdoor for persistent control over infected systems",
       "Bypass Security Layers - Circumvent two-factor authentication and advanced banking security",
-      "File Theft and Management - Access, steal, or modify files on victim's machine unnoticed"
+      "File Theft and Management - Access, steal, or modify files on victim's machine unnoticed",
     ],
     features: [
       "Full System Control",
@@ -175,14 +178,15 @@ const ratsData = {
       "Persistence Mechanisms",
       "Simple Configuration",
       "Automation Tools",
-      "Detailed Monitoring"
+      "Detailed Monitoring",
     ],
-    version: "6.03"
+    version: "6.03",
   },
   "Crysome Rat": {
     videoId: "O1Dj0mvUq2g",
     videoType: "youtube",
-    description: "Crysome Rat is an advanced cryptographic RAT designed for sophisticated threat actors who require military-grade encryption and anti-forensics capabilities. Built with enterprise-level security in mind, Crysome Rat employs advanced obfuscation techniques and polymorphic code generation to evade detection systems. This RAT combines stealth capabilities with powerful control features, making it ideal for persistent targeted attacks against high-value targets including financial institutions, government agencies, and critical infrastructure.",
+    description:
+      "Crysome Rat is an advanced cryptographic RAT designed for sophisticated threat actors who require military-grade encryption and anti-forensics capabilities. Built with enterprise-level security in mind, Crysome Rat employs advanced obfuscation techniques and polymorphic code generation to evade detection systems. This RAT combines stealth capabilities with powerful control features, making it ideal for persistent targeted attacks against high-value targets including financial institutions, government agencies, and critical infrastructure.",
     keyFeatures: [
       "Military-Grade Encryption - End-to-end encrypted C2 communications with AES-256 standard",
       "Polymorphic Code - Self-modifying code that changes signature on every execution",
@@ -191,15 +195,37 @@ const ratsData = {
       "Encrypted Communications - All data transmissions protected with cryptographic protocols",
       "Advanced Persistence - Multi-layered persistence mechanisms for long-term control",
       "Selective Stealing - Targeted extraction of valuable enterprise data and credentials",
-      "Enterprise-Grade Control - Comprehensive remote access and system manipulation features"
+      "Enterprise-Grade Control - Comprehensive remote access and system manipulation features",
     ],
-    features: ["Encrypted C2", "Anti-analysis", "Polymorphic", "Rootkit capabilities", "AES-256 Encryption", "Obfuscation", "Anti-Debugging", "Persistence Mechanisms", "Forensics Evasion", "Code Mutation", "Advanced Stealth", "Selective Payload Delivery", "Multi-layer Defense Bypass", "Zero-Day Compatibility", "Custom Configuration", "Automated Deployment", "Behavioral Analysis Evasion", "Memory Protection", "Rootkit Integration", "Sandbox Detection"],
-    version: "TBD"
+    features: [
+      "Encrypted C2",
+      "Anti-analysis",
+      "Polymorphic",
+      "Rootkit capabilities",
+      "AES-256 Encryption",
+      "Obfuscation",
+      "Anti-Debugging",
+      "Persistence Mechanisms",
+      "Forensics Evasion",
+      "Code Mutation",
+      "Advanced Stealth",
+      "Selective Payload Delivery",
+      "Multi-layer Defense Bypass",
+      "Zero-Day Compatibility",
+      "Custom Configuration",
+      "Automated Deployment",
+      "Behavioral Analysis Evasion",
+      "Memory Protection",
+      "Rootkit Integration",
+      "Sandbox Detection",
+    ],
+    version: "TBD",
   },
   "Neptune Rat 5.4": {
     videoId: "TUyhg9YF-tM",
     videoType: "youtube",
-    description: "Neptune Rat 5.4 is the latest generation of the Neptune RAT family, featuring comprehensive mobile and system monitoring capabilities combined with advanced surveillance functionalities. Designed for intensive monitoring and data collection, Neptune Rat 5.4 provides real-time access to voice communications, location tracking, and SMS interception on target devices. This version includes enhanced stability, improved anti-detection measures, and a significantly expanded feature set optimized for enterprise-level surveillance and corporate espionage operations.",
+    description:
+      "Neptune Rat 5.4 is the latest generation of the Neptune RAT family, featuring comprehensive mobile and system monitoring capabilities combined with advanced surveillance functionalities. Designed for intensive monitoring and data collection, Neptune Rat 5.4 provides real-time access to voice communications, location tracking, and SMS interception on target devices. This version includes enhanced stability, improved anti-detection measures, and a significantly expanded feature set optimized for enterprise-level surveillance and corporate espionage operations.",
     keyFeatures: [
       "Real-Time Device Monitoring - Continuous surveillance with instant alerts on user activities",
       "Voice Call Recording - Capture and store all incoming and outgoing calls with high quality",
@@ -208,15 +234,37 @@ const ratsData = {
       "Browser History Access - Complete access to browsing history, bookmarks, and search queries",
       "Application Monitoring - Track all installed applications and monitor their usage patterns",
       "Media Theft - Automatic theft of photos, videos, and other multimedia files",
-      "Contact Extraction - Access and steal all contacts from the target device"
+      "Contact Extraction - Access and steal all contacts from the target device",
     ],
-    features: ["Real-time monitoring", "Voice recording", "GPS tracking", "SMS interception", "Contact extraction", "Media theft", "Browser history access", "Application monitoring", "Data synchronization", "Cloud integration", "Selective recording", "Encrypted storage", "Custom alerts", "Behavioral tracking", "Network monitoring", "Device information", "Call logs access", "Photo library access", "Video surveillance", "Advanced Analytics"],
-    version: "5.4"
+    features: [
+      "Real-time monitoring",
+      "Voice recording",
+      "GPS tracking",
+      "SMS interception",
+      "Contact extraction",
+      "Media theft",
+      "Browser history access",
+      "Application monitoring",
+      "Data synchronization",
+      "Cloud integration",
+      "Selective recording",
+      "Encrypted storage",
+      "Custom alerts",
+      "Behavioral tracking",
+      "Network monitoring",
+      "Device information",
+      "Call logs access",
+      "Photo library access",
+      "Video surveillance",
+      "Advanced Analytics",
+    ],
+    version: "5.4",
   },
   "Wizorm Rat 4.5": {
     videoId: "vS249DrhnAU",
     videoType: "youtube",
-    description: "WizWorm RAT 4.5 is a newly released and highly advanced all-in-one hacking software designed for Windows, offering a combination of RAT (Remote Access Trojan), HVNC (Hidden Virtual Network Computing), and Worm functionalities. This software enables users to discreetly infiltrate and control the PCs and laptops of unsuspecting victims. WizWorm RAT 4.5 is designed as a multi-purpose hacking tool, equipped to handle high-stakes cyberattacks, ranging from personal data theft to corporate espionage. The integration of RAT, HVNC, and Worm functionalities makes it one of the most comprehensive tools available for silent hacking and unauthorized system access.",
+    description:
+      "WizWorm RAT 4.5 is a newly released and highly advanced all-in-one hacking software designed for Windows, offering a combination of RAT (Remote Access Trojan), HVNC (Hidden Virtual Network Computing), and Worm functionalities. This software enables users to discreetly infiltrate and control the PCs and laptops of unsuspecting victims. WizWorm RAT 4.5 is designed as a multi-purpose hacking tool, equipped to handle high-stakes cyberattacks, ranging from personal data theft to corporate espionage. The integration of RAT, HVNC, and Worm functionalities makes it one of the most comprehensive tools available for silent hacking and unauthorized system access.",
     keyFeatures: [
       "Remote Access Trojan (RAT) - Full remote control with password theft and data extraction",
       "Hidden Virtual Network Computing (HVNC) - Stealth mode with invisible access and login bypass",
@@ -225,7 +273,7 @@ const ratsData = {
       "Silent Browser Operations - Perform hidden browser sessions to bypass security measures",
       "Reverse Proxy - Create secure backdoor for persistent control over infected systems",
       "Bypass Security Layers - Circumvent two-factor authentication and banking protections",
-      "File Theft and Management - Access, steal, or modify files on victim's machine unnoticed"
+      "File Theft and Management - Access, steal, or modify files on victim's machine unnoticed",
     ],
     features: [
       "Full System Control",
@@ -250,10 +298,10 @@ const ratsData = {
       "Persistence Mechanisms",
       "Simple Configuration",
       "Automation Tools",
-      "Detailed Monitoring"
+      "Detailed Monitoring",
     ],
-    version: "4.5"
-  }
+    version: "4.5",
+  },
 };
 
 const screenshotMap: { [key: string]: number } = {
@@ -292,7 +340,10 @@ export function WindowsRatsGrid({
   const [internalSelectedRat, setInternalSelectedRat] = useState("S400 Rat");
 
   // Use external prop if provided, otherwise use internal state
-  const selectedRat = externalSelectedRat !== undefined ? externalSelectedRat : internalSelectedRat;
+  const selectedRat =
+    externalSelectedRat !== undefined
+      ? externalSelectedRat
+      : internalSelectedRat;
 
   const handleRatSelect = (ratName: string) => {
     // Always update internal state
@@ -313,7 +364,9 @@ export function WindowsRatsGrid({
   };
 
   const prevScreenshot = () => {
-    setCurrentScreenshotIndex((prev) => (prev - 1 + screenshots.length) % screenshots.length);
+    setCurrentScreenshotIndex(
+      (prev) => (prev - 1 + screenshots.length) % screenshots.length,
+    );
   };
 
   const goToScreenshot = (index: number) => {
@@ -340,13 +393,18 @@ export function WindowsRatsGrid({
         {/* Header Section */}
         <div className="text-center mb-16 slide-in-up">
           <div className="inline-block mb-6 px-4 py-2 rounded-full bg-emerald-900/40 border border-emerald-600/60">
-            <span className="text-sm font-mono text-emerald-400">$ WINDOWS.RATS.LOAD()</span>
+            <span className="text-sm font-mono text-emerald-400">
+              $ WINDOWS.RATS.LOAD()
+            </span>
           </div>
-          <h2 className={`text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r ${gradient} mb-6`}>
+          <h2
+            className={`text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r ${gradient} mb-6`}
+          >
             WINDOWS RATS
           </h2>
           <p className="text-lg text-emerald-400/80 max-w-2xl mx-auto">
-            Advanced Remote Access Tools and Exploitation Frameworks for Windows Systems
+            Advanced Remote Access Tools and Exploitation Frameworks for Windows
+            Systems
           </p>
         </div>
 
@@ -382,10 +440,14 @@ export function WindowsRatsGrid({
                   {selectedRat}
                 </h2>
                 <div className="h-1 w-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full mb-4"></div>
-                <p className="text-blue-300/80 text-lg font-medium">Advanced Windows Remote Access & Exploitation Tool</p>
+                <p className="text-blue-300/80 text-lg font-medium">
+                  Advanced Windows Remote Access & Exploitation Tool
+                </p>
               </div>
               <div className="px-6 py-3 rounded-lg bg-gradient-to-br from-cyan-500/15 to-blue-500/15 border-2 border-cyan-500/40">
-                <p className="text-cyan-400 font-mono text-sm font-bold uppercase tracking-wide">✓ Status: Active</p>
+                <p className="text-cyan-400 font-mono text-sm font-bold uppercase tracking-wide">
+                  ✓ Status: Active
+                </p>
               </div>
             </div>
           </div>
@@ -400,27 +462,35 @@ export function WindowsRatsGrid({
           {/* Key Features */}
           {(ratsData[selectedRat] as any).keyFeatures && (
             <div className="relative z-10 p-12 pb-8 border-b border-blue-500/20 bg-blue-950/20">
-              <h3 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent mb-2">Key Features</h3>
+              <h3 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent mb-2">
+                Key Features
+              </h3>
               <div className="h-1 w-20 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full mb-8"></div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {(ratsData[selectedRat] as any).keyFeatures.map((feature: string, idx: number) => (
-                  <div
-                    key={idx}
-                    className="group/item flex gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-950/40 to-slate-900/40 border-2 border-blue-600/30 hover:border-cyan-500/60 hover:bg-blue-950/60 transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-cyan-500/20"
-                  >
-                    <span className="text-cyan-400 font-bold text-lg flex-shrink-0 group-hover/item:text-cyan-300 mt-0.5">⚡</span>
-                    <span className="text-blue-200/90 text-sm font-medium group-hover/item:text-blue-100">
-                      {feature}
-                    </span>
-                  </div>
-                ))}
+                {(ratsData[selectedRat] as any).keyFeatures.map(
+                  (feature: string, idx: number) => (
+                    <div
+                      key={idx}
+                      className="group/item flex gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-950/40 to-slate-900/40 border-2 border-blue-600/30 hover:border-cyan-500/60 hover:bg-blue-950/60 transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-cyan-500/20"
+                    >
+                      <span className="text-cyan-400 font-bold text-lg flex-shrink-0 group-hover/item:text-cyan-300 mt-0.5">
+                        ⚡
+                      </span>
+                      <span className="text-blue-200/90 text-sm font-medium group-hover/item:text-blue-100">
+                        {feature}
+                      </span>
+                    </div>
+                  ),
+                )}
               </div>
             </div>
           )}
 
           {/* Complete Features Grid */}
           <div className="relative z-10 p-12 pb-8 border-b border-blue-500/20 bg-blue-950/20">
-            <h3 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent mb-2">Complete Features</h3>
+            <h3 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent mb-2">
+              Complete Features
+            </h3>
             <div className="h-1 w-20 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full mb-10"></div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
               {currentRat.features.map((feature, idx) => (
@@ -434,7 +504,9 @@ export function WindowsRatsGrid({
                   {/* Icon */}
                   <div className="relative z-10 mb-3">
                     <div className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-600/40 to-blue-600/30 group-hover/feature:from-cyan-500/60 group-hover/feature:to-blue-500/50 transition-all duration-300">
-                      <span className="text-cyan-400 text-lg group-hover/feature:text-cyan-200 font-bold">◆</span>
+                      <span className="text-cyan-400 text-lg group-hover/feature:text-cyan-200 font-bold">
+                        ◆
+                      </span>
                     </div>
                   </div>
 
@@ -452,9 +524,13 @@ export function WindowsRatsGrid({
 
           {/* Screenshots Section */}
           <div className="relative z-10 p-12 pb-16 border-b border-blue-500/20 bg-blue-950/20">
-            <h3 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent mb-3">Screenshots</h3>
+            <h3 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent mb-3">
+              Screenshots
+            </h3>
             <div className="h-1 w-20 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full mb-4"></div>
-            <p className="text-blue-300/70 text-lg mb-12 font-medium">See our interface in action - Full Size Display</p>
+            <p className="text-blue-300/70 text-lg mb-12 font-medium">
+              See our interface in action - Full Size Display
+            </p>
 
             <div className="space-y-6">
               {/* Carousel - Full Size */}
@@ -485,8 +561,12 @@ export function WindowsRatsGrid({
 
                   {/* Image Label */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent p-8">
-                    <p className="text-cyan-300 font-bold text-lg">{screenshots[currentScreenshotIndex].label}</p>
-                    <p className="text-blue-300/60 text-sm font-medium mt-1">{selectedRat}</p>
+                    <p className="text-cyan-300 font-bold text-lg">
+                      {screenshots[currentScreenshotIndex].label}
+                    </p>
+                    <p className="text-blue-300/60 text-sm font-medium mt-1">
+                      {selectedRat}
+                    </p>
                   </div>
                 </div>
 
@@ -518,9 +598,13 @@ export function WindowsRatsGrid({
           {/* Live Demo Section - All RATs */}
           <div className="relative z-10 p-12 pb-16 bg-blue-950/20 border-b border-blue-500/20">
             <div className="text-center mb-12">
-              <h3 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent mb-3">Live Demo</h3>
+              <h3 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent mb-3">
+                Live Demo
+              </h3>
               <div className="h-1 w-20 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full mx-auto mb-4"></div>
-              <p className="text-blue-300/70 text-lg font-medium">Watch {selectedRat} in action - Complete Interface Demonstration</p>
+              <p className="text-blue-300/70 text-lg font-medium">
+                Watch {selectedRat} in action - Complete Interface Demonstration
+              </p>
             </div>
 
             {currentRat.videoId ? (
@@ -543,8 +627,13 @@ export function WindowsRatsGrid({
                   <span className="text-4xl">🎬</span>
                 </div>
                 <div className="text-center space-y-3">
-                  <p className="text-emerald-300 font-bold text-2xl">Demo Video Coming Soon</p>
-                  <p className="text-emerald-400/70 text-lg">Live demonstration video for {selectedRat} will be available soon</p>
+                  <p className="text-emerald-300 font-bold text-2xl">
+                    Demo Video Coming Soon
+                  </p>
+                  <p className="text-emerald-400/70 text-lg">
+                    Live demonstration video for {selectedRat} will be available
+                    soon
+                  </p>
                 </div>
               </div>
             )}
@@ -553,7 +642,10 @@ export function WindowsRatsGrid({
           {/* Stats Footer */}
           <div className="relative z-10 px-12 py-8 flex items-center justify-between bg-gradient-to-r from-blue-950/30 via-slate-900/20 to-blue-950/30 border-t-2 border-blue-600/30">
             <div className="text-cyan-400 font-mono font-bold">
-              Total Features: <span className="text-blue-300 font-black text-lg">{currentRat.features.length}</span>
+              Total Features:{" "}
+              <span className="text-blue-300 font-black text-lg">
+                {currentRat.features.length}
+              </span>
             </div>
             <div className="text-cyan-400 text-sm font-bold uppercase tracking-wider">
               ✓ Fully Operational

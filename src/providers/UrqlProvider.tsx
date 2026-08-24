@@ -60,4 +60,3 @@ export default function Provider({ children }: React.PropsWithChildren) {
     </UrqlProvider>
   );
 }
-

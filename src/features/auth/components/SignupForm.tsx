@@ -76,11 +76,13 @@ export function SignUpForm() {
 
         // Handle rate limit error
         if (error?.status === 429 || errorMessage.includes("429")) {
-          errorMessage = "Too many sign-up attempts. Please wait a few minutes and try again.";
+          errorMessage =
+            "Too many sign-up attempts. Please wait a few minutes and try again.";
         }
         // Handle existing email error
         else if (errorMessage.includes("already registered")) {
-          errorMessage = "This email is already registered. Please sign in instead.";
+          errorMessage =
+            "This email is already registered. Please sign in instead.";
         }
 
         toast({
@@ -117,7 +119,8 @@ export function SignUpForm() {
           console.error("Profile creation error:", profileError);
           toast({
             title: "Warning",
-            description: "Account created but profile setup failed. Please try refreshing the page.",
+            description:
+              "Account created but profile setup failed. Please try refreshing the page.",
           });
           setIsLoading(false);
         }
@@ -138,7 +141,8 @@ export function SignUpForm() {
         <form
           className="grid gap-6 space-y-4"
           style={{
-            animation: "floatIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
+            animation:
+              "floatIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
             transformStyle: "preserve-3d",
           }}
           onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}

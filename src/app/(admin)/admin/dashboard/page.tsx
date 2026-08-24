@@ -22,22 +22,39 @@ export default function DashboardPage() {
         <div className="border-b border-[#0099ff]"></div>
         <div className="flex-1 space-y-4 p-8 pt-6">
           <div className="flex items-center justify-between space-y-2">
-            <h2 className="text-3xl font-bold tracking-tight text-[#a855f7]">Dashboard</h2>
+            <h2 className="text-3xl font-bold tracking-tight text-[#a855f7]">
+              Dashboard
+            </h2>
             <div className="flex items-center space-x-2">
               <CalendarDateRangePicker />
-              <Button className="bg-[#d8b4fe] hover:bg-[#0099ff] text-white">Download</Button>
+              <Button className="bg-[#d8b4fe] hover:bg-[#0099ff] text-white">
+                Download
+              </Button>
             </div>
           </div>
           <Tabs defaultValue="overview" className="space-y-4">
             <TabsList className="bg-[#0d2818] border-b border-[#0099ff]">
-              <TabsTrigger value="overview" className="data-[state=active]:bg-[#0099ff] data-[state=active]:text-[#a855f7]">Overview</TabsTrigger>
-              <TabsTrigger value="analytics" disabled className="text-[#67e8f9]">
+              <TabsTrigger
+                value="overview"
+                className="data-[state=active]:bg-[#0099ff] data-[state=active]:text-[#a855f7]"
+              >
+                Overview
+              </TabsTrigger>
+              <TabsTrigger
+                value="analytics"
+                disabled
+                className="text-[#67e8f9]"
+              >
                 Analytics
               </TabsTrigger>
               <TabsTrigger value="reports" disabled className="text-[#67e8f9]">
                 Reports
               </TabsTrigger>
-              <TabsTrigger value="notifications" disabled className="text-[#67e8f9]">
+              <TabsTrigger
+                value="notifications"
+                disabled
+                className="text-[#67e8f9]"
+              >
                 Notifications
               </TabsTrigger>
             </TabsList>
@@ -62,7 +79,9 @@ export default function DashboardPage() {
                     </svg>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold text-[#a855f7]">$45,231.89</div>
+                    <div className="text-2xl font-bold text-[#a855f7]">
+                      $45,231.89
+                    </div>
                     <p className="text-xs text-[#67e8f9]">
                       +20.1% from last month
                     </p>
@@ -156,7 +175,9 @@ export default function DashboardPage() {
                 </Card>
                 <Card className="col-span-3 bg-[#0d2818] border-2 border-[#0099ff] hover:border-[#d8b4fe] transition-colors">
                   <CardHeader>
-                    <CardTitle className="text-[#a855f7]">Recent Sales</CardTitle>
+                    <CardTitle className="text-[#a855f7]">
+                      Recent Sales
+                    </CardTitle>
                     <CardDescription className="text-[#67e8f9]">
                       You made 265 sales this month.
                     </CardDescription>
