@@ -198,6 +198,22 @@ const brandContent = {
     collection: "windowstools",
     video: "/assets/videos/intro.mp4",
   },
+  dragnoroid: {
+    featureBar: [
+      "● ADVANCED ANDROID",
+      "● DRAGON POWER",
+      "● COMING SOON",
+      "● STAY TUNED",
+    ],
+    heading: "Dragnoroid Rat - Coming Soon",
+    features: [],
+    gradient: "from-[#ff6b00] via-[#ff8c00] to-[#000000]",
+    textColor: "text-[#ff8c00]",
+    bgFrom: "from-[#1a0a00]",
+    bgTo: "to-[#000000]",
+    gradientAccent: "from-[#ff6b00] to-[#000000]",
+    collection: "dragnoroid",
+  },
 };
 
 export default async function Home({
@@ -616,8 +632,39 @@ export default async function Home({
           />
         )}
 
-        {/* Products Section - Only show for Androfud (BTMOB has version-specific pricing above) */}
-        {brand !== "btmob" && brand !== "windowstools" && (
+        {/* Dragnoroid - Coming Soon */}
+        {brand === "dragnoroid" && (
+          <section className="py-40 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#1a0a00] to-[#000000] relative overflow-hidden">
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-600/10 blur-3xl"></div>
+              <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-red-600/10 blur-3xl"></div>
+            </div>
+
+            <div className="max-w-4xl mx-auto text-center relative z-10">
+              <div className="text-6xl md:text-8xl mb-8">🐉</div>
+              <h2 className="text-5xl md:text-6xl font-black bg-gradient-to-r from-orange-400 via-red-400 to-orange-400 bg-clip-text text-transparent mb-6">
+                DRAGNOROID RAT
+              </h2>
+              <p className="text-2xl md:text-3xl text-orange-300/80 mb-8 font-bold">
+                Coming Soon
+              </p>
+              <p className="text-lg md:text-xl text-orange-200/70 mb-12 max-w-2xl mx-auto leading-relaxed">
+                We&rsquo;re working on something powerful. The Dragon is being awakened. Stay tuned for an extraordinary experience coming your way.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  href="/?brand=androfud"
+                  className="px-8 py-4 bg-gradient-to-r from-orange-600 to-red-600 text-white font-bold rounded-full hover:shadow-2xl hover:shadow-orange-500/50 transition-all duration-300 hover:scale-105"
+                >
+                  Explore Other Tools
+                </Link>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Products Section - Only show for Androfud & Others (BTMOB & Dragnoroid excluded) */}
+        {brand !== "btmob" && brand !== "windowstools" && brand !== "dragnoroid" && (
           <ProductsSection
             brand={brand}
             content={content}

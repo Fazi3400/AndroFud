@@ -108,6 +108,18 @@ export function BrandSelector({ brand }: BrandSelectorProps) {
                 WINDOWS TOOLS
               </Link>
             </div>
+
+            {/* DRAGNOROID RAT */}
+            <Link
+              href="/?brand=dragnoroid"
+              className={`flex items-center justify-center gap-2 sm:gap-3 md:gap-4 px-4 sm:px-6 md:px-12 py-2 sm:py-3 md:py-4 rounded-full font-bold text-sm sm:text-base md:text-lg lg:text-xl uppercase tracking-widest transition-all duration-300 border-2 sm:border-4 w-full sm:w-auto ${
+                brand === "dragnoroid"
+                  ? "bg-gradient-to-r from-orange-600 to-red-600 border-orange-400 text-white shadow-lg shadow-orange-500/50"
+                  : "border-[#ff6b00]/50 text-[#ff8c00] hover:border-[#ff6b00] hover:bg-orange-500/10"
+              }`}
+            >
+              🐉 DRAGNOROID
+            </Link>
           </div>
         </div>
       </div>
