@@ -205,7 +205,7 @@ const brandContent = {
       "● COMING SOON",
       "● STAY TUNED",
     ],
-    heading: "Dragnoroid Rat - Coming Soon",
+    heading: "Welcome to Dragnoroid",
     features: [],
     rats: [],
     gradient: "from-[#ff6b00] via-[#ff8c00] to-[#000000]",
@@ -214,6 +214,7 @@ const brandContent = {
     bgTo: "to-[#000000]",
     gradientAccent: "from-[#ff6b00] to-[#000000]",
     collection: "dragnoroid",
+    video: "/assets/videos/androfud.mp4",
   },
 };
 

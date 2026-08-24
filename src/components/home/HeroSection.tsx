@@ -47,6 +47,17 @@ export function HeroSection({ brand, content }: HeroSectionProps) {
           <source src="/assets/videos/intro.mp4" type="video/mp4" />
         </video>
       )}
+      {brand === "dragnoroid" && content.video && (
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source src={content.video} type="video/mp4" />
+        </video>
+      )}
 
       {/* Animated Grid Background */}
       <div className="absolute inset-0 cyber-grid opacity-30 z-0"></div>
@@ -106,15 +117,21 @@ export function HeroSection({ brand, content }: HeroSectionProps) {
               overflowWrap: "break-word",
             }}
           >
-            <div>Welcome</div>
-            <div>to</div>
-            <div>
-              {brand === "androfud"
-                ? "AndroFud"
-                : brand === "windowstools"
-                  ? "Windows Hacking"
-                  : "BT Mob"}
-            </div>
+            {content.heading ? (
+              <div>{content.heading}</div>
+            ) : (
+              <>
+                <div>Welcome</div>
+                <div>to</div>
+                <div>
+                  {brand === "androfud"
+                    ? "AndroFud"
+                    : brand === "windowstools"
+                      ? "Windows Hacking"
+                      : "BT Mob"}
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
