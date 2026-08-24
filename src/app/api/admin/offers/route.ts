@@ -94,8 +94,18 @@ export async function GET() {
       );
     }
 
+    // Transform snake_case to camelCase for frontend
+    const transformedProducts = (productOffers || []).map((offer: any) => ({
+      productName: offer.product_name,
+      baseDiscount: offer.base_discount,
+      label: offer.label,
+      validForDays: offer.valid_for_days,
+      createdAt: offer.created_at,
+      expiresAt: offer.expires_at,
+    }));
+
     return NextResponse.json({
-      productOffers: productOffers || [],
+      productOffers: transformedProducts,
       dayOffers: dayOffers || [],
     });
   } catch (error) {

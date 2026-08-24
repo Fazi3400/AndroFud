@@ -83,9 +83,7 @@ export function ProductsSection({
     // Check if offer is expired
     const now = new Date();
     const expiresAtValue = productOffer.expiresAt || productOffer.expires_at;
-    const expiresAt = expiresAtValue
-      ? new Date(expiresAtValue)
-      : null;
+    const expiresAt = expiresAtValue ? new Date(expiresAtValue) : null;
 
     if (expiresAt && expiresAt <= now) {
       return { discount: 0, label: "", countdown: "EXPIRED", isExpired: true };
