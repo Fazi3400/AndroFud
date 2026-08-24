@@ -118,7 +118,14 @@ export function BrandSelector({ brand }: BrandSelectorProps) {
                   : "border-[#ff6b00]/50 text-[#ff8c00] hover:border-[#ff6b00] hover:bg-orange-500/10"
               }`}
             >
-              🐉 DRAGNOROID
+              <Image
+                src="/Dragnoroid Rat.png"
+                alt="Dragnoroid"
+                width={40}
+                height={40}
+                className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10"
+              />
+              DRAGNOROID
             </Link>
           </div>
         </div>
