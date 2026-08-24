@@ -51,7 +51,8 @@ export function ProductsSection({
 
     // Try exact match first
     let productOffer = offersData.productOffers?.find(
-      (offer: any) => offer?.productName && offer.productName.toLowerCase() === nameLower,
+      (offer: any) =>
+        offer?.productName && offer.productName.toLowerCase() === nameLower,
     );
 
     // If no exact match, try partial matching

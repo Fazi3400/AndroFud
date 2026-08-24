@@ -68,6 +68,10 @@ export async function POST(request: Request) {
       );
     }
 
+    if (!products || products.length === 0) {
+      throw new Error("No valid products found for checkout");
+    }
+
     // Calculate total amount from actual product prices
     let amount = data.amount || 0;
     if (!amount) {
@@ -94,7 +98,7 @@ export async function POST(request: Request) {
         user_id: userId,
         email: userEmail,
         currency: "cad",
-        amount: `${amount}`,
+        amount: amount.toString(),
         order_status: "pending",
         payment_status: "unpaid",
         payment_method: data.paymentMethod === "card" ? "card" : "crypto",
@@ -110,7 +114,7 @@ export async function POST(request: Request) {
       data.orderProducts as Record<string, { quantity: number }>,
     ).map(([productId, item]) => {
       const product = products?.find((p: any) => p.id === productId);
-      const price = product ? product.price : "0";
+      const price = product?.price ? parseFloat(product.price).toString() : "0";
       return {
         productId,
         quantity: item.quantity,

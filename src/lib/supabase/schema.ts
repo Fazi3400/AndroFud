@@ -398,6 +398,58 @@ export type InsertMedia = InferInsertModel<typeof medias>;
 
 // Subscriptions disabled - use Products with admin panel instead
 
+// Product and Day Offers Tables
+export const productOffers = pgTable("product_offers", {
+  id: text("id")
+    .notNull()
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  productName: text("product_name").notNull().unique(),
+  baseDiscount: integer("base_discount").notNull().default(0),
+  label: text("label"),
+  validForDays: integer("valid_for_days").notNull().default(7),
+  createdAt: timestamp("created_at", {
+    withTimezone: true,
+    mode: "string",
+  })
+    .defaultNow()
+    .notNull(),
+  updatedAt: timestamp("updated_at", {
+    withTimezone: true,
+    mode: "string",
+  })
+    .defaultNow()
+    .notNull(),
+});
+
+export type SelectProductOffers = InferSelectModel<typeof productOffers>;
+export type InsertProductOffers = InferInsertModel<typeof productOffers>;
+
+export const dayOffers = pgTable("day_offers", {
+  id: text("id")
+    .notNull()
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  day: text("day").notNull().unique(),
+  boost: integer("boost").notNull().default(0),
+  label: text("label"),
+  createdAt: timestamp("created_at", {
+    withTimezone: true,
+    mode: "string",
+  })
+    .defaultNow()
+    .notNull(),
+  updatedAt: timestamp("updated_at", {
+    withTimezone: true,
+    mode: "string",
+  })
+    .defaultNow()
+    .notNull(),
+});
+
+export type SelectDayOffers = InferSelectModel<typeof dayOffers>;
+export type InsertDayOffers = InferInsertModel<typeof dayOffers>;
+
 // https://stackoverflow.com/questions/24923469/modeling-product-variants
 
 // export const skuValues = pgTable(

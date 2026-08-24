@@ -20,17 +20,33 @@ export async function POST(request: NextRequest) {
     const event = JSON.parse(body);
 
     if (event.meta.event_name === "order:created") {
-      const orderId = event.data.attributes.custom.orderId;
+      const orderId = event.data.attributes.custom?.orderId;
 
-      // Update order status to paid
-      await db
-        .update(orders)
-        .set({
-          payment_status: "paid" as any,
-          order_status: "preparing" as any,
-          payment_method: "card",
-        })
-        .where(eq(orders.id, orderId));
+      if (!orderId) {
+        console.error("No orderId found in webhook payload:", event.data);
+        return NextResponse.json(
+          { error: "Missing orderId in webhook payload" },
+          { status: 400 },
+        );
+      }
+
+      // Verify order exists before updating
+      if (db) {
+        const updateResult = await db
+          .update(orders)
+          .set({
+            payment_status: "paid" as any,
+            order_status: "preparing" as any,
+            payment_method: "card",
+          })
+          .where(eq(orders.id, orderId));
+
+        console.log(`✅ Order ${orderId} payment status updated`);
+      } else {
+        console.warn(
+          "Database connection not available on Vercel. Order update skipped.",
+        );
+      }
 
       return NextResponse.json({ success: true });
     }

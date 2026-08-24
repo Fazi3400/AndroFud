@@ -14,7 +14,9 @@ if (env.DATABASE_URL && env.DATABASE_URL !== "") {
     console.log("✅ Database connection initialized");
   } catch (error) {
     console.error("❌ Failed to initialize database connection:", error);
-    console.log("💡 Tip: This is expected on Vercel. Use Supabase REST API instead.");
+    console.log(
+      "💡 Tip: This is expected on Vercel. Use Supabase REST API instead.",
+    );
   }
 } else {
   console.log("⚠️ DATABASE_URL not set - direct database operations disabled");

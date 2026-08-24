@@ -54,11 +54,9 @@ export const verifyLemonSqueezyWebhook = async (
   try {
     const crypto = await import("crypto");
     // Use webhook secret if available, otherwise fall back to API key
-    const secret = env.LEMON_SQUEEZY_WEBHOOK_SECRET || env.LEMON_SQUEEZY_API_KEY;
-    const hash = crypto
-      .createHmac("sha256", secret)
-      .update(body)
-      .digest("hex");
+    const secret =
+      env.LEMON_SQUEEZY_WEBHOOK_SECRET || env.LEMON_SQUEEZY_API_KEY;
+    const hash = crypto.createHmac("sha256", secret).update(body).digest("hex");
 
     return hash === signature;
   } catch (error) {

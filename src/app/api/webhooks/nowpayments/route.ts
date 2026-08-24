@@ -24,6 +24,14 @@ export async function POST(request: NextRequest) {
     const paymentStatus = event.payment_status;
     const orderId = event.order_id;
 
+    if (!orderId || !paymentStatus) {
+      console.error("Missing orderId or paymentStatus in webhook payload:", event);
+      return NextResponse.json(
+        { error: "Missing required fields in webhook payload" },
+        { status: 400 },
+      );
+    }
+
     let orderStatus = "pending";
     let paymentStatusDb = "unpaid";
 
@@ -48,14 +56,22 @@ export async function POST(request: NextRequest) {
     }
 
     // Update order with payment details
-    await db
-      .update(orders)
-      .set({
-        payment_status: paymentStatusDb as any,
-        order_status: orderStatus as any,
-        payment_method: "crypto",
-      })
-      .where(eq(orders.id, orderId));
+    if (db) {
+      await db
+        .update(orders)
+        .set({
+          payment_status: paymentStatusDb as any,
+          order_status: orderStatus as any,
+          payment_method: "crypto",
+        })
+        .where(eq(orders.id, orderId));
+
+      console.log(`✅ Order ${orderId} payment status updated to ${paymentStatusDb}`);
+    } else {
+      console.warn(
+        "Database connection not available on Vercel. Order update skipped.",
+      );
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

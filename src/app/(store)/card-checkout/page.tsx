@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useAuth } from "@/providers/AuthProvider";
 import useCartStore from "@/features/carts/useCartStore";
 import { Shell } from "@/components/layouts/Shell";
@@ -12,11 +12,15 @@ export default function CardCheckoutPage() {
   const { user } = useAuth();
   const guestCartItems = useCartStore((s) => s.cart);
   const removeAllProducts = useCartStore((s) => s.removeAllProducts);
+  const hasProcessedRef = useRef(false);
 
   const [isProcessing, setIsProcessing] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (hasProcessedRef.current) return;
+    hasProcessedRef.current = true;
+
     const processCheckout = async () => {
       try {
         let cartItems: Record<string, { quantity: number }> = {};
