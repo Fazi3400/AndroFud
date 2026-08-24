@@ -267,7 +267,17 @@ export function BtmobVersionsSelector() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`/api/admin/products`);
+        const baseUrl =
+          typeof window !== "undefined"
+            ? window.location.origin
+            : process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+        const response = await fetch(`${baseUrl}/api/admin/products`, {
+          cache: "no-store",
+        });
+        if (!response.ok) {
+          console.error("Failed to fetch products:", response.status);
+          return;
+        }
         const apiData = await response.json();
 
         if (apiData.products) {
@@ -278,6 +288,7 @@ export function BtmobVersionsSelector() {
             .map((product: any) => ({
               node: product,
             }));
+          console.log("Fetched BTMOB products:", btmobProducts.length);
           setProducts(btmobProducts);
         }
       } catch (err) {

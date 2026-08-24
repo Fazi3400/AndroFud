@@ -28,7 +28,11 @@ export function ProductsSection({
     // Fetch offers from API
     const fetchOffers = async () => {
       try {
-        const response = await fetch("/api/admin/offers", {
+        const baseUrl =
+          typeof window !== "undefined"
+            ? window.location.origin
+            : process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+        const response = await fetch(`${baseUrl}/api/admin/offers`, {
           cache: "no-store",
         });
         if (!response.ok) throw new Error("Failed to fetch offers");
